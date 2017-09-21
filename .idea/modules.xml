@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TixsParents.iml" filepath="$PROJECT_DIR$/TixsParents.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tixsdriver/tixsdriver.iml" filepath="$PROJECT_DIR$/tixsdriver/tixsdriver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tixsparents/tixsparents.iml" filepath="$PROJECT_DIR$/tixsparents/tixsparents.iml" />
     </modules>
   </component>
 </project>

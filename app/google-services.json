@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "404837740139",
+    "firebase_url": "https://tixs-d2990.firebaseio.com",
+    "project_id": "tixs-d2990",
+    "storage_bucket": "tixs-d2990.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404837740139:android:85d9b08f10a0ba27",
+        "android_client_info": {
+          "package_name": "com.tixs.tixsparents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404837740139-6p9lnl5rmks89dgr1k0md7rpjukvcpmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJvmVHZm7-ZGP5RSRUJMdHA0RAAmOoaS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

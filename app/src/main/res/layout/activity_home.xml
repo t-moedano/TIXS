@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tixs.tixsparents.HomeActivity">
+
+    <Button
+        android:id="@+id/bntCadastraFilho"
+        android:layout_width="180dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="100dp"
+        android:onClick="bntCadastraFilhoClick"
+        android:text="Cadastrar Criança"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bntBuscarVan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="126dp"
+        android:layout_marginTop="33dp"
+        android:onClick="bntBuscarVanClick"
+        android:text="Buscar Van"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bntCadastraFilho" />
+</android.support.constraint.ConstraintLayout>

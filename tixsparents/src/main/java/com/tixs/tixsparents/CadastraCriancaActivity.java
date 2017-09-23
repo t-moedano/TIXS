@@ -3,6 +3,7 @@ package com.tixs.tixsparents;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tixs.database.Crianca;
 import com.tixs.database.Escola;
 
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class CadastraCriancaActivity extends AppCompatActivity {
     private ArrayAdapter<Escola> escolaAdapter;
     private Timer timer = null;
 
+    private Crianca crianca = new Crianca();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,17 +52,44 @@ public class CadastraCriancaActivity extends AppCompatActivity {
 
         escolaAdapter = new ArrayAdapter<Escola>(this, R.layout.activity_simple_text_view, escolas);
         listaBuscaEscola.setAdapter(escolaAdapter);
-//        listaBuscaEscola.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//            }
-//        });
+        listaBuscaEscola.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                crianca.escola = (Escola) adapterView.getItemAtPosition(i);
+                escolaEditText.setText(crianca.escola.toString());
+            }
+        });
 
     }
 
     public void bntEnviarClick(View v) {
-
+        crianca.nome = nome.getText().toString();
+        crianca.sobrenome = sobrenome.getText().toString();
+        crianca.horarioEntrada = horarioEntrada.getText().toString();
+        crianca.horarioSaida = horarioSaida.getText().toString();
+        if (crianca.nome.length() == 0) {
+            Toast.makeText(this, "Preencha o nome", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (crianca.sobrenome.length() == 0) {
+            Toast.makeText(this, "Preencha o sobrenome", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (crianca.horarioEntrada.length() == 0) {
+            Toast.makeText(this, "Preencha horario de entrada", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (crianca.horarioSaida.length() == 0) {
+            Toast.makeText(this, "Preencha horario de saida", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (crianca.escola == null) {
+            Toast.makeText(this, "Escolha uma escola", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        FirebaseDatabase.getInstance().getReference("criancas").setValue(crianca);
+        Toast.makeText(this, "Cadastro com Sucesso", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     public void buscarEscolas(View v) {
@@ -66,8 +97,10 @@ public class CadastraCriancaActivity extends AppCompatActivity {
         /*Busca Escola*/
         // Read from the database
 //        escolaAdapter.notifyDataSetChanged();
-        FirebaseDatabase.getInstance().getReference("escolas").orderByChild("nome")
+        FirebaseDatabase.getInstance().getReference("escolas")
+                .orderByChild("nome")
                 .startAt(escolaEditText.getText().toString().trim())
+                .limitToLast(10)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

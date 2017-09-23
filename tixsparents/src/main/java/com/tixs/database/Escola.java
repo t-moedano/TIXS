@@ -1,9 +1,12 @@
 package com.tixs.database;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by moeda on 19/09/2017.
  */
 
+@IgnoreExtraProperties
 public class Escola
 {
     public String nome;
@@ -18,5 +21,10 @@ public class Escola
     {
         this.nome = nome;
         this.bairro = bairro;
+    }
+
+    @Override
+    public String toString(){
+        return nome + ", " + bairro;
     }
 }

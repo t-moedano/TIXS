@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.tixs.tixsparents.CreateProfileActivity">
 
     <EditText
         android:id="@+id/nomeTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-63dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
         android:hint="Nome"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,34 +18,17 @@
 
     <EditText
         android:id="@+id/sobrenomeTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-15dp"
-        android:layout_marginTop="19dp"
-        android:ems="10"
         android:hint="Sobrenome"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeTxtEdit" />
 
-    <Button
-        android:id="@+id/bntEnviar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar"
-        android:onClick="bntEnviarClick"
-        android:layout_marginLeft="62dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/cepTxtEdit" />
-
     <EditText
         android:id="@+id/cpfTextEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
         android:hint="CPF"
         android:inputType="numberSigned"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -55,11 +36,8 @@
 
     <EditText
         android:id="@+id/telefoneTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="22dp"
-        android:ems="10"
         android:hint="Telefone"
         android:inputType="phone"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -67,11 +45,8 @@
 
     <EditText
         android:id="@+id/ruaTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-11dp"
-        android:layout_marginTop="11dp"
-        android:ems="10"
         android:hint="Rua"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -79,11 +54,8 @@
 
     <EditText
         android:id="@+id/numeroTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="9dp"
-        android:ems="10"
         android:hint="Número"
         android:inputType="numberSigned"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,11 +63,8 @@
 
     <EditText
         android:id="@+id/bairroTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="14dp"
-        android:ems="10"
         android:hint="Bairro"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -103,14 +72,20 @@
 
     <EditText
         android:id="@+id/cepTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-10dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
         android:hint="CEP"
         android:inputType="numberSigned"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bairroTxtEdit" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/bntEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="bntEnviarClick"
+        android:text="Enviar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cepTxtEdit" />
+
+</LinearLayout>

@@ -20,6 +20,7 @@ public class Condutor
     private String modelo;
     private String placa;
     private ArrayList<Escola> lista_de_escolas;
+    private ArrayList<Bairro> lista_de_bairros;
 
     public Condutor(String id, String nome, String sobrenome, String cpf,
                     String telefone, String rua, String bairro, String numero, String cep,
@@ -37,6 +38,7 @@ public class Condutor
         this.modelo = modelo;
         this.placa = placa;
         lista_de_escolas = new ArrayList<Escola>();
+        lista_de_bairros = new ArrayList<Bairro>();
     }
 
     public Condutor()

@@ -87,7 +87,8 @@ public class CadastraCriancaActivity extends AppCompatActivity {
             Toast.makeText(this, "Escolha uma escola", Toast.LENGTH_SHORT).show();
             return;
         }
-        FirebaseDatabase.getInstance().getReference("criancas").setValue(crianca);
+
+        FirebaseDatabase.getInstance().getReference("criancas").push().setValue(crianca);
         Toast.makeText(this, "Cadastro com Sucesso", Toast.LENGTH_LONG).show();
         finish();
     }

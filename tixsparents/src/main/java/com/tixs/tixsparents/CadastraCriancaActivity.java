@@ -110,6 +110,7 @@ public class CadastraCriancaActivity extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot escolaSnap : dataSnapshot.getChildren()) {
                                 Escola escola = escolaSnap.getValue(Escola.class);
+                                escola.id = escolaSnap.getKey();
                                 escolaAdapter.add(escola);
                             }
                         } else {

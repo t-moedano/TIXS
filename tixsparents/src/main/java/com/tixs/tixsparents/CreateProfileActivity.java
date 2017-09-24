@@ -48,7 +48,7 @@ public class CreateProfileActivity extends AppCompatActivity
 
         String id = firebaseAuth.getCurrentUser().getUid();
 
-        Responsavel responsavel = new Responsavel(nome.getText().toString(), sobrenome.getText().toString(),
+        Responsavel responsavel = new Responsavel(id, nome.getText().toString(), sobrenome.getText().toString(),
                 cpf.getText().toString(), telefone.getText().toString(), rua.getText().toString(),
                 bairro.getText().toString(), numero.getText().toString(), cep.getText().toString());
 

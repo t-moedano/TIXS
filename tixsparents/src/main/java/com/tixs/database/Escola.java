@@ -11,6 +11,7 @@ public class Escola
 {
     public String nome;
     public String bairro;
+    public String id;
 
     public Escola()
     {

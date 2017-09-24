@@ -1,0 +1,29 @@
+package com.tixs.database;
+
+/**
+ * Created by danie on 24/09/2017.
+ */
+
+public class Escola
+{
+    public String nome;
+    public String rua;
+    public String numero;
+    public String bairro;
+    public String cep;
+
+
+    public Escola(String nome, String rua, String numero, String bairro, String cep)
+    {
+        this.nome = nome;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
+        this.cep = cep;
+    }
+
+    public Escola()
+    {
+        // Default constructor
+    }
+}

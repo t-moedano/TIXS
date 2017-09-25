@@ -7,16 +7,16 @@ package com.tixs.database;
 public class Escola
 {
     public String nome;
-    public String bairro;
+    //public String bairro;
     //public String rua;
     //public String numero;
     //public String cep;
 
 
-    public Escola(String nome, String rua, String numero, String bairro, String cep)
+    public Escola(String nome)
     {
         this.nome = nome;
-        this.bairro = bairro;
+        //this.bairro = bairro;
         //this.rua = rua;
         //this.numero = numero;
         //this.cep = cep;

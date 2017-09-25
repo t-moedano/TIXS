@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.tixs.database.Bairro;
 import com.tixs.database.Escola;
 
 public class AdicionarEscolaActivity extends AppCompatActivity {
@@ -15,19 +17,20 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
     private EditText nome;
-    private EditText rua;
-    private EditText numero;
     private EditText bairro;
-    private EditText cep;
+    //private EditText rua;
+    //private EditText numero;
+    //private EditText cep;
 
     private Escola nova_escola = new Escola();
+    private Bairro novo_bairro = new Bairro();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar);
         nome = (EditText) findViewById(R.id.nome_escola);
-        bairro = (EditText) findViewById(R.id.bairro_escola);
+        bairro = (EditText) findViewById(R.id.bairro_ponto);
         //rua = (EditText) findViewById(R.id.rua_escola);
         //numero = (EditText) findViewById(R.id.numero_escola);
         //cep = (EditText) findViewById(R.id.cep_escola);
@@ -39,17 +42,40 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     public void bntbutton2Click(View v)
     {
         nova_escola.nome = nome.getText().toString();
-        nova_escola.bairro = bairro.getText().toString();
+
         if (nova_escola.nome.length() == 0) {
             Toast.makeText(this, "Preencha o nome.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (nova_escola.bairro.length() == 0) {
-            Toast.makeText(this, "Preencha o bairro.", Toast.LENGTH_SHORT).show();
+
+        /***
+         * Aqui fazer a adição ao array e ao BD.
+         *
+         *
+         *
+         *
+         */
+
+
+        //Intent i = new Intent(AdicionarEscolaActivity.this, CadastraCriancaActivity.class);
+        //startActivity(i);
+    }
+
+    public void bntbutton3Click(View v)
+    {
+        novo_bairro.nome = bairro.getText().toString();
+        if (novo_bairro.nome.length() == 0) {
+            Toast.makeText(this, "Preencha o nome.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        
+        /***
+         * Aqui fazer a adição ao array e ao BD.
+         *
+         *
+         *
+         *
+         */
 
         //Intent i = new Intent(AdicionarEscolaActivity.this, CadastraCriancaActivity.class);
         //startActivity(i);

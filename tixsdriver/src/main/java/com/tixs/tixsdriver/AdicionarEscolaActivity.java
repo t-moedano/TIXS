@@ -1,8 +1,7 @@
 package com.tixs.tixsdriver;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -70,7 +69,6 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
             return;
         }
 
-
         /***
          * Aqui fazer a adição ao array e ao BD.
          *
@@ -78,8 +76,6 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
          *
          *
          */
-
-
 
         //Intent i = new Intent(AdicionarEscolaActivity.this, CadastraCriancaActivity.class);
         //startActivity(i);

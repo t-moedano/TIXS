@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:onClick="bntBuscarVanClick"
+        android:onClick="bntBuscarVan"
         android:text="Buscar Van" />
 
 </LinearLayout>

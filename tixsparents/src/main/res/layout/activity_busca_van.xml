@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
     tools:context="com.tixs.tixsparents.BuscaVanActivity">
 
     <EditText
-        android:id="@+id/buscaVanTxtEdit"
+        android:id="@+id/buscaNomeTxtEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome"
@@ -22,11 +21,18 @@
         android:layout_height="wrap_content"
         android:hint="Bairro"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/buscaVanTxtEdit" />
+        />
 
     <Button
         android:id="@+id/buscarVanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:text="Buscar"
+        android:onClick="btnBuscar"/>
+
+    <ListView
+        android:id="@+id/condutorList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

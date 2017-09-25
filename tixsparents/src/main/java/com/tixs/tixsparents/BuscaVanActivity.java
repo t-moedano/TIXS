@@ -61,7 +61,9 @@ public class BuscaVanActivity extends AppCompatActivity {
                                     condutorAdapter.add(condutor);
                                 }
                             }
-                            // procurar por bairro
+                            if (condutorAdapter.getCount() == 0) {
+                                Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             // Nao tem o nome
                             Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();

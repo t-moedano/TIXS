@@ -3,7 +3,7 @@
     <color name="colorPrimary">#33CC33</color>
     <color name="colorPrimaryDark">#33CC33</color>
     <color name="colorAccent">#33CC33</color>
-    <color name="window_background">#E0E0E0</color>
-    <color name="nav_color">#E0E0E0</color>
+    <color name="window_background">#B0BEC5</color>
+    <color name="nav_color">#B0BEC5</color>
 
 </resources>

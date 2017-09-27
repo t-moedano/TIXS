@@ -1,6 +1,7 @@
 package com.tixs.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by moeda on 19/09/2017.
@@ -8,23 +9,23 @@ import java.util.ArrayList;
 
 public class Condutor
 {
-    private String id;
-    private String nome;
-    private String sobrenome;
-    private String cpf;
-    private String telefone;
-    private String rua;
-    private String bairro;
-    private String numero;
-    private String cep;
-    private String modelo;
-    private String placa;
-    private ArrayList<Escola> lista_de_escolas;
-    private ArrayList<Bairro> lista_de_bairros;
+    public String id;
+    public String nome;
+    public String sobrenome;
+    public String cpf;
+    public String telefone;
+    public String rua;
+    public String bairro;
+    public String numero;
+    public String cep;
+    public String modelo;
+    public String placa;
+    public List bairros;
+    public List escolas;
 
     public Condutor(String id, String nome, String sobrenome, String cpf,
                     String telefone, String rua, String bairro, String numero, String cep,
-                    String modelo, String placa)
+                    String modelo, String placa, List bairros, List escolas)
     {
         this.id = id;
         this.nome = nome;
@@ -37,8 +38,8 @@ public class Condutor
         this.cep = cep;
         this.modelo = modelo;
         this.placa = placa;
-        lista_de_escolas = new ArrayList<Escola>();
-        lista_de_bairros = new ArrayList<Bairro>();
+        this.bairros = bairros;
+        this.escolas = escolas;
     }
 
     public Condutor()

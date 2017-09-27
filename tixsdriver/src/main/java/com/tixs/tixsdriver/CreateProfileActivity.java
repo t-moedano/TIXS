@@ -46,25 +46,24 @@ public class CreateProfileActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void bntEnviarClick(View v)
-    {
 
-        String id = firebaseAuth.getCurrentUser().getUid();
-
-        Condutor responsavel = new Condutor(id, nome.getText().toString(), sobrenome.getText().toString(),
-                cpf.getText().toString(), telefone.getText().toString(), rua.getText().toString(),
-                bairro.getText().toString(), numero.getText().toString(), cep.getText().toString(),
-                modelo.getText().toString(), placa.getText().toString());
-
-        mDatabase.child("condutor").child(id).setValue(responsavel);
-        Intent i = new Intent(CreateProfileActivity.this, MainActivity.class);
-        startActivity(i);
-
-    }
 
     public void bntAdicionarEscolaClick(View v)
     {
+        Bundle bundle = new Bundle();
+        bundle.putString("nome", nome.getText().toString());
+        bundle.putString("sobrenome", sobrenome.getText().toString());
+        bundle.putString("telefone", telefone.getText().toString());
+        bundle.putString("rua", rua.getText().toString());
+        bundle.putString("numero", numero.getText().toString());
+        bundle.putString("bairro", bairro.getText().toString());
+        bundle.putString("cpf", cpf.getText().toString());
+        bundle.putString("cep", cep.getText().toString());
+        bundle.putString("modelo", modelo.getText().toString());
+        bundle.putString("placa", placa.getText().toString());
+
         Intent i = new Intent(CreateProfileActivity.this, AdicionarEscolaActivity.class);
+        i.putExtras(bundle);
         startActivity(i);
     }
 

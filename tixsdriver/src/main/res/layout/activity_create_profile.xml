@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar"
-        android:onClick="bntEnviarClick"
+        android:onClick="bntAdicionarEscolaClick"
         android:layout_marginLeft="148dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="0dp"

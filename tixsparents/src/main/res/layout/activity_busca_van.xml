@@ -25,10 +25,12 @@
 
     <Button
         android:id="@+id/buscarVanButton"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buscar"
-        android:onClick="btnBuscar"/>
+        android:backgroundTint="#33CC33"
+        android:onClick="btnBuscar"
+        android:text="Buscar" />
 
     <ListView
         android:id="@+id/condutorList"

@@ -5,4 +5,5 @@
     <color name="colorAccent">#33CC33</color>
     <color name="window_background">#B0BEC5</color>
     <color name="nav_color">#B0BEC5</color>
+    <color name="text_secondary">#FFFFFF</color>
 </resources>

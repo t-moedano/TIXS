@@ -24,9 +24,11 @@
 
     <Button
         android:id="@+id/bntRegistrarR"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar"
-        android:onClick="bntRegistrarRClick"/>
+        android:backgroundTint="#33CC33"
+        android:onClick="bntRegistrarRClick"
+        android:text="Registrar" />
 
 </LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TixsParents</string>
+    <string name="app_name"> </string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_cadastra_crianca">CadastraCrianca</string>
 </resources>

@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,10 +56,11 @@ public class CadastraCriancaActivity extends AppCompatActivity {
         listaBuscaEscola.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                crianca.escola = (Escola) adapterView.getItemAtPosition(i);
+                crianca.setEscola((Escola) adapterView.getItemAtPosition(i));
                 escolaEditText.setText(crianca.escola.toString());
             }
         });
+
 
     }
 
@@ -87,10 +89,22 @@ public class CadastraCriancaActivity extends AppCompatActivity {
             Toast.makeText(this, "Escolha uma escola", Toast.LENGTH_SHORT).show();
             return;
         }
+        crianca.setResponsavel(HomeActivity.responsavelLogado);
+        crianca.id = FirebaseDatabase.getInstance().getReference("criancas").push().getKey();
 
-        FirebaseDatabase.getInstance().getReference("criancas").push().setValue(crianca);
-        Toast.makeText(this, "Cadastro com Sucesso", Toast.LENGTH_LONG).show();
-        finish();
+        FirebaseDatabase.getInstance().getReference("criancas").child(crianca.id)
+                .setValue(crianca).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                HomeActivity.responsavelLogado.addCrianca(crianca);
+                FirebaseDatabase.getInstance().getReference("responsavel")
+                        .child(HomeActivity.responsavelLogado.id)
+                        .setValue(HomeActivity.responsavelLogado);
+                Toast.makeText(getApplicationContext(), "Cadastro com Sucesso", Toast.LENGTH_LONG).show();
+                finish();
+
+            }
+        });
     }
 
     public void buscarEscolas(View v) {

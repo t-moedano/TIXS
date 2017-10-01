@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.tixs.database.Responsavel;
+
 public class HomeActivity extends AppCompatActivity {
+
+    public static Responsavel responsavelLogado = new Responsavel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

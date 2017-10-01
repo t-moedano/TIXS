@@ -10,27 +10,29 @@ import java.util.ArrayList;
 
 public class Condutor
 {
-    @Exclude private String id;
-    private String nome;
-    private String sobrenome;
-    private String cpf;
-    private String telefone;
-    private String rua;
-    private String bairro;
-    private String numero;
-    private String cep;
-    private String modelo;
-    private String placa;
-    private ArrayList<Escola> escolas;
-    private ArrayList<Ponto> bairros;
+    @Exclude
+    public String id;
+    public String nome;
+    public String sobrenome;
+    public String cpf;
+    public String telefone;
+    public String rua;
+    public String bairro;
+    public String numero;
+    public String cep;
+    public ArrayList<String> vansIDs;
+    @Exclude
+    public ArrayList<Van> vans;
+    public ArrayList<String> escolasIDs;
+    @Exclude
+    public ArrayList<Escola> escolas;
 
     public String toString() {
         return nome;
     }
 
     public Condutor(String nome, String sobrenome, String cpf,
-                    String telefone, String rua, String bairro, String numero, String cep,
-                    String modelo, String placa)
+                    String telefone, String rua, String bairro, String numero, String cep)
     {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -40,10 +42,8 @@ public class Condutor
         this.bairro = bairro;
         this.numero = numero;
         this.cep = cep;
-        this.modelo = modelo;
-        this.placa = placa;
         escolas = new ArrayList<Escola>();
-        bairros = new ArrayList<Ponto>();
+        vans = new ArrayList<Van>();
     }
 
     public Condutor()
@@ -52,9 +52,9 @@ public class Condutor
     }
 
     public boolean containsBairro(String bairro) {
-        if (bairros == null) return false;
-        for (Ponto p : bairros) {
-            if(p.getNome().contains(bairro)) return true;
+        if (vans == null) return false;
+        for (Van p : vans) {
+            if (p.nome.contains(bairro)) return true;
         }
         return false;
     }
@@ -131,22 +131,6 @@ public class Condutor
         this.cep = cep;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
     public ArrayList<Escola> getEscolas() {
         return escolas;
     }
@@ -155,11 +139,27 @@ public class Condutor
         this.escolas = escolas;
     }
 
-    public ArrayList<Ponto> getBairros() {
-        return bairros;
+    public ArrayList<String> getEscolasIDs() {
+        return escolasIDs;
     }
 
-    public void setBairros(ArrayList<Ponto> bairros) {
-        this.bairros = bairros;
+    public void setEscolasIDs(ArrayList<String> escolasIDs) {
+        this.escolasIDs = escolasIDs;
+    }
+
+    public ArrayList<String> getVansIDs() {
+        return vansIDs;
+    }
+
+    public void setVansIDs(ArrayList<String> vansIDs) {
+        this.vansIDs = vansIDs;
+    }
+
+    public ArrayList<Van> getVans() {
+        return vans;
+    }
+
+    public void setVans(ArrayList<Van> vans) {
+        this.vans = vans;
     }
 }

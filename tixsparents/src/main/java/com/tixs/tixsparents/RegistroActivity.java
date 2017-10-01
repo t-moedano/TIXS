@@ -1,9 +1,9 @@
 package com.tixs.tixsparents;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -45,6 +45,7 @@ public class RegistroActivity extends AppCompatActivity {
                             Toast.makeText(RegistroActivity.this, "Registrado com Sucesso", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(RegistroActivity.this, CreateProfileActivity.class);
                             startActivity(i);
+                            finish();
                         }
                         else
                         {

@@ -1,17 +1,21 @@
 package com.tixs.database;
 
+import com.google.firebase.database.Exclude;
+
 /**
- * Created by rodolfo on 24/09/17.
+ * Created by aline on 24/09/17.
  */
 
-public class Ponto {
-    private String nome;
+public class Rota {
+    @Exclude
+    public String id;
+    public String nome;
 
-    public Ponto (){
+    public Rota() {
         nome = "";
     }
 
-    public Ponto(String nome) {
+    public Rota(String nome) {
         this.nome = nome;
     }
 
@@ -28,9 +32,9 @@ public class Ponto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Ponto ponto = (Ponto) o;
+        Rota rota = (Rota) o;
 
-        return nome.equals(ponto.nome);
+        return nome.equals(rota.nome);
 
     }
 

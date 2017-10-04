@@ -91,7 +91,7 @@
         android:id="@+id/imageView8"
         android:layout_width="152dp"
         android:layout_height="147dp"
-        app:srcCompat="@drawable/LOGO_BRANCO_FINAL"
+        app:srcCompat="@drawable/logo_branco_final"
         tools:layout_editor_absoluteY="5dp"
         tools:layout_editor_absoluteX="108dp" />
 

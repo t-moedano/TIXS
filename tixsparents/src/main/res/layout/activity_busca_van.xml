@@ -8,16 +8,27 @@
     android:layout_margin="20dp"
     tools:context="com.tixs.tixsparents.BuscaVanActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecione sua crianca:" />
+
+    <Spinner
+        android:id="@+id/criancaSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Busca de van:" />
+
     <EditText
         android:id="@+id/buscaNomeTxtEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome"
-        android:inputType="textPersonName"
-        android:selectAllOnFocus="false"
-        android:singleLine="false"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/bairroTxtEdit"
@@ -27,15 +38,30 @@
         android:inputType="textPersonName"
         />
 
-    <Button
-        android:id="@+id/buscarVanButton"
-        style="@android:style/Widget.Holo.Button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#33CC33"
-        android:onClick="btnBuscar"
-        android:text="Buscar" />
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/buscarVanButton"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#33CC33"
+            android:onClick="btnBuscar"
+            android:text="Buscar" />
+
+        <Button
+            android:id="@+id/confirmarButtonClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmar"
+            android:backgroundTint="#33CC33"
+            style="@android:style/Widget.Holo.Button"
+            android:onClick="onConfirmarButtonClick" />
+
+    </LinearLayout>
     <ListView
         android:id="@+id/condutorList"
         android:layout_width="match_parent"

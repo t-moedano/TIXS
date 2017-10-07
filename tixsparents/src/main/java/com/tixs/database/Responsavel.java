@@ -25,7 +25,6 @@ public class Responsavel {
     public String numero = "";
     public String cep = "";
     public List<String> criancasIDs = new ArrayList<>();
-    @Exclude
     public List<Crianca> criancas = new ArrayList<>();
 
 

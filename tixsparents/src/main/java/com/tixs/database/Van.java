@@ -146,4 +146,11 @@ public class Van implements Serializable {
         bairros.add(bairro);
         bairrosIDs.add(bairro.id);
     }
+
+    public void addCrianca(Crianca crianca) {
+        if (!criancasIDs.contains(crianca.id)) {
+            criancas.add(crianca);
+            criancasIDs.add(crianca.id);
+        }
+    }
 }

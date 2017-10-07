@@ -101,9 +101,10 @@ public class Van {
     }
 
     public void carregarRotas() {
+        List<ValueEventListener> valueEventListeners = new ArrayList<>(rotasIDs.size());
         for (String rid : rotasIDs) {
-            FirebaseDatabase.getInstance().getReference("bairros").child(rid)
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
+            valueEventListeners.add(FirebaseDatabase.getInstance().getReference("bairros").child(rid)
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Rota r = dataSnapshot.getValue(Rota.class);
@@ -115,7 +116,17 @@ public class Van {
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
-                    });
+                    }));
+        }
+        for (int i = 0; i < rotasIDs.size(); i++) {
+            try {
+                valueEventListeners.get(i).wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                FirebaseDatabase.getInstance().getReference("bairros").child(rotasIDs.get(i))
+                        .removeEventListener(valueEventListeners.get(i));
+            }
         }
 
     }

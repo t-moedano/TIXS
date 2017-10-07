@@ -51,7 +51,7 @@ public class BuscaVanActivity extends AppCompatActivity {
                 .orderByChild("nome")
                 .startAt(nomeEdit.getText().toString())
                 .limitToLast(100)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
@@ -62,32 +62,10 @@ public class BuscaVanActivity extends AppCompatActivity {
                                 if (van.containsBairro(bairro.nome)) {
                                     vansAdapter.add(van);
                                 }
-//                                for (String rid : van.rotasIDs) {
-//                                    FirebaseDatabase.getInstance().getReference("bairros").child(rid)
-//                                            .addListenerForSingleValueEvent(new ValueEventListener() {
-//                                                @Override
-//                                                public void onDataChange(DataSnapshot dataSnapshot) {
-//                                                    final Rota r = dataSnapshot.getValue(Rota.class);
-//                                                    r.id = dataSnapshot.getKey();
-//                                                    van.addRota(r);
-//                                                    if (bairro.nome.length() == 0 || r.nome.contains(bairro.nome)){
-//                                                        Toast.makeText(getApplicationContext(), "Achei", Toast.LENGTH_LONG).show();
-//                                                        vansAdapter.add(van);
-//                                                    }
-//                                                }
-//
-//                                                @Override
-//                                                public void onCancelled(DatabaseError databaseError) {
-//
-//                                                }
-//                                            });
-//                                }
-
-
                             }
-//                            if (vansAdapter.getCount() == 0) {
-//                                Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();
-//                            }
+                            if (vansAdapter.getCount() == 0) {
+                                Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             // Nao tem o nome
                             Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();

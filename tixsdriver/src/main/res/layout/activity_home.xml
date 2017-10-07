@@ -8,6 +8,14 @@
     tools:context="com.tixs.tixsdriver.HomeActivity">
 
     <Button
+        android:id="@+id/bntMapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mapa"
+        android:onClick="bntMapa"
+        />
+
+    <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

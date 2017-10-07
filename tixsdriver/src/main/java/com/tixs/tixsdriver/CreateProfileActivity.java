@@ -72,7 +72,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         c.cep = cep.getText().toString();
         c.id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         HomeActivity.condutorLogado = c;
-        FirebaseDatabase.getInstance().getReference("condutor").child(c.id).setValue(c)
+        FirebaseDatabase.getInstance().getReference("condutores").child(c.id).setValue(c)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

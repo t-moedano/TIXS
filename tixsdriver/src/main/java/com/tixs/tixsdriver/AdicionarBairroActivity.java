@@ -12,69 +12,57 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tixs.database.Bairro;
 import com.tixs.database.Condutor;
-import com.tixs.database.Escola;
 import com.tixs.database.Van;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdicionarEscolaActivity extends AppCompatActivity {
+public class AdicionarBairroActivity extends AppCompatActivity {
 
-    //    private String id;
-//    private String nome;
-//    private String sobrenome;
-//    private String cpf;
-//    private String telefone;
-//    private String rua;
-//    private String bairro;
-//    private String numero;
-//    private String cep;
-//    private String modelo;
-//    private String placa;
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
 
-    private EditText nomeEscolaEditText;
-    ListView escolaListView;
+    private EditText nomeBairroEditText;
+    ListView bairrosListView;
 
     private List escolaLista = new ArrayList<>();
-    ArrayAdapter<Escola> escolaArrayAdapter;
-    private List bairroLista = new ArrayList<>();
+    ArrayAdapter<Bairro> bairrosArrayAdapter;
 
     Van van;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adicionar_escola);
-        nomeEscolaEditText = (EditText) findViewById(R.id.nomeBairroEditText);
-        escolaListView = (ListView) findViewById(R.id.bairrosListView);
+        setContentView(R.layout.activity_adicionar_bairro);
+        nomeBairroEditText = (EditText) findViewById(R.id.nomeBairroEditText);
+        bairrosListView = (ListView) findViewById(R.id.bairrosListView);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        escolaArrayAdapter = new ArrayAdapter<Escola>(this, R.layout.activity_simple_text_view, van.escolas);
-        escolaListView.setAdapter(escolaArrayAdapter);
+        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.activity_simple_text_view, van.bairros);
+        bairrosListView.setAdapter(bairrosArrayAdapter);
 
     }
 
 
     public void bntAdicionarEscolaClick(View view) {
         Condutor condutor = HomeActivity.condutorLogado;
-        String escolaNome = nomeEscolaEditText.getText().toString();
-        Escola escola = new Escola();
-        escola.nome = escolaNome;
-        escola.id = FirebaseDatabase.getInstance().getReference("escolas").push().getKey();
-        van.addEscola(escola);
-        FirebaseDatabase.getInstance().getReference("escolas").child(escola.id).setValue(escola);
+        String escolaNome = nomeBairroEditText.getText().toString();
+        Bairro bairro = new Bairro();
+        bairro.nome = escolaNome;
+        bairro.id = FirebaseDatabase.getInstance().getReference("escolas").push().getKey();
+        van.addBairro(bairro);
+        FirebaseDatabase.getInstance().getReference("bairros").child(bairro.id).setValue(bairro);
         FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van);
         FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id).setValue(condutor);
 //        Intent i = new Intent(AdicionarEscolaActivity.this, MainActivity.class);
 //        startActivity(i);
-        Toast.makeText(AdicionarEscolaActivity.this, "Escola Adicionada", Toast.LENGTH_LONG).show();
+        Toast.makeText(AdicionarBairroActivity.this, "bairro Adicionado", Toast.LENGTH_LONG).show();
         finish();
     }
 }

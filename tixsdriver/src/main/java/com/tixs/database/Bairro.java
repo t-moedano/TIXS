@@ -1,15 +1,45 @@
 package com.tixs.database;
 
+import com.google.firebase.database.Exclude;
+
 /**
- * Created by danie on 24/09/2017.
+ * Created by aline on 24/09/17.
  */
 
 public class Bairro {
+    @Exclude
+    public String id;
     public String nome;
-    public Bairro (String nome) {
+
+    public Bairro() {
+        nome = "";
+    }
+
+    public Bairro(String nome) {
         this.nome = nome;
     }
-    public Bairro () {
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Bairro rota = (Bairro) o;
+
+        return nome.equals(rota.nome);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return nome.hashCode();
     }
 }

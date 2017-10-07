@@ -47,7 +47,7 @@ public class BuscaVanActivity extends AppCompatActivity {
         vansAdapter.clear();
         final Rota bairro = new Rota(bairroEdit.getText().toString());
         // procurar por nome
-        FirebaseDatabase.getInstance().getReference("van")
+        FirebaseDatabase.getInstance().getReference("vans")
                 .orderByChild("nome")
                 .startAt(nomeEdit.getText().toString())
                 .limitToLast(100)

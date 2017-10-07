@@ -11,7 +11,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Escola
 {
     public String nome;
-    public String bairro;
     @Exclude
     public String id;
 
@@ -22,11 +21,10 @@ public class Escola
     public Escola(String nome, String bairro)
     {
         this.nome = nome;
-        this.bairro = bairro;
     }
 
     @Override
     public String toString() {
-        return nome + ", " + bairro;
+        return nome;
     }
 }

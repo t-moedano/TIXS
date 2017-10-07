@@ -148,4 +148,9 @@ public class Condutor
         vans.add(van);
         vansIDs.add(van.id);
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

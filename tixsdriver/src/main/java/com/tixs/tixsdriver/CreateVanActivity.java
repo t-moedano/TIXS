@@ -35,24 +35,24 @@ public class CreateVanActivity extends Activity {
     public void onAdicionarVanBtnClick(View view) {
         final Van van = new Van();
         van.setCondutor(HomeActivity.condutorLogado);
-        van.id = FirebaseDatabase.getInstance().getReference("van").push().getKey();
+        van.id = FirebaseDatabase.getInstance().getReference("vanSelecionada").push().getKey();
         van.nome = nomeVanEditText.getText().toString();
         van.modelo = modeloVanEditText.getText().toString();
         van.placa = placaVanEditText.getText().toString();
-        FirebaseDatabase.getInstance().getReference("van").child(van.id).setValue(van)
+        FirebaseDatabase.getInstance().getReference("vanSelecionada").child(van.id).setValue(van)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         HomeActivity.condutorLogado.addVan(van);
-                        FirebaseDatabase.getInstance().getReference("condutor").child(HomeActivity.condutorLogado.id)
+                        FirebaseDatabase.getInstance().getReference("condutores").child(HomeActivity.condutorLogado.id)
                                 .setValue(HomeActivity.condutorLogado);
                         Toast.makeText(getApplicationContext(), "Van cadastrada com sucesso.", Toast.LENGTH_LONG).show();
                         finish();
                     }
                 });
 //        Condutor condutor = HomeActivity.condutorLogado;
-//        condutor.addVan(van);
-//        FirebaseDatabase.getInstance().getReference("condutor").child(condutor.id).setValue(condutor);
+//        condutor.addVan(vanSelecionada);
+//        FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id).setValue(condutor);
 
     }
 }

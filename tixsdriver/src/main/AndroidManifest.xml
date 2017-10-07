@@ -24,6 +24,7 @@
         <activity android:name=".AdicionarEscolaActivity"></activity>
         <activity android:name=".CreateVanActivity" />
         <activity android:name=".AdministrarVanActivity" />
+        <activity android:name=".AdicionarBairroActivity" />
     </application>
 
 </manifest>

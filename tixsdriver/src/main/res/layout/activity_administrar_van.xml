@@ -8,9 +8,18 @@
     android:gravity="center"
     tools:context="com.tixs.tixsdriver.AdministrarVanActivity">
 
-    <ListView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Selecione a Van:" />
+
+    <ListView
+        android:id="@+id/vansListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="2dp"
+        android:footerDividersEnabled="true" />
 
     <LinearLayout
         android:layout_width="match_parent"

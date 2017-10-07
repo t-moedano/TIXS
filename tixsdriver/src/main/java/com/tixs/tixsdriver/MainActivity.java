@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
         txtEmail.setText(sp.getString("email", ""), TextView.BufferType.EDITABLE);
         txtSenha.setText(sp.getString("pass", ""), TextView.BufferType.EDITABLE);
+        rememberCheckBox.setChecked(sp.getBoolean("remember", false));
     }
 
     public void cadastroTxtViewClick(View v)
@@ -61,14 +62,15 @@ public class MainActivity extends AppCompatActivity {
                     {
                         if(task.isSuccessful())
                         {
-                            if (rememberCheckBox.isActivated()) {
+                            if (rememberCheckBox.isChecked()) {
                                 SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
                                 SharedPreferences.Editor spe = sp.edit();
                                 spe.putString("email", txtEmail.getText().toString());
                                 spe.putString("pass", txtSenha.getText().toString());
+                                spe.putBoolean("remember", true);
                                 spe.commit();
                             }
-                            FirebaseDatabase.getInstance().getReference("condutor")
+                            FirebaseDatabase.getInstance().getReference("condutores")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override

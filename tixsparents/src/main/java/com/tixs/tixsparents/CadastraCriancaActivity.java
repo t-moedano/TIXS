@@ -92,18 +92,16 @@ public class CadastraCriancaActivity extends AppCompatActivity {
         crianca.setResponsavel(HomeActivity.responsavelLogado);
         crianca.id = FirebaseDatabase.getInstance().getReference("criancas").push().getKey();
 
-        FirebaseDatabase.getInstance().getReference("criancas").child(crianca.id)
-                .setValue(crianca).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                HomeActivity.responsavelLogado.addCrianca(crianca);
-                FirebaseDatabase.getInstance().getReference("responsavel")
-                        .child(HomeActivity.responsavelLogado.id)
-                        .setValue(HomeActivity.responsavelLogado);
-                Toast.makeText(getApplicationContext(), "Cadastro com Sucesso", Toast.LENGTH_LONG).show();
-                finish();
-
-            }
+        HomeActivity.responsavelLogado.addCrianca(crianca);
+        FirebaseDatabase.getInstance().getReference("responsaveis").child(HomeActivity.responsavelLogado.id)
+                .setValue(HomeActivity.responsavelLogado);
+        FirebaseDatabase.getInstance().getReference("criancas").child(crianca.id).setValue(crianca)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(), "Cadastro com Sucesso", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
         });
     }
 

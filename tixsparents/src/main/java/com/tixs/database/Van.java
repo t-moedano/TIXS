@@ -4,9 +4,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +14,7 @@ import java.util.List;
  * Created by aline on 30/09/17.
  */
 
-@IgnoreExtraProperties
-public class Van {
+public class Van implements Serializable {
 
     @Exclude
     public String id = "";
@@ -23,29 +22,30 @@ public class Van {
     public String placa = "";
     public String nome = "";
     public String condutorID = "";
-    @Exclude
-    public Condutor condutor = new Condutor();
-    public List<String> rotasIDs = new ArrayList<>();
-    @Exclude
-    public List<Rota> rotas = new ArrayList<>();
+    //    public Condutor condutor = new Condutor();
+    public List<String> bairrosIDs = new ArrayList<>();
+    public List<Bairro> bairros = new ArrayList<>();
+    public ArrayList<String> escolasIDs = new ArrayList<>();
+    public ArrayList<Escola> escolas = new ArrayList<>();
+    public List<String> criancasIDs = new ArrayList<>();
+    public List<Crianca> criancas = new ArrayList<>();
 
     public Van() {
 
     }
 
-    public Van(Condutor condutor, String nome, List<Rota> rotas) {
-        this.condutor = condutor;
+    public Van(String nome, List<Bairro> rotas) {
+//        this.condutor = condutor;
         this.nome = nome;
-        this.rotasIDs = new ArrayList<>();
-        this.rotas = rotas;
-        for (Rota p : rotas) {
-            rotasIDs.add(p.id);
+        this.bairros = rotas;
+        for (Bairro p : rotas) {
+            bairrosIDs.add(p.id);
         }
     }
 
     public boolean containsBairro(String bairro) {
-        if (rotas == null || bairro == null) return false;
-        for (Rota p : rotas) {
+        if (bairros == null || bairro == null) return false;
+        for (Bairro p : bairros) {
             if (p.nome.contains(bairro)) return true;
         }
         return false;
@@ -63,13 +63,13 @@ public class Van {
         this.id = id;
     }
 
-    public Condutor getCondutor() {
-        return condutor;
-    }
+//    public Condutor getCondutor() {
+//        return condutor;
+//    }
 
     public void setCondutor(Condutor condutor) {
         this.condutorID = condutor.id;
-        this.condutor = condutor;
+//        this.condutor = condutor;
     }
 
     public String getNome() {
@@ -80,35 +80,35 @@ public class Van {
         this.nome = nome;
     }
 
-    public List<String> getRotasIDs() {
-        return rotasIDs;
+    public List<String> getBairrosIDs() {
+        return bairrosIDs;
     }
 
-    public void setRotasIDs(List<String> rotasIDs) {
-        this.rotasIDs = rotasIDs;
+    public void setBairrosIDs(List<String> bairrosIDs) {
+        this.bairrosIDs = bairrosIDs;
     }
 
-    public List<Rota> getRotas() {
-        return rotas;
+    public List<Bairro> getBairros() {
+        return bairros;
     }
 
-    public void setRotas(List<Rota> rotas) {
-        this.rotas = rotas;
+    public void setBairros(List<Bairro> bairros) {
+        this.bairros = bairros;
     }
 
-    public void addRota(Rota r) {
-        rotas.add(r);
-        rotasIDs.add(r.id);
+    public void addRota(Bairro r) {
+        bairros.add(r);
+        bairrosIDs.add(r.id);
     }
 
     public void carregarRotas() {
-        List<ValueEventListener> valueEventListeners = new ArrayList<>(rotasIDs.size());
-        for (String rid : rotasIDs) {
+        List<ValueEventListener> valueEventListeners = new ArrayList<>(bairrosIDs.size());
+        for (String rid : bairrosIDs) {
             valueEventListeners.add(FirebaseDatabase.getInstance().getReference("bairros").child(rid)
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Rota r = dataSnapshot.getValue(Rota.class);
+                            Bairro r = dataSnapshot.getValue(Bairro.class);
                             r.id = dataSnapshot.getKey();
                             addRota(r);
                         }
@@ -119,16 +119,31 @@ public class Van {
                         }
                     }));
         }
-        for (int i = 0; i < rotasIDs.size(); i++) {
+        for (int i = 0; i < bairrosIDs.size(); i++) {
             try {
                 valueEventListeners.get(i).wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                FirebaseDatabase.getInstance().getReference("bairros").child(rotasIDs.get(i))
+                FirebaseDatabase.getInstance().getReference("bairros").child(bairrosIDs.get(i))
                         .removeEventListener(valueEventListeners.get(i));
             }
         }
 
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public void addEscola(Escola escola) {
+        escolas.add(escola);
+        escolasIDs.add(escola.id);
+    }
+
+    public void addBairro(Bairro bairro) {
+        bairros.add(bairro);
+        bairrosIDs.add(bairro.id);
     }
 }

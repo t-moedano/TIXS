@@ -53,15 +53,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void btnLoginClick(View v)
-    {
-        (firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())).
-                addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    public void onLoginButtonClick(View view) {
+        firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if(task.isSuccessful())
-                        {
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
                             if (rememberCheckBox.isChecked()) {
                                 SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
                                 SharedPreferences.Editor spe = sp.edit();
@@ -89,9 +86,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Login com Sucesso", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(i);
-                        }
-                        else
-                        {
+                        } else {
                             Log.e("ERROR", task.getException().toString());
                             Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }

@@ -49,7 +49,7 @@ public class CreateProfileActivity extends AppCompatActivity
                 bairro.getText().toString(), numero.getText().toString(), cep.getText().toString(),
                 Collections.<Crianca>emptyList());
 
-        FirebaseDatabase.getInstance().getReference("responsavel").child(id).setValue(responsavel);
+        FirebaseDatabase.getInstance().getReference("responsaveis").child(id).setValue(responsavel);
 //        Intent i = new I ntent(CreateProfileActivity.this, MainActivity.class);
 //        startActivity(i);
         finish();

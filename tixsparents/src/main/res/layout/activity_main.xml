@@ -13,7 +13,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="200dp"
+        android:maxHeight="165dp"
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/logo_branco_final" />
 
     <TextView
@@ -58,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#33CC33"
+            android:onClick="onLoginButtonClick"
             android:text="Login" />
 
         <Button

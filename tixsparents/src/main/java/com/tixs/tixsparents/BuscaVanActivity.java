@@ -50,15 +50,13 @@ public class BuscaVanActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("vans")
                 .orderByChild("nome")
                 .startAt(nomeEdit.getText().toString())
-                .limitToLast(100)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                                final Van van = snap.getValue(Van.class);
+                                Van van = snap.getValue(Van.class);
                                 van.id = snap.getKey();
-                                van.carregarRotas();
                                 if (van.containsBairro(bairro.nome)) {
                                     vansAdapter.add(van);
                                 }

@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void btnLoginClick(View v)
+    public void onLoginButtonClick(View v)
     {
-        (firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())).
+        firebaseAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString()).
                 addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                                 spe.putBoolean("remember", true);
                                 spe.commit();
                             }
-                            FirebaseDatabase.getInstance().getReference("responsavel")
+                            FirebaseDatabase.getInstance().getReference("responsaveis")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                             Responsavel r = (Responsavel) dataSnapshot.getValue(Responsavel.class);
                                             r.id = dataSnapshot.getKey();
                                             HomeActivity.responsavelLogado = r;
-                                            r.carregarCrianca();
+//                                            r.carregarCrianca();
                                         }
 
                                         @Override

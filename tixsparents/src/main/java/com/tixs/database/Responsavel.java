@@ -12,8 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ThrowOnExtraProperties
-public class Responsavel
-{
+public class Responsavel {
 
     @Exclude
     public String id = "";
@@ -31,8 +30,7 @@ public class Responsavel
 
 
     public Responsavel(String id, String nome, String sobrenome, String cpf,
-                       String telefone, String rua, String bairro, String numero, String cep, List<Crianca> criancas)
-    {
+                       String telefone, String rua, String bairro, String numero, String cep, List<Crianca> criancas) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -49,8 +47,7 @@ public class Responsavel
         }
     }
 
-    public Responsavel()
-    {
+    public Responsavel() {
         // Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
     }
 

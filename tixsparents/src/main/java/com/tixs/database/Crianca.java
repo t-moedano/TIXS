@@ -8,8 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
  */
 
 @IgnoreExtraProperties
-public class Crianca
-{
+public class Crianca {
     @Exclude
     public String id;
     public String nome;
@@ -24,13 +23,11 @@ public class Crianca
     public Responsavel responsavel;
     public String responsavelID;
 
-    public Crianca()
-    {
+    public Crianca() {
 
     }
 
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel)
-    {
+    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;

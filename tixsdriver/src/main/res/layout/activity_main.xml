@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="com.tixs.tixsdriver.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="200dp"
+        android:maxHeight="165dp"
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/logo_branco_final" />
 
     <TextView
@@ -58,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#33CC33"
-            android:onClick="btnLoginClick"
+            android:onClick="onLoginButtonClick"
             android:text="Login" />
 
         <Button

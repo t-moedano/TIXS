@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,32 +16,60 @@
         android:id="@+id/emailTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email" />
+        android:text="Email"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/emailTxtEdit"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintRight_toRightOf="@+id/senhaTxtView"
+        android:layout_marginRight="1dp" />
 
     <EditText
         android:id="@+id/emailTxtEdit"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="208dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/senhaTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Senha" />
+        android:text="Senha"
+        tools:layout_editor_absoluteY="251dp"
+        tools:layout_editor_absoluteX="153dp" />
 
     <EditText
         android:id="@+id/senhaTxtEdit"
-        android:layout_width="match_parent"
+        android:layout_width="328dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteY="268dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/btnLogin"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="btnLoginClick"
-        android:text="Login" />
+        android:backgroundTint="#33CC33"
+        android:text="Login"
+        tools:layout_editor_absoluteY="311dp"
+        tools:layout_editor_absoluteX="139dp" />
 
     <TextView
         android:id="@+id/cadastroTxtView"
@@ -45,6 +77,24 @@
         android:layout_height="wrap_content"
         android:onClick="cadastroTxtViewClick"
         android:text="Cadastrar-se"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.501" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="152dp"
+        android:layout_height="147dp"
+        app:srcCompat="@drawable/logo_branco_final"
+        tools:layout_editor_absoluteY="5dp"
+        tools:layout_editor_absoluteX="108dp" />
+
+
+
+</android.support.constraint.ConstraintLayout>

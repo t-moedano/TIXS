@@ -1,11 +1,12 @@
 package com.tixs.tixsdriver;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,31 +41,50 @@ public class CreateProfileActivity extends AppCompatActivity {
         bairro = (EditText) findViewById(R.id.bairroTxtEdit);
         cpf = (EditText) findViewById(R.id.cpfTextEdit);
         cep = (EditText) findViewById(R.id.cepTxtEdit);
-        modelo = (EditText) findViewById(R.id.modeloVanTxtEdit);
-        placa = (EditText) findViewById(R.id.placaTxtEdit);
+//        modelo = (EditText) findViewById(R.id.modeloVanTxtEdit);
+//        placa = (EditText) findViewById(R.id.placaTxtEdit);
         firebaseAuth = firebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
 
-
-    public void bntAdicionarEscolaClick(View v)
+    public void bntAdicionarCondutorClick(View v)
     {
-        Bundle bundle = new Bundle();
-        bundle.putString("nome", nome.getText().toString());
-        bundle.putString("sobrenome", sobrenome.getText().toString());
-        bundle.putString("telefone", telefone.getText().toString());
-        bundle.putString("rua", rua.getText().toString());
-        bundle.putString("numero", numero.getText().toString());
-        bundle.putString("bairro", bairro.getText().toString());
-        bundle.putString("cpf", cpf.getText().toString());
-        bundle.putString("cep", cep.getText().toString());
-        bundle.putString("modelo", modelo.getText().toString());
-        bundle.putString("placa", placa.getText().toString());
+        Condutor c = new Condutor();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("nome", nome.getText().toString());
+//        bundle.putString("sobrenome", sobrenome.getText().toString());
+//        bundle.putString("telefone", telefone.getText().toString());
+//        bundle.putString("rua", rua.getText().toString());
+//        bundle.putString("numero", numero.getText().toString());
+//        bundle.putString("bairro", bairro.getText().toString());
+//        bundle.putString("cpf", cpf.getText().toString());
+//        bundle.putString("cep", cep.getText().toString());
+//        bundle.putString("modelo", modelo.getText().toString());
+//        bundle.putString("placa", placa.getText().toString());
+        c.nome = nome.getText().toString();
+        c.sobrenome = sobrenome.getText().toString();
+        c.telefone = telefone.getText().toString();
+        c.rua = rua.getText().toString();
+        c.numero = numero.getText().toString();
+        c.bairro = bairro.getText().toString();
+        c.cpf = cpf.getText().toString();
+        c.cep = cep.getText().toString();
+        c.id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        HomeActivity.condutorLogado = c;
+        FirebaseDatabase.getInstance().getReference("condutor").child(c.id).setValue(c)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(i);
+                        finish();
 
-        Intent i = new Intent(CreateProfileActivity.this, AdicionarEscolaActivity.class);
-        i.putExtras(bundle);
-        startActivity(i);
+                    }
+                });
+
+
+
     }
 
 

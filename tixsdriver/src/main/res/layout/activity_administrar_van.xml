@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    tools:context="com.tixs.tixsdriver.AdministrarVanActivity">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnAdicionarEscola"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="adicionar escola"
+            android:onClick="bntEscolaClick" />
+
+        <Button
+            android:id="@+id/bntAdicionarBairro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="adicionar bairro"
+            android:onClick="bntBairroClick" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

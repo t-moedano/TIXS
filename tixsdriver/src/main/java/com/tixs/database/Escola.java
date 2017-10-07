@@ -1,29 +1,32 @@
 package com.tixs.database;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
- * Created by danie on 24/09/2017.
+ * Created by moeda on 19/09/2017.
  */
 
+@IgnoreExtraProperties
 public class Escola
 {
     public String nome;
-    //public String bairro;
-    //public String rua;
-    //public String numero;
-    //public String cep;
+    public String bairro;
+    @Exclude
+    public String id;
 
+    public Escola() {
 
-    public Escola(String nome)
-    {
-        this.nome = nome;
-        //this.bairro = bairro;
-        //this.rua = rua;
-        //this.numero = numero;
-        //this.cep = cep;
     }
 
-    public Escola()
+    public Escola(String nome, String bairro)
     {
-        // Default constructor
+        this.nome = nome;
+        this.bairro = bairro;
+    }
+
+    @Override
+    public String toString() {
+        return nome + ", " + bairro;
     }
 }

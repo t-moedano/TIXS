@@ -22,6 +22,8 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".CreateProfileActivity" />
         <activity android:name=".AdicionarEscolaActivity"></activity>
+        <activity android:name=".CreateVanActivity" />
+        <activity android:name=".AdministrarVanActivity" />
     </application>
 
 </manifest>

@@ -4,7 +4,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.List;
  * Created by aline on 30/09/17.
  */
 
-@IgnoreExtraProperties
 public class Van {
 
     @Exclude
@@ -23,20 +21,19 @@ public class Van {
     public String placa = "";
     public String nome = "";
     public String condutorID = "";
-    @Exclude
-    public Condutor condutor = new Condutor();
+    //    @Exclude public Condutor condutor = new Condutor();
     public List<String> rotasIDs = new ArrayList<>();
-    @Exclude
     public List<Rota> rotas = new ArrayList<>();
+    public ArrayList<String> escolasIDs = new ArrayList<>();
+    public ArrayList<Escola> escolas = new ArrayList<>();
 
     public Van() {
 
     }
 
-    public Van(Condutor condutor, String nome, List<Rota> rotas) {
-        this.condutor = condutor;
+    public Van(String nome, List<Rota> rotas) {
+//        this.condutor = condutor;
         this.nome = nome;
-        this.rotasIDs = new ArrayList<>();
         this.rotas = rotas;
         for (Rota p : rotas) {
             rotasIDs.add(p.id);
@@ -63,13 +60,13 @@ public class Van {
         this.id = id;
     }
 
-    public Condutor getCondutor() {
-        return condutor;
-    }
+//    public Condutor getCondutor() {
+//        return condutor;
+//    }
 
     public void setCondutor(Condutor condutor) {
         this.condutorID = condutor.id;
-        this.condutor = condutor;
+//        this.condutor = condutor;
     }
 
     public String getNome() {

@@ -12,7 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.tixs.database.Bairro;
 import com.tixs.database.Condutor;
-import com.tixs.database.Escola;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +68,8 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     public void bntEscolaClick(View v)
     {
         String escolaNome = nomeEscola.getText().toString();
-        Escola escola = new Escola(escolaNome);
-        escolaLista.add(escola);
+//        Escola escola = new Escola(escolaNome);
+//        escolaLista.add(escola);
         Toast.makeText(AdicionarEscolaActivity.this, "Escola Adicionada", Toast.LENGTH_LONG).show();
     }
 
@@ -87,8 +86,7 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     {
         String id = firebaseAuth.getCurrentUser().getUid();
 
-        Condutor condutor = new Condutor(id, nome, sobrenome, cpf, telefone, rua, bairro, numero, cep,
-                modelo, placa, bairroLista, escolaLista);
+        Condutor condutor = new Condutor(nome, sobrenome, cpf, telefone, rua, bairro, numero, cep);
 
         mDatabase.child("condutor").child(id).setValue(condutor);
         Intent i = new Intent(AdicionarEscolaActivity.this, MainActivity.class);

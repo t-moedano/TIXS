@@ -1,107 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context="com.tixs.tixsdriver.MainActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    android:orientation="vertical"
+    tools:context="com.tixs.tixsdriver.MainActivity">
 
-    <Button
-        android:id="@+id/btnLogin"
-        style="@android:style/Widget.Holo.Button"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#33CC33"
-        android:onClick="btnLoginClick"
-        android:text="Login"
-        tools:layout_editor_absoluteY="312dp"
-        tools:layout_editor_absoluteX="138dp" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteY="20dp"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1796875"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="62dp" />
-
-    <EditText
-        android:id="@+id/emailTxtEdit"
-        android:layout_width="343dp"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteY="213dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.512" />
-
-    <EditText
-        android:id="@+id/senhaTxtEdit"
-        android:layout_width="341dp"
-        android:layout_height="43dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteY="269dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.511" />
+        android:maxHeight="200dp"
+        app:srcCompat="@drawable/logo_branco_final" />
 
     <TextView
         android:id="@+id/emailTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
-        tools:layout_editor_absoluteY="188dp"
-        tools:layout_editor_absoluteX="155dp" />
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/emailTxtEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/senhaTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Senha"
-        tools:layout_editor_absoluteY="252dp"
-        tools:layout_editor_absoluteX="153dp" />
+        android:text="Senha" />
 
-    <TextView
-        android:id="@+id/cadastroTxtView"
-        android:layout_width="84dp"
-        android:layout_height="19dp"
-        android:text="Cadastrar-se"
-        android:onClick="cadastroTxtViewClick"
-        tools:layout_editor_absoluteY="370dp"
-        tools:layout_editor_absoluteX="130dp" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/senhaTxtEdit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline4"
-        app:layout_constraintGuide_begin="20dp"
+        android:inputType="textPassword" />
+
+    <CheckBox
+        android:id="@+id/rememberCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lembrar de mim" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="20dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:gravity="center">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="152dp"
-        android:layout_height="152dp"
-        app:srcCompat="@drawable/logo_branco_final"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.578" />
+        <Button
+            android:id="@+id/btnLogin"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#33CC33"
+            android:onClick="btnLoginClick"
+            android:text="Login" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/cadastroTxtView"
+            style="@android:style/Widget.Holo.Button"
+            android:backgroundTint="#33CC33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar-se"
+            android:onClick="cadastroTxtViewClick" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

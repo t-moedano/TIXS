@@ -1,12 +1,15 @@
 package com.tixs.tixsparents;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtEmail;
     private EditText txtSenha;
     private FirebaseAuth firebaseAuth;
-
+    CheckBox rememberCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         txtEmail = (EditText) findViewById(R.id.emailTxtEdit);
         txtSenha = (EditText) findViewById(R.id.senhaTxtEdit);
+        rememberCheckBox = (CheckBox) findViewById(R.id.rememberCheckBox);
         firebaseAuth = FirebaseAuth.getInstance();
+
+
+        SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+        txtEmail.setText(sp.getString("email", ""), TextView.BufferType.EDITABLE);
+        txtSenha.setText(sp.getString("pass", ""), TextView.BufferType.EDITABLE);
+        rememberCheckBox.setChecked(sp.getBoolean("remember", false));
     }
 
     public void cadastroTxtViewClick(View v)
@@ -50,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
                     {
                         if(task.isSuccessful())
                         {
+                            if (rememberCheckBox.isChecked()) {
+                                SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
+                                SharedPreferences.Editor spe = sp.edit();
+                                spe.putString("email", txtEmail.getText().toString());
+                                spe.putString("pass", txtSenha.getText().toString());
+                                spe.putBoolean("remember", true);
+                                spe.commit();
+                            }
                             FirebaseDatabase.getInstance().getReference("responsavel")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .addListenerForSingleValueEvent(new ValueEventListener() {

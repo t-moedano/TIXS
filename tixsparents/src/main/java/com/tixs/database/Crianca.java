@@ -8,8 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
  */
 
 @IgnoreExtraProperties
-public class Crianca
-{
+public class Crianca {
     @Exclude
     public String id;
     public String nome;
@@ -17,27 +16,21 @@ public class Crianca
     public String horarioEntrada;
     public String horarioSaida;
     public String escolaID;
-    @Exclude
     public Escola escola;
     public String vanID;
-    @Exclude
-    public Responsavel responsavel;
     public String responsavelID;
 
-    public Crianca()
-    {
+    public Crianca() {
 
     }
 
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel)
-    {
+    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;
         this.horarioSaida = horarioSaida;
         this.escola = escola;
         this.escolaID = escola.id;
-        this.responsavel = responsavel;
         this.responsavelID = responsavel.id;
     }
 
@@ -48,6 +41,10 @@ public class Crianca
 
     public void setResponsavel(Responsavel responsavel) {
         this.responsavelID = responsavel.id;
-        this.responsavel = responsavel;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder().append(nome).append(" ").append(sobrenome).toString();
     }
 }

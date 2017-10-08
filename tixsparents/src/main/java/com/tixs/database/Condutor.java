@@ -3,6 +3,7 @@ package com.tixs.database;
 import com.google.firebase.database.Exclude;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by moeda on 19/09/2017.
@@ -11,21 +12,18 @@ import java.util.ArrayList;
 public class Condutor
 {
     @Exclude
-    public String id;
-    public String nome;
-    public String sobrenome;
-    public String cpf;
-    public String telefone;
-    public String rua;
-    public String bairro;
-    public String numero;
-    public String cep;
-    public ArrayList<String> vansIDs;
-    @Exclude
-    public ArrayList<Van> vans;
-    public ArrayList<String> escolasIDs;
-    @Exclude
-    public ArrayList<Escola> escolas;
+    public String id = "";
+    public String nome = "";
+    public String sobrenome = "";
+    public String cpf = "";
+    public String telefone = "";
+    public String rua = "";
+    public String bairro = "";
+    public String numero = "";
+    public String cep = "";
+    public List<String> vansIDs = new ArrayList<>();
+    public List<Van> vans = new ArrayList<>();
+
 
     public String toString() {
         return nome;
@@ -42,7 +40,6 @@ public class Condutor
         this.bairro = bairro;
         this.numero = numero;
         this.cep = cep;
-        escolas = new ArrayList<Escola>();
         vans = new ArrayList<Van>();
     }
 
@@ -131,23 +128,7 @@ public class Condutor
         this.cep = cep;
     }
 
-    public ArrayList<Escola> getEscolas() {
-        return escolas;
-    }
-
-    public void setEscolas(ArrayList<Escola> escolas) {
-        this.escolas = escolas;
-    }
-
-    public ArrayList<String> getEscolasIDs() {
-        return escolasIDs;
-    }
-
-    public void setEscolasIDs(ArrayList<String> escolasIDs) {
-        this.escolasIDs = escolasIDs;
-    }
-
-    public ArrayList<String> getVansIDs() {
+    public List<String> getVansIDs() {
         return vansIDs;
     }
 
@@ -155,11 +136,21 @@ public class Condutor
         this.vansIDs = vansIDs;
     }
 
-    public ArrayList<Van> getVans() {
+    public List<Van> getVans() {
         return vans;
     }
 
     public void setVans(ArrayList<Van> vans) {
         this.vans = vans;
+    }
+
+    public void addVan(Van van) {
+        vans.add(van);
+        vansIDs.add(van.id);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

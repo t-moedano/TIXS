@@ -1,212 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.tixs.tixsdriver.CreateProfileActivity">
 
     <EditText
         android:id="@+id/nomeTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Nome"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/sobrenomeTxtEdit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Sobrenome"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeTxtEdit" />
+        android:inputType="textPersonName" />
+
+
+    <EditText
+        android:id="@+id/cpfTextEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="CPF"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/telefoneTxtEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Telefone"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/ruaTxtEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Rua"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/numeroTxtEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Número"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/bairroTxtEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Bairro"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/cepTxtEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="CEP"
+        android:inputType="numberSigned" />
+
 
     <Button
         android:id="@+id/bntEnviar"
         style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="0dp"
         android:backgroundTint="#33CC33"
         android:onClick="bntAdicionarCondutorClick"
-        android:text="Enviar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cepTxtEdit" />
+        android:text="Enviar" />
 
-    <EditText
-        android:id="@+id/cpfTextEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="CPF"
-        android:inputType="numberSigned"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefoneTxtEdit" />
 
-    <EditText
-        android:id="@+id/telefoneTxtEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Telefone"
-        android:inputType="phone"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sobrenomeTxtEdit" />
-
-    <EditText
-        android:id="@+id/ruaTxtEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Rua"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cpfTextEdit" />
-
-    <EditText
-        android:id="@+id/numeroTxtEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Número"
-        android:inputType="numberSigned"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruaTxtEdit" />
-
-    <EditText
-        android:id="@+id/bairroTxtEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Bairro"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroTxtEdit" />
-
-    <EditText
-        android:id="@+id/cepTxtEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="CEP"
-        android:inputType="numberSigned"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bairroTxtEdit" />
-
-    <!--<EditText-->
-    <!--android:id="@+id/modeloVanTxtEdit"-->
-    <!--android:layout_width="142dp"-->
-    <!--android:layout_height="45dp"-->
-    <!--android:layout_marginRight="6dp"-->
-    <!--android:layout_marginTop="16dp"-->
-    <!--android:ems="10"-->
-    <!--android:hint="Modelo"-->
-    <!--android:inputType="textPersonName"-->
-    <!--app:layout_constraintRight_toRightOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<EditText-->
-    <!--android:id="@+id/placaTxtEdit"-->
-    <!--android:layout_width="141dp"-->
-    <!--android:layout_height="46dp"-->
-    <!--android:layout_marginRight="7dp"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:ems="10"-->
-    <!--android:hint="Placa"-->
-    <!--android:inputType="textPersonName"-->
-    <!--app:layout_constraintRight_toRightOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/modeloVanTxtEdit" />-->
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline3"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline5"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline6"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline7"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline8"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline9"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline10"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="vertical" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline11"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="364dp" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline12"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="horizontal" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline13"
-        app:layout_constraintGuide_begin="20dp"
-        android:orientation="horizontal" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

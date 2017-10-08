@@ -32,13 +32,15 @@
 
     <Button
         android:id="@+id/bntEnviar"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enviar"
-        android:onClick="bntAdicionarCondutorClick"
         android:layout_marginLeft="148dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="0dp"
+        android:backgroundTint="#33CC33"
+        android:onClick="bntAdicionarCondutorClick"
+        android:text="Enviar"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cepTxtEdit" />
 
     <EditText

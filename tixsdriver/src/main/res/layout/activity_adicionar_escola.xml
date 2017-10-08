@@ -17,10 +17,13 @@
 
     <Button
         android:id="@+id/adicionarBairroButton"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adicionar escola"
-        android:onClick="bntAdicionarEscolaClick" />
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#33CC33"
+        android:onClick="bntAdicionarEscolaClick"
+        android:text="Adicionar escola" />
 
     <TextView
         android:layout_width="match_parent"

@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by moeda on 07/10/2017.
+ * @author Thauany Moedano.
+ * Classe que representa uma coordenada.
  */
 
 public class Coordenada
@@ -24,24 +25,23 @@ public class Coordenada
     }
 
 
-    public double getLatitude() {
+    public double getLatitude()
+    {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(double latitude)
+    {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public double getLongitude()
+    {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(double longitude)
+    {
         this.longitude = longitude;
     }
-
-
-
-
-
 }

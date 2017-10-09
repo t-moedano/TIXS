@@ -42,4 +42,9 @@ public class Bairro {
     public int hashCode() {
         return nome.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

@@ -8,18 +8,22 @@
     android:gravity="center">
 
     <Button
-        android:id="@+id/bntCadastraFilho"
+        android:id="@+id/cadastrarCriancaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="bntCadastraFilhoClick"
-        android:text="Cadastrar Criança" />
+        android:text="Cadastrar Criança"
+        style="@android:style/Widget.Holo.Button"
+        android:backgroundTint="#33CC33" />
 
     <Button
-        android:id="@+id/bntBuscarVan"
+        android:id="@+id/buscarVanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:onClick="bntBuscarVan"
-        android:text="Buscar Van" />
+        android:text="Buscar Van"
+        style="@android:style/Widget.Holo.Button"
+        android:backgroundTint="#33CC33" />
 
 </LinearLayout>

@@ -145,8 +145,13 @@ public class Condutor
     }
 
     public void addVan(Van van) {
-        vans.add(van);
-        vansIDs.add(van.id);
+        if (vansIDs.contains(van.id)) {
+            Integer ind = vansIDs.indexOf(van.id);
+            vans.set(ind, van);
+        } else {
+            vans.add(van);
+            vansIDs.add(van.id);
+        }
     }
 
     @Override

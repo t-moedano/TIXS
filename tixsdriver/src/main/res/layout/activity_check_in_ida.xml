@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tixs.tixsdriver.CheckInIdaActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10pt"
+        android:text="Escolha sua van:"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/vanSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10pt"
+        android:text="Faca seu check-in:"
+        android:gravity="center" />
+
+
+    <ListView
+        android:id="@+id/criancasListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:choiceMode="multipleChoice" />
+
+    <Button
+        android:id="@+id/irMapaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Trajetoria"
+        android:onClick="onButtonIrMapaCLick"
+        style="@android:style/Widget.Holo.Button"
+        android:backgroundTint="#33CC33" />
+
+</LinearLayout>

@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_driver"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_driver"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -21,10 +21,11 @@
         <activity android:name=".RegistroActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".CreateProfileActivity" />
-        <activity android:name=".AdicionarEscolaActivity"></activity>
+        <activity android:name=".AdicionarEscolaActivity" />
         <activity android:name=".CreateVanActivity" />
         <activity android:name=".AdministrarVanActivity" />
         <activity android:name=".AdicionarBairroActivity" />
+        <activity android:name=".CheckInIdaActivity"></activity>
     </application>
 
 </manifest>

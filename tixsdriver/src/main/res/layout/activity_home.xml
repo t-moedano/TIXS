@@ -8,17 +8,16 @@
     tools:context="com.tixs.tixsdriver.HomeActivity">
 
     <Button
-
-        android:id="@+id/bntMapa"
+        android:id="@+id/iniciarIdaButton"
         style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#33CC33"
-        android:onClick="bntMapa"
+        android:onClick="onCheckinButtonClick"
         android:text="Iniciar Ida" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/adiministrarVanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Administrar Vans"
@@ -27,6 +26,7 @@
         android:backgroundTint="#33CC33" />
 
     <Button
+        android:id="@+id/addBanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Adicionar Van"

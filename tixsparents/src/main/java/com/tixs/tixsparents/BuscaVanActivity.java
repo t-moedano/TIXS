@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
 import com.tixs.database.Rota;
 import com.tixs.database.Van;
@@ -97,8 +98,25 @@ public class BuscaVanActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Selecione uma van.", Toast.LENGTH_LONG).show();
         } else {
             Crianca crianca = (Crianca) criancaSpinner.getSelectedItem();
-            Van van = vans.get(vanSelecionada);
+            final Van van = vans.get(vanSelecionada);
             van.addCrianca(crianca);
+            FirebaseDatabase.getInstance().getReference("condutores").child(van.condutorID)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Condutor c = dataSnapshot.getValue(Condutor.class);
+                                c.addVan(van);
+                                FirebaseDatabase.getInstance().getReference("condutores").child(van.condutorID)
+                                        .setValue(c);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
             FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

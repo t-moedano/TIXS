@@ -1,46 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tixs.tixsdriver.RegistroActivity">
+    tools:context="com.tixs.tixsdriver.RegistroActivity"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:gravity="center">
 
     <EditText
         android:id="@+id/emailTxtEditR"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="86dp"
         android:ems="10"
         android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/senhaTxtEditR"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="79dp"
         android:ems="10"
         android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTxtEditR" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/bntRegistrarR"
         style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="63dp"
         android:backgroundTint="#33CC33"
         android:onClick="bntRegistrarRClick"
-        android:text="Registrar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senhaTxtEditR" />
+        android:text="Registrar" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

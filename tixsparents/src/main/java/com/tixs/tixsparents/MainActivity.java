@@ -16,11 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.tixs.database.Responsavel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,22 +63,6 @@ public class MainActivity extends AppCompatActivity {
                                 spe.putBoolean("remember", true);
                                 spe.commit();
                             }
-                            FirebaseDatabase.getInstance().getReference("responsaveis")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            Responsavel r = (Responsavel) dataSnapshot.getValue(Responsavel.class);
-                                            r.id = dataSnapshot.getKey();
-                                            HomeActivity.responsavelLogado = r;
-//                                            r.carregarCrianca();
-                                        }
-
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-
-                                        }
-                                    });
                             Toast.makeText(MainActivity.this, "Login com Sucesso", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(i);

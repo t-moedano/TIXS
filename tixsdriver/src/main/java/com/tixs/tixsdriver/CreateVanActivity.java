@@ -35,11 +35,11 @@ public class CreateVanActivity extends Activity {
     public void onAdicionarVanBtnClick(View view) {
         final Van van = new Van();
         van.setCondutor(HomeActivity.condutorLogado);
-        van.id = FirebaseDatabase.getInstance().getReference("vanSelecionada").push().getKey();
+        van.id = FirebaseDatabase.getInstance().getReference("vans").push().getKey();
         van.nome = nomeVanEditText.getText().toString();
         van.modelo = modeloVanEditText.getText().toString();
         van.placa = placaVanEditText.getText().toString();
-        FirebaseDatabase.getInstance().getReference("vanSelecionada").child(van.id).setValue(van)
+        FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

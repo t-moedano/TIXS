@@ -18,10 +18,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
@@ -75,19 +71,19 @@ public class CheckInIdaActivity extends AppCompatActivity {
                 for (int j = 0; j < vanSelecionada.criancas.size(); j++) {
                     checkCriancas.add(true);
                     criancasListView.setItemChecked(j, true);
-                    FirebaseDatabase.getInstance().getReference("responsavel").child(vanSelecionada.criancas.get(j).id)
-                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    responsaveis.add((Responsavel) dataSnapshot.getValue(Responsavel.class));
-                                    taskCompletionSource.setResult(true);
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
+//                    FirebaseDatabase.getInstance().getReference("responsavel").child(vanSelecionada.criancas.get(j).id)
+//                            .addListenerForSingleValueEvent(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(DataSnapshot dataSnapshot) {
+//                                    responsaveis.add((Responsavel) dataSnapshot.getValue(Responsavel.class));
+//                                    taskCompletionSource.setResult(true);
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(DatabaseError databaseError) {
+//
+//                                }
+//                            });
                 }
             }
 

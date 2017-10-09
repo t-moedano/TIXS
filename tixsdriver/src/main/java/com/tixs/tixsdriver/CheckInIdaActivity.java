@@ -54,7 +54,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
         vanSpinner = (Spinner) findViewById(R.id.vanSpinner);
         irMapaButton = (Button) findViewById(R.id.irMapaButton);
 
-        irMapaButton.setEnabled(false);
+//        irMapaButton.setEnabled(false);
 
         vanArrayAdapter = new ArrayAdapter<Van>(this, R.layout.activity_simple_text_view, HomeActivity.condutorLogado.vans);
         vanSpinner.setAdapter(vanArrayAdapter);
@@ -62,7 +62,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
         vanSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                irMapaButton.setEnabled(false);
+//                irMapaButton.setEnabled(false);
                 vanSelecionada = (Van) vanSpinner.getSelectedItem();
                 criancaArrayAdapter = new ArrayAdapter<Crianca>(getApplicationContext(), R.layout.check_text_view, vanSelecionada.criancas);
                 criancasListView.setAdapter(criancaArrayAdapter);

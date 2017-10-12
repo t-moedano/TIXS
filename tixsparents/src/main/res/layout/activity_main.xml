@@ -21,7 +21,8 @@
         android:id="@+id/emailTxtView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email" />
+        android:text="Email"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/emailTxtEdit"
@@ -33,7 +34,8 @@
         android:id="@+id/senhaTxtView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Senha" />
+        android:text="Senha"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/senhaTxtEdit"
@@ -45,7 +47,8 @@
         android:id="@+id/rememberCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lembre-se de mim" />
+        android:text="Lembre-se do Login"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"

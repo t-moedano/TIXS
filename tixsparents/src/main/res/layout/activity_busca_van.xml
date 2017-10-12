@@ -41,7 +41,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <Button
             android:id="@+id/buscarVanButton"
@@ -50,7 +51,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#33CC33"
             android:onClick="btnBuscar"
-            android:text="Buscar" />
+            android:text="Buscar"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/confirmarButtonClick"
@@ -59,7 +61,8 @@
             android:text="Confirmar"
             android:backgroundTint="#33CC33"
             style="@android:style/Widget.Holo.Button"
-            android:onClick="onConfirmarButtonClick" />
+            android:onClick="onConfirmarButtonClick"
+            android:gravity="center"/>
 
     </LinearLayout>
     <ListView

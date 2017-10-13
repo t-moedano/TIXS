@@ -44,7 +44,7 @@ public class AdicionarBairroActivity extends AppCompatActivity {
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.activity_simple_text_view, van.bairros);
+        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.selection_text_view, van.bairros);
         bairrosListView.setAdapter(bairrosArrayAdapter);
 
     }

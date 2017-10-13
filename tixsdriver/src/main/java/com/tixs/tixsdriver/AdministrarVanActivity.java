@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -40,13 +41,15 @@ public class AdministrarVanActivity extends Activity {
         vansListView = (ListView) findViewById(R.id.vansListView);
 
         vans = HomeActivity.condutorLogado.vans;
+        vansListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
-        vansAdapter = new ArrayAdapter<Van>(this, R.layout.activity_simple_text_view, vans);
+        vansAdapter = new ArrayAdapter<Van>(this, R.layout.selection_text_view, vans);
         vansListView.setAdapter(vansAdapter);
         vansListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 vanSelecionada = new Integer(i);
+                view.setSelected(true);
             }
         });
 

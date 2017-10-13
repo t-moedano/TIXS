@@ -26,4 +26,14 @@
         style="@android:style/Widget.Holo.Button"
         android:backgroundTint="#33CC33" />
 
+    <Button
+        android:id="@+id/cancelamentoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:onClick="bntCancelar"
+        android:text="Cancelamento "
+        style="@android:style/Widget.Holo.Button"
+        android:backgroundTint="#33CC33" />
+
 </LinearLayout>

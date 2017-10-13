@@ -19,9 +19,12 @@ public class Crianca {
     public Escola escola;
     public String vanID;
     public String responsavelID;
+    public Boolean confirma_ida;
+    public Boolean confirma_volta;
 
     public Crianca() {
-
+        confirma_ida = true;
+        confirma_volta = true;
     }
 
     public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
@@ -32,6 +35,19 @@ public class Crianca {
         this.escola = escola;
         this.escolaID = escola.id;
         this.responsavelID = responsavel.id;
+    }
+
+    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Van van, Responsavel responsavel) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.horarioEntrada = horarioEntrada;
+        this.horarioSaida = horarioSaida;
+        this.escola = escola;
+        this.escolaID = escola.id;
+        this.vanID = van.id;
+        this.responsavelID = responsavel.id;
+        this.confirma_ida = true;
+        this.confirma_volta = true;
     }
 
     public void setEscola(Escola escola) {
@@ -47,4 +63,6 @@ public class Crianca {
     public String toString() {
         return new StringBuilder().append(nome).append(" ").append(sobrenome).toString();
     }
+
+
 }

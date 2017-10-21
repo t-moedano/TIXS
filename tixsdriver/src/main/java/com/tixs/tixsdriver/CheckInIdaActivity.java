@@ -24,6 +24,7 @@ import com.tixs.database.Van;
 import com.tixs.maps.Coordenada;
 import com.tixs.maps.CoordenadaListFactory;
 import com.tixs.maps.EnderecoBuilder;
+import com.tixs.maps.GPSTracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,24 +130,19 @@ public class CheckInIdaActivity extends AppCompatActivity {
 
     public void onButtonIrMapaCLick(View view) {
         List<String> lista = new ArrayList<>();
+
         /*TO DO - Pegar as informações do banco*/
-        lista.add("Rua Matias Peres");
-        lista.add("Rua Lea Maria Brandao Russo");
-        lista.add("Rua Cassiopeia São José dos Campos");
 
-        List<Coordenada> coordenadas = CoordenadaListFactory.createCoordenadas(lista, this);
-        Coordenada coordenadaOrigem = coordenadas.get(0);
-        Coordenada coordenadaDestino = coordenadas.get(coordenadas.size() - 1);
 
-        coordenadas.remove(0);
-        coordenadas.remove(coordenadas.size() - 1);
+
+
+
 
         Uri gmmIntentUri = new EnderecoBuilder()
                 .header()
-                .origem(coordenadaOrigem)
-                .destino(coordenadaDestino)
-                .waypoints(coordenadas)
+                .destino("Rua Lea Maria Brandao Russo")
                 .travelMode()
+                .waypointsString(lista)
                 .build();
 
 

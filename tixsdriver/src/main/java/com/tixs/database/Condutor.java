@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by moeda on 19/09/2017.
+ * Classe ADO que representa um condutor.
  */
 
 public class Condutor
@@ -25,7 +25,8 @@ public class Condutor
     public List<Van> vans = new ArrayList<>();
 
 
-    public String toString() {
+    public String toString()
+    {
         return nome;
     }
 
@@ -45,7 +46,7 @@ public class Condutor
 
     public Condutor()
     {
-        // Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
+       
     }
 
     public boolean containsBairro(String bairro) {

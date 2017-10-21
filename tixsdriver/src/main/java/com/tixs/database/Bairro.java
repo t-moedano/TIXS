@@ -3,34 +3,42 @@ package com.tixs.database;
 import com.google.firebase.database.Exclude;
 
 /**
- * Created by aline on 24/09/17.
+ * Classe ADO que representa um bairro.
  */
 
-public class Bairro {
+public class Bairro
+{
     @Exclude
     public String id;
     public String nome;
 
-    public Bairro() {
+    public Bairro()
+    {
         nome = "";
     }
 
-    public Bairro(String nome) {
+    public Bairro(String nome)
+    {
         this.nome = nome;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o)
+    {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         Bairro rota = (Bairro) o;
 
@@ -39,12 +47,14 @@ public class Bairro {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return nome.hashCode();
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return nome;
     }
 }

@@ -13,6 +13,7 @@ public class EnderecoBuilder {
    private StringBuilder endereco;
    private Uri enderecoUri;
    public final String HEADER = "https://www.google.com/maps/dir/?api=1";
+   public final String CODED_SEPARATOR = "%7C";
 
    public EnderecoBuilder header()
    {
@@ -20,20 +21,47 @@ public class EnderecoBuilder {
        endereco.append(HEADER);
        return this;
    }
+
+   public EnderecoBuilder origem(String origem)
+   {
+       String origemString = "&origin=" + Uri.encode(origem);
+       endereco.append(origemString);
+       return this;
+   }
+
    public EnderecoBuilder origem(Coordenada origem)
    {
-        String origemString = "&origin="+origem.getLatitude()+","+origem.getLongitude()+"&";
+        String origemString = "&origin="+origem.getLatitude()+","+origem.getLongitude();
         endereco.append(origemString);
+       return this;
+   }
+
+   public EnderecoBuilder destino(String destino)
+   {
+       String destinoString = "&destination="+Uri.encode(destino);
+       endereco.append(destinoString);
        return this;
    }
 
    public EnderecoBuilder destino(Coordenada destino)
    {
-       String destinoString = "destination="+destino.getLatitude()+","+destino.getLongitude();
+       String destinoString = "&destination="+destino.getLatitude()+","+destino.getLongitude();
        endereco.append(destinoString);
        return this;
    }
 
+   public EnderecoBuilder waypointsString(List<String> waypoints)
+   {
+
+       endereco.append("&waypoints=");
+       for(String waypoint : waypoints)
+       {
+           String waypointString = Uri.encode(waypoint) + CODED_SEPARATOR;
+           endereco.append(waypointString);
+       }
+
+       return this;
+   }
    public EnderecoBuilder waypoints(List<Coordenada> waypoints)
    {
        endereco.append("&waypoints=");

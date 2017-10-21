@@ -16,14 +16,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tixs.database.Crianca;
+import com.tixs.utils.DatabaseInstanceNames;
 import com.tixs.database.Rota;
 import com.tixs.database.Van;
+import com.tixs.utils.ToastInstanceNames;
 
 import java.util.ArrayList;
 
-public class BuscaVanActivity extends AppCompatActivity {
-
-//    private ArrayAdapter<> vanAdapter;
+/**
+ * Classe atividade que implementa a lógica de buscar uma van.
+ */
+public class BuscaVanActivity extends AppCompatActivity
+{
 
     private EditText nomeEdit;
     private EditText bairroEdit;
@@ -34,8 +38,13 @@ public class BuscaVanActivity extends AppCompatActivity {
     ArrayAdapter<Crianca> criancasArrayAdapter;
     Spinner criancaSpinner;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca_van);
 
@@ -49,7 +58,8 @@ public class BuscaVanActivity extends AppCompatActivity {
         condutores.setAdapter(vansAdapter);
         condutores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
                 vanSelecionada = new Integer(i);
             }
         });
@@ -58,56 +68,93 @@ public class BuscaVanActivity extends AppCompatActivity {
         criancaSpinner.setAdapter(criancasArrayAdapter);
     }
 
-    public void btnBuscar(View view) {
+    /**
+     *
+     * @param view
+     */
+    public void btnBuscar(View view)
+    {
         vansAdapter.clear();
         final Rota bairro = new Rota(bairroEdit.getText().toString());
-        // procurar por nome
-        FirebaseDatabase.getInstance().getReference("vans")
-                .orderByChild("nome")
-                .startAt(nomeEdit.getText().toString())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                                Van van = snap.getValue(Van.class);
-                                van.id = snap.getKey();
-                                if (van.containsBairro(bairro.nome)) {
-                                    vansAdapter.add(van);
-                                }
-                            }
-                            if (vansAdapter.getCount() == 0) {
-                                Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();
-                            }
-                        } else {
-                            // Nao tem o nome
-                            Toast.makeText(getApplicationContext(), "Van nao encontrada", Toast.LENGTH_LONG).show();
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+        buscarVanPeloBairro(bairro);
+    }
 
+    /**
+     *
+     * @param view
+     */
+    public void onConfirmarButtonClick(View view)
+    {
+        if (vanSelecionada < 0)
+        {
+            Toast.makeText(getApplicationContext(), ToastInstanceNames.SELECT_VAN, Toast.LENGTH_LONG).show();
+        }
+        else
+            {
+            adicionarCriancaBanco();
+        }
+
+    }
+
+    /**
+     * Metodo que adiciona uma crianca em uma van e registra no banco de dados
+     */
+    public void adicionarCriancaBanco()
+    {
+        Crianca crianca = (Crianca) criancaSpinner.getSelectedItem();
+        Van van = vans.get(vanSelecionada);
+        van.addCrianca(crianca);
+        FirebaseDatabase.getInstance().getReference(DatabaseInstanceNames.VAN_REFERENCE).child(van.id).setValue(van)
+                .addOnSuccessListener(new OnSuccessListener<Void>()
+                {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(), ToastInstanceNames.SUCCESS_CALL, Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 });
     }
 
-    public void onConfirmarButtonClick(View view) {
-        if (vanSelecionada < 0) {
-            Toast.makeText(getApplicationContext(), "Selecione uma van.", Toast.LENGTH_LONG).show();
-        } else {
-            Crianca crianca = (Crianca) criancaSpinner.getSelectedItem();
-            Van van = vans.get(vanSelecionada);
-            van.addCrianca(crianca);
-            FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getApplicationContext(), "Adicionada com sucesso", Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    });
-        }
+    /**
+     * Método que acessa o banco de dados para buscar uma van
+     * @param bairro
+     */
+    public void buscarVanPeloBairro(final Rota bairro)
+    {
+        FirebaseDatabase.getInstance().getReference(DatabaseInstanceNames.VAN_REFERENCE)
+                .orderByChild(DatabaseInstanceNames.NAME_REFERENCE)
+                .startAt(nomeEdit.getText().toString())
+                .addListenerForSingleValueEvent(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        if (dataSnapshot.exists())
+                        {
+                            for (DataSnapshot snap : dataSnapshot.getChildren())
+                            {
+                                Van van = snap.getValue(Van.class);
+                                van.id = snap.getKey();
+                                if (van.containsBairro(bairro.nome))
+                                {
+                                    vansAdapter.add(van);
+                                }
+                            }
 
+                        }
+
+                        if (!dataSnapshot.exists() || vansAdapter.getCount() == 0)
+                        {
+                            Toast.makeText(getApplicationContext(), ToastInstanceNames.VAN_NOT_FOUND, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError)
+                    {
+
+                    }
+                });
     }
 }

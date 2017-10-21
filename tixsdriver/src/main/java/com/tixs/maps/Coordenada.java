@@ -25,21 +25,37 @@ public class Coordenada
     }
 
 
+    /**
+     *
+     * @return
+     */
     public double getLatitude()
     {
         return latitude;
     }
 
+    /**
+     *
+     * @param latitude
+     */
     public void setLatitude(double latitude)
     {
         this.latitude = latitude;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getLongitude()
     {
         return longitude;
     }
 
+    /**
+     *
+     * @param longitude
+     */
     public void setLongitude(double longitude)
     {
         this.longitude = longitude;

@@ -1,12 +1,20 @@
 package com.tixs.database;
 
+import android.util.Log;
+
 import com.google.firebase.database.Exclude;
+import com.tixs.utils.ErrorDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+<<<<<<< HEAD
  * Classe ADO que representa um condutor.
+=======
+ * @author: Thauany Moedano
+ * Classe ADO para representar um condutor
+>>>>>>> spr03_refactor
  */
 
 public class Condutor
@@ -25,11 +33,27 @@ public class Condutor
     public List<Van> vans = new ArrayList<>();
 
 
+
+    /**
+     *
+     * @return
+     */
     public String toString()
     {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     * @param sobrenome
+     * @param cpf
+     * @param telefone
+     * @param rua
+     * @param bairro
+     * @param numero
+     * @param cep
+     */
     public Condutor(String nome, String sobrenome, String cpf,
                     String telefone, String rua, String bairro, String numero, String cep)
     {
@@ -44,114 +68,253 @@ public class Condutor
         vans = new ArrayList<Van>();
     }
 
+    /**
+     * Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
+     */
     public Condutor()
     {
-       
+
     }
 
-    public boolean containsBairro(String bairro) {
+    /**
+     * Verifica se um condutor atende a determinado bairro
+     * @param bairro
+     * @return true se o condutor atende aquele bairro. false caso contrário.
+     */
+    public boolean containsBairro(String bairro)
+    {
         if (vans == null) return false;
-        for (Van p : vans) {
+        for (Van p : vans)
+        {
             if (p.nome.contains(bairro)) return true;
         }
         return false;
     }
 
-    public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId()
+    {
         return id;
     }
 
-    public void setId(String id) {
+    /**
+     *
+     * @param id
+     */
+    public void setId(String id)
+    {
         this.id = id;
     }
 
-    public String getNome() {
+    /**
+     *
+     * @return
+     */
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+    /**
+     *
+     * @param nome
+     */
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
-    public String getSobrenome() {
+    /**
+     *
+     * @return
+     */
+    public String getSobrenome()
+    {
         return sobrenome;
     }
 
-    public void setSobrenome(String sobrenome) {
+    /**
+     *
+     * @param sobrenome
+     */
+    public void setSobrenome(String sobrenome)
+    {
         this.sobrenome = sobrenome;
     }
 
-    public String getCpf() {
+    /**
+     *
+     * @return
+     */
+    public String getCpf()
+    {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    /**
+     *
+     * @param cpf
+     */
+    public void setCpf(String cpf)
+    {
         this.cpf = cpf;
     }
 
-    public String getTelefone() {
+    /**
+     *
+     * @return
+     */
+    public String getTelefone()
+    {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    /**
+     *
+     * @param telefone
+     */
+    public void setTelefone(String telefone)
+    {
         this.telefone = telefone;
     }
 
-    public String getRua() {
+    /**
+     *
+     * @return
+     */
+    public String getRua()
+    {
         return rua;
     }
 
-    public void setRua(String rua) {
+    /**
+     *
+     * @param rua
+     */
+    public void setRua(String rua)
+    {
         this.rua = rua;
     }
 
-    public String getBairro() {
+    /**
+     *
+     * @return
+     */
+    public String getBairro()
+    {
         return bairro;
     }
 
-    public void setBairro(String bairro) {
+    /**
+     *
+     * @param bairro
+     */
+    public void setBairro(String bairro)
+    {
         this.bairro = bairro;
     }
 
-    public String getNumero() {
+    /**
+     *
+     * @return
+     */
+    public String getNumero()
+    {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    /**
+     *
+     * @param numero
+     */
+    public void setNumero(String numero)
+    {
         this.numero = numero;
     }
 
-    public String getCep() {
+    /**
+     *
+     * @return
+     */
+    public String getCep()
+    {
         return cep;
     }
 
-    public void setCep(String cep) {
+    /**
+     *
+     * @param cep
+     */
+    public void setCep(String cep)
+    {
         this.cep = cep;
     }
 
-    public List<String> getVansIDs() {
+    /**
+     *
+     * @return
+     */
+    public List<String> getVansIDs()
+    {
         return vansIDs;
     }
 
-    public void setVansIDs(ArrayList<String> vansIDs) {
+    /**
+     *
+     * @param vansIDs
+     */
+    public void setVansIDs(ArrayList<String> vansIDs)
+    {
         this.vansIDs = vansIDs;
     }
 
-    public List<Van> getVans() {
+    /**
+     *
+     * @return
+     */
+    public List<Van> getVans()
+    {
         return vans;
     }
 
-    public void setVans(ArrayList<Van> vans) {
+    /**
+     *
+     * @param vans
+     */
+    public void setVans(ArrayList<Van> vans)
+    {
         this.vans = vans;
     }
 
+    /**
+     * Adiciona uma van na lista de vans de um condutor
+     * @param van
+     */
     public void addVan(Van van) {
         vans.add(van);
         vansIDs.add(van.id);
     }
 
+    /**
+     * Clona um objeto van
+     * @return
+     * @throws CloneNotSupportedException
+     */
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    protected Object clone() throws CloneNotSupportedException
+    {
+        Object o = null;
+        try
+        {
+            o =  super.clone();
+        }
+        catch(CloneNotSupportedException c)
+        {
+            Log.d(Condutor.class.getSimpleName(), ErrorDictionary.CLONE_NOT_SUPPORTED);
+        }
+        return o;
     }
 }

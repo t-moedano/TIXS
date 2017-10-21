@@ -5,16 +5,23 @@ import android.net.Uri;
 import java.util.List;
 
 /**
- * Created by moeda on 07/10/2017.
+ * @author Thauany Moedano.
+ * Classe que devolve uma instância de um endereço do google maps.
  */
 
-public class EnderecoBuilder {
+public class EnderecoBuilder
+{
 
    private StringBuilder endereco;
    private Uri enderecoUri;
    public final String HEADER = "https://www.google.com/maps/dir/?api=1";
    public final String CODED_SEPARATOR = "%7C";
+   public final String TRAVEL_MODE = "&travelmode=driving";
 
+    /**
+     * Adiciona o header na string de endereço.
+     * @return
+     */
    public EnderecoBuilder header()
    {
        endereco = new StringBuilder();
@@ -22,12 +29,19 @@ public class EnderecoBuilder {
        return this;
    }
 
+
    public EnderecoBuilder origem(String origem)
    {
        String origemString = "&origin=" + Uri.encode(origem);
        endereco.append(origemString);
        return this;
    }
+
+    /**
+     * Adiciona o ponto de saída do endereço de origem.
+     * @param origem
+     * @return
+     */
 
    public EnderecoBuilder origem(Coordenada origem)
    {
@@ -43,6 +57,12 @@ public class EnderecoBuilder {
        return this;
    }
 
+
+    /**
+     * Adiciona o ponto de chegada do endereço de destino.
+     * @param destino
+     * @return
+     */
    public EnderecoBuilder destino(Coordenada destino)
    {
        String destinoString = "&destination="+destino.getLatitude()+","+destino.getLongitude();
@@ -62,6 +82,12 @@ public class EnderecoBuilder {
 
        return this;
    }
+
+    /**
+     * Adiciona uma série de pontos de parada
+     * @param waypoints
+     * @return
+     */
    public EnderecoBuilder waypoints(List<Coordenada> waypoints)
    {
        endereco.append("&waypoints=");
@@ -74,12 +100,20 @@ public class EnderecoBuilder {
    }
 
 
+    /**
+     * Configura o modo de partida.
+     * @return
+     */
    public EnderecoBuilder travelMode()
    {
-       endereco.append("&travelmode=driving");
+       endereco.append(TRAVEL_MODE);
        return this;
    }
 
+    /**
+     * Constrói uma instância Uri (URL do endereço)
+     * @return retorna a instância de endereço do google maps.
+     */
    public Uri build()
    {
        enderecoUri = Uri.parse(endereco.toString());

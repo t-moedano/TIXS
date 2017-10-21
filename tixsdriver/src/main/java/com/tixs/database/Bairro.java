@@ -3,7 +3,12 @@ package com.tixs.database;
 import com.google.firebase.database.Exclude;
 
 /**
+<<<<<<< HEAD
  * Classe ADO que representa um bairro.
+=======
+ * author: Aline
+ * Classe ADO para representar um bairro
+>>>>>>> spr03_refactor
  */
 
 public class Bairro
@@ -17,21 +22,41 @@ public class Bairro
         nome = "";
     }
 
+
+    /**
+     * Construtor do bairro com um nome
+     * @param nome
+     */
     public Bairro(String nome)
     {
         this.nome = nome;
     }
 
+
+    /**
+     *
+     * @return nome do bairro
+     */
     public String getNome()
     {
         return nome;
     }
 
+
+    /**
+     *
+     * @param nome do bairro
+     */
     public void setNome(String nome)
     {
         this.nome = nome;
     }
 
+    /**
+     * Sobrescreve o método equals para comparar se um bairro é igual a outro
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -40,12 +65,16 @@ public class Bairro
         if (o == null || getClass() != o.getClass())
             return false;
 
+
         Bairro rota = (Bairro) o;
 
         return nome.equals(rota.nome);
-
     }
 
+    /**
+     * Define que o hash code do bairro será o nome
+     * @return
+     */
     @Override
     public int hashCode()
     {

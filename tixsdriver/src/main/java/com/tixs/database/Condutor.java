@@ -9,12 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-<<<<<<< HEAD
- * Classe ADO que representa um condutor.
-=======
  * @author: Thauany Moedano
  * Classe ADO para representar um condutor
->>>>>>> spr03_refactor
  */
 
 public class Condutor

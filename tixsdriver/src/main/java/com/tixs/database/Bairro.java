@@ -3,12 +3,8 @@ package com.tixs.database;
 import com.google.firebase.database.Exclude;
 
 /**
-<<<<<<< HEAD
  * Classe ADO que representa um bairro.
-=======
  * author: Aline
- * Classe ADO para representar um bairro
->>>>>>> spr03_refactor
  */
 
 public class Bairro

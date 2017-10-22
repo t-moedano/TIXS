@@ -53,7 +53,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
     Van vanSelecionada;
     CriancaAdapter criancaArrayAdapter;
     ListView criancasListView;
-    ArrayList<Boolean> checkCriancas;
+    ArrayList<Boolean> criancasCanCheck;
     ArrayList<Responsavel> responsaveis;
 
     @Override
@@ -61,7 +61,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_in_ida);
 
-        checkCriancas = new ArrayList<>();
+        criancasCanCheck = new ArrayList<>();
         responsaveis = new ArrayList<>();
 
         criancasListView = (ListView) findViewById(R.id.criancasListView);
@@ -84,16 +84,25 @@ public class CheckInIdaActivity extends AppCompatActivity {
                 criancaArrayAdapter = new CriancaAdapter(getApplicationContext(), R.layout.check_text_view, vanSelecionada.criancas);
                 criancasListView.setAdapter(criancaArrayAdapter);
 //                responsaveis.clear();
+                // Talvez tenha um jeito melhor do que ficar recriando vetor a cada selecionada,
+                // mas por hora isso basta. No futuro, tentar deixar os items disabled.
+                criancasCanCheck.clear();
                 for (int j = 0; j < vanSelecionada.criancas.size(); j++) {
-////                    criancasListView.setItemChecked(j, true);
                     criancasListView.setItemChecked(j, vanSelecionada.criancas.get(j).confirma_ida);
+                    criancasCanCheck.add(vanSelecionada.criancas.get(j).confirma_ida);
+
                 }
                 criancasListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Crianca c = (Crianca) adapterView.getAdapter().getItem(i);
-                        c.confirma_ida = !c.confirma_ida;
-                        criancasListView.setItemChecked(i, c.confirma_ida);
+                        if (criancasCanCheck.get(i)) {
+                            Crianca c = (Crianca) adapterView.getAdapter().getItem(i);
+                            c.confirma_ida = !c.confirma_ida;
+                            criancasListView.setItemChecked(i, c.confirma_ida);
+                        } else {
+                            criancasListView.setItemChecked(i, false);
+                            Toast.makeText(getApplicationContext(), "Crianca nao vai a escola hoje.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             }
@@ -109,7 +118,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
 //        criancasListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 //            @Override
 //            public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
-//                checkCriancas.set(i, b && vanSelecionada.criancas.get(i).confirma_ida);
+//                criancasCanCheck.set(i, b && vanSelecionada.criancas.get(i).confirma_ida);
 //            }
 //
 //            @Override

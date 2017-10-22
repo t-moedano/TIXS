@@ -51,7 +51,7 @@ public class CadastraCriancaActivity extends AppCompatActivity {
 
         escolas = new ArrayList<Escola>();
 
-        escolaAdapter = new ArrayAdapter<Escola>(this, R.layout.activity_simple_text_view, escolas);
+        escolaAdapter = new ArrayAdapter<Escola>(this, R.layout.selection_text_view, escolas);
         listaBuscaEscola.setAdapter(escolaAdapter);
         listaBuscaEscola.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

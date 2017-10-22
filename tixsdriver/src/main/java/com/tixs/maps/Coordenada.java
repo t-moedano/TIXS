@@ -1,13 +1,5 @@
 package com.tixs.maps;
 
-import android.location.Address;
-import android.location.Geocoder;
-import android.support.v7.app.AppCompatActivity;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
 /**
  * @author Thauany Moedano.
  * Classe que representa uma coordenada.
@@ -26,20 +18,16 @@ public class Coordenada
 
 
     /**
-     *
      * @return
      */
-    public double getLatitude()
-    {
+    public double getLatitude() {
         return latitude;
     }
 
     /**
-     *
      * @param latitude
      */
-    public void setLatitude(double latitude)
-    {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -47,8 +35,7 @@ public class Coordenada
      *
      * @return
      */
-    public double getLongitude()
-    {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -56,8 +43,7 @@ public class Coordenada
      *
      * @param longitude
      */
-    public void setLongitude(double longitude)
-    {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 }

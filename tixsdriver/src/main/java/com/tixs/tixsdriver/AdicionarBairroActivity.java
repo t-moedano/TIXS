@@ -19,8 +19,7 @@ import com.tixs.database.Van;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdicionarBairroActivity extends AppCompatActivity
-{
+public class AdicionarBairroActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
@@ -34,8 +33,7 @@ public class AdicionarBairroActivity extends AppCompatActivity
     Van van;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_bairro);
         nomeBairroEditText = (EditText) findViewById(R.id.nomeBairroEditText);
@@ -46,7 +44,7 @@ public class AdicionarBairroActivity extends AppCompatActivity
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.activity_simple_text_view, van.bairros);
+        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.selection_text_view, van.bairros);
         bairrosListView.setAdapter(bairrosArrayAdapter);
 
     }

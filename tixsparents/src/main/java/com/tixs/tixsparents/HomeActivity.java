@@ -19,6 +19,9 @@ public class HomeActivity extends AppCompatActivity {
 
     Button buscarVanButton;
     Button cadastrarCriancaButton;
+    Button cancelamentoButton;
+
+    boolean carregado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +30,27 @@ public class HomeActivity extends AppCompatActivity {
 
         buscarVanButton = (Button) findViewById(R.id.buscarVanButton);
         cadastrarCriancaButton = (Button) findViewById(R.id.cadastrarCriancaButton);
+        cancelamentoButton = (Button) findViewById(R.id.cancelamentoButton);
 
+        carregado = false;
         buscarVanButton.setEnabled(false);
         cadastrarCriancaButton.setEnabled(false);
+        cancelamentoButton.setEnabled(false);
 
         FirebaseDatabase.getInstance().getReference("responsaveis")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Responsavel r = (Responsavel) dataSnapshot.getValue(Responsavel.class);
                         r.id = dataSnapshot.getKey();
                         HomeActivity.responsavelLogado = r;
-                        buscarVanButton.setEnabled(true);
-                        cadastrarCriancaButton.setEnabled(true);
+                        if (!carregado) {
+                            carregado = true;
+                            buscarVanButton.setEnabled(true);
+                            cadastrarCriancaButton.setEnabled(true);
+                            cancelamentoButton.setEnabled(true);
+                        }
 //                                            r.carregarCrianca();
                     }
 
@@ -60,6 +70,11 @@ public class HomeActivity extends AppCompatActivity {
     public void bntBuscarVan(View v)
     {
         Intent i = new Intent(HomeActivity.this, BuscaVanActivity.class);
+        startActivity(i);
+    }
+
+    public void bntCancelar(View view) {
+        Intent i = new Intent(HomeActivity.this, CancelarIdaActivity.class);
         startActivity(i);
     }
 }

@@ -17,13 +17,11 @@ public class Escola
     /**
      * Construtor default
      */
-    public Escola()
-    {
+    public Escola() {
 
     }
 
     /**
-     *
      * @param nome
      * @param bairro
      */
@@ -33,12 +31,10 @@ public class Escola
     }
 
     /**
-     *
      * @return
      */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return nome;
     }
 }

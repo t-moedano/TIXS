@@ -30,16 +30,13 @@ public class Condutor
 
 
     /**
-     *
      * @return
      */
-    public String toString()
-    {
+    public String toString() {
         return nome;
     }
 
     /**
-     *
      * @param nome
      * @param sobrenome
      * @param cpf
@@ -76,11 +73,9 @@ public class Condutor
      * @param bairro
      * @return true se o condutor atende aquele bairro. false caso contrário.
      */
-    public boolean containsBairro(String bairro)
-    {
+    public boolean containsBairro(String bairro) {
         if (vans == null) return false;
-        for (Van p : vans)
-        {
+        for (Van p : vans) {
             if (p.nome.contains(bairro)) return true;
         }
         return false;
@@ -90,8 +85,7 @@ public class Condutor
      *
      * @return
      */
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
@@ -99,8 +93,7 @@ public class Condutor
      *
      * @param id
      */
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -108,8 +101,7 @@ public class Condutor
      *
      * @return
      */
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
 
@@ -117,8 +109,7 @@ public class Condutor
      *
      * @param nome
      */
-    public void setNome(String nome)
-    {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -126,8 +117,7 @@ public class Condutor
      *
      * @return
      */
-    public String getSobrenome()
-    {
+    public String getSobrenome() {
         return sobrenome;
     }
 
@@ -135,8 +125,7 @@ public class Condutor
      *
      * @param sobrenome
      */
-    public void setSobrenome(String sobrenome)
-    {
+    public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
 
@@ -144,8 +133,7 @@ public class Condutor
      *
      * @return
      */
-    public String getCpf()
-    {
+    public String getCpf() {
         return cpf;
     }
 
@@ -153,8 +141,7 @@ public class Condutor
      *
      * @param cpf
      */
-    public void setCpf(String cpf)
-    {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -162,8 +149,7 @@ public class Condutor
      *
      * @return
      */
-    public String getTelefone()
-    {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -171,8 +157,7 @@ public class Condutor
      *
      * @param telefone
      */
-    public void setTelefone(String telefone)
-    {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -180,8 +165,7 @@ public class Condutor
      *
      * @return
      */
-    public String getRua()
-    {
+    public String getRua() {
         return rua;
     }
 
@@ -189,8 +173,7 @@ public class Condutor
      *
      * @param rua
      */
-    public void setRua(String rua)
-    {
+    public void setRua(String rua) {
         this.rua = rua;
     }
 
@@ -198,8 +181,7 @@ public class Condutor
      *
      * @return
      */
-    public String getBairro()
-    {
+    public String getBairro() {
         return bairro;
     }
 
@@ -207,8 +189,7 @@ public class Condutor
      *
      * @param bairro
      */
-    public void setBairro(String bairro)
-    {
+    public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
@@ -216,8 +197,7 @@ public class Condutor
      *
      * @return
      */
-    public String getNumero()
-    {
+    public String getNumero() {
         return numero;
     }
 
@@ -225,8 +205,7 @@ public class Condutor
      *
      * @param numero
      */
-    public void setNumero(String numero)
-    {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -234,8 +213,7 @@ public class Condutor
      *
      * @return
      */
-    public String getCep()
-    {
+    public String getCep() {
         return cep;
     }
 
@@ -243,8 +221,7 @@ public class Condutor
      *
      * @param cep
      */
-    public void setCep(String cep)
-    {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -252,8 +229,7 @@ public class Condutor
      *
      * @return
      */
-    public List<String> getVansIDs()
-    {
+    public List<String> getVansIDs() {
         return vansIDs;
     }
 
@@ -261,8 +237,7 @@ public class Condutor
      *
      * @param vansIDs
      */
-    public void setVansIDs(ArrayList<String> vansIDs)
-    {
+    public void setVansIDs(ArrayList<String> vansIDs) {
         this.vansIDs = vansIDs;
     }
 
@@ -270,8 +245,7 @@ public class Condutor
      *
      * @return
      */
-    public List<Van> getVans()
-    {
+    public List<Van> getVans() {
         return vans;
     }
 
@@ -279,8 +253,7 @@ public class Condutor
      *
      * @param vans
      */
-    public void setVans(ArrayList<Van> vans)
-    {
+    public void setVans(ArrayList<Van> vans) {
         this.vans = vans;
     }
 
@@ -304,15 +277,11 @@ public class Condutor
      * @throws CloneNotSupportedException
      */
     @Override
-    protected Object clone() throws CloneNotSupportedException
-    {
+    protected Object clone() throws CloneNotSupportedException {
         Object o = null;
-        try
-        {
-            o =  super.clone();
-        }
-        catch(CloneNotSupportedException c)
-        {
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException c) {
             Log.d(Condutor.class.getSimpleName(), ErrorDictionary.CLONE_NOT_SUPPORTED);
         }
         return o;

@@ -15,9 +15,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tixs.database.Bairro;
 import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
-import com.tixs.database.Rota;
 import com.tixs.database.Van;
 
 import java.util.ArrayList;
@@ -46,22 +46,23 @@ public class BuscaVanActivity extends AppCompatActivity {
         criancaSpinner = (Spinner) findViewById(R.id.criancaSpinner);
 
         vans = new ArrayList<>();
-        vansAdapter = new ArrayAdapter<Van>(this, R.layout.activity_simple_text_view, vans);
+        vansAdapter = new ArrayAdapter<Van>(this, R.layout.selection_text_view, vans);
         condutores.setAdapter(vansAdapter);
         condutores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 vanSelecionada = new Integer(i);
+                view.setSelected(true);
             }
         });
 
-        criancasArrayAdapter = new ArrayAdapter<Crianca>(this, R.layout.activity_simple_text_view, HomeActivity.responsavelLogado.criancas);
+        criancasArrayAdapter = new ArrayAdapter<Crianca>(this, R.layout.selection_text_view, HomeActivity.responsavelLogado.criancas);
         criancaSpinner.setAdapter(criancasArrayAdapter);
     }
 
     public void btnBuscar(View view) {
         vansAdapter.clear();
-        final Rota bairro = new Rota(bairroEdit.getText().toString());
+        final Bairro bairro = new Bairro(bairroEdit.getText().toString());
         // procurar por nome
         FirebaseDatabase.getInstance().getReference("vans")
                 .orderByChild("nome")

@@ -8,7 +8,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
  */
 
 @IgnoreExtraProperties
-public class Crianca {
+public class Crianca
+{
     @Exclude
     public String id;
     public String nome;

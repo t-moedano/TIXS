@@ -12,7 +12,8 @@ import java.util.Collections;
 import java.util.List;
 
 @IgnoreExtraProperties
-public class Responsavel {
+public class Responsavel
+{
 
     @Exclude
     public String id = "";
@@ -29,7 +30,8 @@ public class Responsavel {
 
 
     public Responsavel(String id, String nome, String sobrenome, String cpf,
-                       String telefone, String rua, String bairro, String numero, String cep, List<Crianca> criancas) {
+                       String telefone, String rua, String bairro, String numero, String cep, List<Crianca> criancas)
+    {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -41,36 +43,53 @@ public class Responsavel {
         this.cep = cep;
         this.criancas = criancas;
         criancasIDs = Collections.emptyList();
-        for (Crianca c : criancas) {
+        for (Crianca c : criancas)
+        {
             criancasIDs.add(c.id);
         }
     }
 
-    public Responsavel() {
-        // Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
+    /**
+     * Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
+     */
+    public Responsavel()
+    {
+
     }
 
-    public void addCrianca(Crianca c) {
+    /**
+     * Associa uma criança a um responsavel
+     * @param c
+     */
+    public void addCrianca(Crianca c)
+    {
         criancas.add(c);
         criancasIDs.add(c.id);
     }
 
-    public void carregarCrianca() {
-        for (String cid : criancasIDs) {
-            FirebaseDatabase.getInstance().getReference("criancas").child(cid).addListenerForSingleValueEvent(new ValueEventListener() {
+    /**
+     * Lê uma lista de crianças do banco
+     */
+    public void carregarCrianca()
+    {
+        for (String cid : criancasIDs)
+        {
+            FirebaseDatabase.getInstance().getReference("criancas").child(cid).addListenerForSingleValueEvent(new ValueEventListener()
+            {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
                     Crianca c = dataSnapshot.getValue(Crianca.class);
                     c.id = dataSnapshot.getKey();
                     addCrianca(c);
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(DatabaseError databaseError)
+                {
 
                 }
             });
         }
     }
-
 }

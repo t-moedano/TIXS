@@ -4,7 +4,8 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
- * Created by moeda on 19/09/2017.
+ * @author Thauany Moedano.
+ * Classe ADO para representar uma escola
  */
 
 @IgnoreExtraProperties
@@ -14,7 +15,8 @@ public class Escola
     @Exclude
     public String id;
 
-    public Escola() {
+    public Escola()
+    {
 
     }
 
@@ -24,7 +26,8 @@ public class Escola
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return nome;
     }
 }

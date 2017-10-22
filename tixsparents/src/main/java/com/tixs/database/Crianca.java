@@ -22,12 +22,26 @@ public class Crianca {
     public Boolean confirma_ida;
     public Boolean confirma_volta;
 
+    /**
+     * Construtor default
+     */
     public Crianca() {
         confirma_ida = true;
         confirma_volta = true;
     }
 
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
+    /**
+     *
+     * @param nome
+     * @param sobrenome
+     * @param horarioEntrada
+     * @param horarioSaida
+     * @param escola
+     * @param responsavel
+     */
+    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida,
+                   Escola escola, Responsavel responsavel)
+    {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;
@@ -37,32 +51,32 @@ public class Crianca {
         this.responsavelID = responsavel.id;
     }
 
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Van van, Responsavel responsavel) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.horarioEntrada = horarioEntrada;
-        this.horarioSaida = horarioSaida;
-        this.escola = escola;
-        this.escolaID = escola.id;
-        this.vanID = van.id;
-        this.responsavelID = responsavel.id;
-        this.confirma_ida = true;
-        this.confirma_volta = true;
-    }
-
-    public void setEscola(Escola escola) {
+    /**
+     *
+     * @param escola
+     */
+    public void setEscola(Escola escola)
+    {
         this.escolaID = escola.id;
         this.escola = escola;
     }
 
-    public void setResponsavel(Responsavel responsavel) {
+    /**
+     *
+     * @param responsavel
+     */
+    public void setResponsavel(Responsavel responsavel)
+    {
         this.responsavelID = responsavel.id;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return new StringBuilder().append(nome).append(" ").append(sobrenome).toString();
     }
-
-
 }

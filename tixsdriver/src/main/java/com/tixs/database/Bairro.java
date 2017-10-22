@@ -3,48 +3,83 @@ package com.tixs.database;
 import com.google.firebase.database.Exclude;
 
 /**
- * Created by aline on 24/09/17.
+ * Classe ADO que representa um bairro.
+ * author: Aline
  */
 
-public class Bairro {
+public class Bairro
+{
     @Exclude
     public String id;
     public String nome;
 
-    public Bairro() {
+    public Bairro()
+    {
         nome = "";
     }
 
-    public Bairro(String nome) {
+
+    /**
+     * Construtor do bairro com um nome
+     * @param nome
+     */
+    public Bairro(String nome)
+    {
         this.nome = nome;
     }
 
-    public String getNome() {
+
+    /**
+     *
+     * @return nome do bairro
+     */
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+
+    /**
+     *
+     * @param nome do bairro
+     */
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
+    /**
+     * Sobrescreve o método equals para comparar se um bairro é igual a outro
+     * @param o
+     * @return
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o)
+    {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
 
         Bairro rota = (Bairro) o;
 
         return nome.equals(rota.nome);
-
     }
 
+    /**
+     * Define que o hash code do bairro será o nome
+     * @return
+     */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return nome.hashCode();
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return nome;
     }
 }

@@ -19,7 +19,8 @@ import com.tixs.database.Van;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdicionarBairroActivity extends AppCompatActivity {
+public class AdicionarBairroActivity extends AppCompatActivity
+{
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
@@ -33,7 +34,8 @@ public class AdicionarBairroActivity extends AppCompatActivity {
     Van van;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_bairro);
         nomeBairroEditText = (EditText) findViewById(R.id.nomeBairroEditText);
@@ -60,8 +62,6 @@ public class AdicionarBairroActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("bairros").child(bairro.id).setValue(bairro);
         FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van);
         FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id).setValue(condutor);
-//        Intent i = new Intent(AdicionarEscolaActivity.this, MainActivity.class);
-//        startActivity(i);
         Toast.makeText(AdicionarBairroActivity.this, "bairro Adicionado", Toast.LENGTH_LONG).show();
         finish();
     }

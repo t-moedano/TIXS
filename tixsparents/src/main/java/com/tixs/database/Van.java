@@ -1,10 +1,13 @@
 package com.tixs.database;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tixs.utils.ErrorDictionary;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +25,6 @@ public class Van implements Serializable {
     public String placa = "";
     public String nome = "";
     public String condutorID = "";
-    //    public Condutor condutor = new Condutor();
     public List<String> bairrosIDs = new ArrayList<>();
     public List<Bairro> bairros = new ArrayList<>();
     public ArrayList<String> escolasIDs = new ArrayList<>();
@@ -34,16 +36,18 @@ public class Van implements Serializable {
 
     }
 
-    public Van(String nome, List<Bairro> rotas) {
-//        this.condutor = condutor;
+    public Van(String nome, List<Bairro> rotas)
+    {
         this.nome = nome;
         this.bairros = rotas;
-        for (Bairro p : rotas) {
+        for (Bairro p : rotas)
+        {
             bairrosIDs.add(p.id);
         }
     }
 
-    public boolean containsBairro(String bairro) {
+    public boolean containsBairro(String bairro)
+    {
         if (bairros == null || bairro == null) return false;
         for (Bairro p : bairros) {
             if (p.nome.contains(bairro)) return true;
@@ -51,80 +55,101 @@ public class Van implements Serializable {
         return false;
     }
 
-    public String toString() {
+    public String toString()
+    {
         return nome;
     }
 
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id)
+    {
         this.id = id;
     }
 
-//    public Condutor getCondutor() {
-//        return condutor;
-//    }
 
-    public void setCondutor(Condutor condutor) {
+    public void setCondutor(Condutor condutor)
+    {
         this.condutorID = condutor.id;
-//        this.condutor = condutor;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
-    public List<String> getBairrosIDs() {
+    public List<String> getBairrosIDs()
+    {
         return bairrosIDs;
     }
 
-    public void setBairrosIDs(List<String> bairrosIDs) {
+    public void setBairrosIDs(List<String> bairrosIDs)
+    {
         this.bairrosIDs = bairrosIDs;
     }
 
-    public List<Bairro> getBairros() {
+    public List<Bairro> getBairros()
+    {
         return bairros;
     }
 
-    public void setBairros(List<Bairro> bairros) {
+    public void setBairros(List<Bairro> bairros)
+    {
         this.bairros = bairros;
     }
 
-    public void addRota(Bairro r) {
+    public void addRota(Bairro r)
+    {
         bairros.add(r);
         bairrosIDs.add(r.id);
     }
 
-    public void carregarRotas() {
+    /**
+     * Lê as rotas do banco de dados
+     */
+    public void carregarRotas()
+    {
         List<ValueEventListener> valueEventListeners = new ArrayList<>(bairrosIDs.size());
-        for (String rid : bairrosIDs) {
+        for (String rid : bairrosIDs)
+        {
             valueEventListeners.add(FirebaseDatabase.getInstance().getReference("bairros").child(rid)
-                    .addValueEventListener(new ValueEventListener() {
+                    .addValueEventListener(new ValueEventListener()
+                    {
                         @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                        public void onDataChange(DataSnapshot dataSnapshot)
+                        {
                             Bairro r = dataSnapshot.getValue(Bairro.class);
                             r.id = dataSnapshot.getKey();
                             addRota(r);
                         }
 
                         @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                        public void onCancelled(DatabaseError databaseError)
+                        {
 
                         }
                     }));
         }
-        for (int i = 0; i < bairrosIDs.size(); i++) {
-            try {
+        for (int i = 0; i < bairrosIDs.size(); i++)
+        {
+            try
+            {
                 valueEventListeners.get(i).wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
+            }
+            catch (InterruptedException e)
+            {
+                Log.d(Van.class.getSimpleName(), ErrorDictionary.INTERRUPTED_EXCEPTION_ON_DATABASE);
+            }
+            finally
+            {
                 FirebaseDatabase.getInstance().getReference("bairros").child(bairrosIDs.get(i))
                         .removeEventListener(valueEventListeners.get(i));
             }
@@ -134,20 +159,32 @@ public class Van implements Serializable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        Object o = null;
+        try
+        {
+            o =  super.clone();
+        }
+        catch(CloneNotSupportedException c)
+        {
+            Log.d(Condutor.class.getSimpleName(), ErrorDictionary.CLONE_NOT_SUPPORTED);
+        }
+        return o;
     }
 
-    public void addEscola(Escola escola) {
+    public void addEscola(Escola escola)
+    {
         escolas.add(escola);
         escolasIDs.add(escola.id);
     }
 
-    public void addBairro(Bairro bairro) {
+    public void addBairro(Bairro bairro)
+    {
         bairros.add(bairro);
         bairrosIDs.add(bairro.id);
     }
 
-    public void addCrianca(Crianca crianca) {
+    public void addCrianca(Crianca crianca)
+    {
         if (!criancasIDs.contains(crianca.id)) {
             criancas.add(crianca);
             criancasIDs.add(crianca.id);

@@ -20,10 +20,7 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
-import com.tixs.maps.Coordenada;
-import com.tixs.maps.CoordenadaListFactory;
 import com.tixs.maps.EnderecoBuilder;
-import com.tixs.maps.GPSTracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +35,11 @@ class CriancaAdapter extends ArrayAdapter<Crianca> {
         super(context, resource, objects);
     }
 
-    @Override
-    public boolean isEnabled(int position) {
-        return this.getItem(position).confirma_ida;
-    }
+//    @Override
+//    public boolean isEnabled(int position) {
+//        return this.getItem(position).confirma_ida;
+//    }
+
 }
 
 public class CheckInIdaActivity extends AppCompatActivity {
@@ -70,6 +68,9 @@ public class CheckInIdaActivity extends AppCompatActivity {
         vanSpinner = (Spinner) findViewById(R.id.vanSpinner);
         irMapaButton = (Button) findViewById(R.id.irMapaButton);
 
+        criancasListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+//        criancasListView.setItemsCanFocus(false);
+
 //        irMapaButton.setEnabled(false);
 
         vanArrayAdapter = new ArrayAdapter<Van>(this, R.layout.selection_text_view, HomeActivity.condutorLogado.vans);
@@ -82,12 +83,19 @@ public class CheckInIdaActivity extends AppCompatActivity {
                 vanSelecionada = (Van) vanSpinner.getSelectedItem();
                 criancaArrayAdapter = new CriancaAdapter(getApplicationContext(), R.layout.check_text_view, vanSelecionada.criancas);
                 criancasListView.setAdapter(criancaArrayAdapter);
-                checkCriancas.clear();
-                responsaveis.clear();
+//                responsaveis.clear();
                 for (int j = 0; j < vanSelecionada.criancas.size(); j++) {
-                    checkCriancas.add(vanSelecionada.criancas.get(j).confirma_ida);
+////                    criancasListView.setItemChecked(j, true);
                     criancasListView.setItemChecked(j, vanSelecionada.criancas.get(j).confirma_ida);
                 }
+                criancasListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Crianca c = (Crianca) adapterView.getAdapter().getItem(i);
+                        c.confirma_ida = !c.confirma_ida;
+                        criancasListView.setItemChecked(i, c.confirma_ida);
+                    }
+                });
             }
 
             @Override
@@ -96,20 +104,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
             }
         });
 
-//        criancasListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        criancasListView.setItemsCanFocus(false);
 
-        criancasListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                checkCriancas.set(i, !checkCriancas.get(i));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
 //        criancasListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 //            @Override
@@ -147,10 +142,6 @@ public class CheckInIdaActivity extends AppCompatActivity {
         List<String> lista = new ArrayList<>();
 
         /*TO DO - Pegar as informações do banco*/
-
-
-
-
 
 
         Uri gmmIntentUri = new EnderecoBuilder()

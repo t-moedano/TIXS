@@ -15,8 +15,7 @@ public class Escola
     @Exclude
     public String id;
 
-    public Escola()
-    {
+    public Escola() {
 
     }
 
@@ -26,8 +25,7 @@ public class Escola
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return nome;
     }
 }

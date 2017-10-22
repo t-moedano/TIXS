@@ -108,18 +108,18 @@ public class GPSTracker extends Service implements LocationListener {
     /**
      * para de usar GPS listener
      * Calling this function will stop using GPS in your app
-     * */
-    public void stopUsingGPS(){
-        if(locationManager != null){
+     */
+    public void stopUsingGPS() {
+        if (locationManager != null) {
             locationManager.removeUpdates(GPSTracker.this);
         }
     }
 
     /**
      * Function para obter latitude
-     * */
-    public double getLatitude(){
-        if(location != null){
+     */
+    public double getLatitude() {
+        if (location != null) {
             latitude = location.getLatitude();
         }
 
@@ -129,9 +129,9 @@ public class GPSTracker extends Service implements LocationListener {
 
     /**
      * Function para obetr longitude
-     * */
-    public double getLongitude(){
-        if(location != null){
+     */
+    public double getLongitude() {
+        if (location != null) {
             longitude = location.getLongitude();
         }
 
@@ -141,16 +141,17 @@ public class GPSTracker extends Service implements LocationListener {
 
     /**
      * Função para verificar GPS / Wi-Fi habilitado
+     *
      * @return boolean
-     * */
+     */
     public boolean canGetLocation() {
         return this.canGetLocation;
     }
 
     /**
      * Function para abrir o alerta
-     * */
-    public void showSettingsAlert(){
+     */
+    public void showSettingsAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         // titulo da mensagem de config
@@ -203,18 +204,17 @@ public class GPSTracker extends Service implements LocationListener {
 }
 
 /**
- Exemplo de como usar o GPSTracker
-
- GPSTracker gps = new GPSTracker(CheckInIdaActivity.this);
-
- // verifica ele
- if (gps.canGetLocation()) {
- // passa sua latitude e longitude para duas variaveis
- latitudeGPS = gps.getLatitude();
- longitudeGPS = gps.getLongitude();
-
- // e mostra no Toast
- Toast.makeText(getApplicationContext(), "Sua localização - \nLat: " + latitudeGPS + "\nLong: " + longitudeGPS, Toast.LENGTH_LONG).show();
- }
-
+ * Exemplo de como usar o GPSTracker
+ * <p>
+ * GPSTracker gps = new GPSTracker(CheckInIdaActivity.this);
+ * <p>
+ * // verifica ele
+ * if (gps.canGetLocation()) {
+ * // passa sua latitude e longitude para duas variaveis
+ * latitudeGPS = gps.getLatitude();
+ * longitudeGPS = gps.getLongitude();
+ * <p>
+ * // e mostra no Toast
+ * Toast.makeText(getApplicationContext(), "Sua localização - \nLat: " + latitudeGPS + "\nLong: " + longitudeGPS, Toast.LENGTH_LONG).show();
+ * }
  **/

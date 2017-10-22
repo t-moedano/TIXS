@@ -2,11 +2,10 @@ package com.tixs.utils;
 
 /**
  * @author Thauany Moedano
- * Classe que contém constantes de mensagem de erro
+ *         Classe que contém constantes de mensagem de erro
  */
 
-public class ErrorDictionary
-{
+public class ErrorDictionary {
 
     /**
      * Mensagem de erro quando o método de clone falha.

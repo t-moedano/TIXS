@@ -31,7 +31,6 @@ public class Crianca {
     }
 
     /**
-     *
      * @param nome
      * @param sobrenome
      * @param horarioEntrada
@@ -40,8 +39,7 @@ public class Crianca {
      * @param responsavel
      */
     public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida,
-                   Escola escola, Responsavel responsavel)
-    {
+                   Escola escola, Responsavel responsavel) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;
@@ -52,11 +50,9 @@ public class Crianca {
     }
 
     /**
-     *
      * @param escola
      */
-    public void setEscola(Escola escola)
-    {
+    public void setEscola(Escola escola) {
         this.escolaID = escola.id;
         this.escola = escola;
     }
@@ -65,8 +61,7 @@ public class Crianca {
      *
      * @param responsavel
      */
-    public void setResponsavel(Responsavel responsavel)
-    {
+    public void setResponsavel(Responsavel responsavel) {
         this.responsavelID = responsavel.id;
     }
 
@@ -75,8 +70,7 @@ public class Crianca {
      * @return
      */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return new StringBuilder().append(nome).append(" ").append(sobrenome).toString();
     }
 }

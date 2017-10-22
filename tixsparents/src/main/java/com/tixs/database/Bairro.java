@@ -7,52 +7,46 @@ import com.google.firebase.database.Exclude;
  * Classe ADO para representar um bairro
  */
 
-public class Bairro
-{
+public class Bairro {
     @Exclude
     public String id;
     public String nome;
 
-    public Bairro()
-    {
+    public Bairro() {
         nome = "";
     }
 
     /**
      * Construtor do bairro com um nome
+     *
      * @param nome
      */
-    public Bairro(String nome)
-    {
+    public Bairro(String nome) {
         this.nome = nome;
     }
 
     /**
-     *
      * @return nome do bairro
      */
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
 
     /**
-     *
      * @param nome do bairro
      */
-    public void setNome(String nome)
-    {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
      * Sobrescreve o método equals para comparar se um bairro é igual a outro
+     *
      * @param o
      * @return
      */
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -66,8 +60,7 @@ public class Bairro
      * @return
      */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return nome.hashCode();
     }
 

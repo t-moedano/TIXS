@@ -14,26 +14,22 @@ import java.util.HashMap;
 public class HashMapAdapter extends BaseAdapter {
     private final HashMap<String, String> map;
 
-    public HashMapAdapter(HashMap<String, String> map)
-    {
+    public HashMapAdapter(HashMap<String, String> map) {
         this.map = map;
     }
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return 0;
     }
 
     @Override
-    public Object getItem(int i)
-    {
+    public Object getItem(int i) {
         return null;
     }
 
     @Override
-    public long getItemId(int i)
-    {
+    public long getItemId(int i) {
         return 0;
     }
 

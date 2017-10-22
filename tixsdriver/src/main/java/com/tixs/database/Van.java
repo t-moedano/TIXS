@@ -17,8 +17,7 @@ import java.util.List;
  * @author Aline.
  */
 
-public class Van implements Serializable
-{
+public class Van implements Serializable {
 
     @Exclude
     public String id = "";
@@ -33,60 +32,50 @@ public class Van implements Serializable
     public List<String> criancasIDs = new ArrayList<>();
     public List<Crianca> criancas = new ArrayList<>();
 
-    public Van()
-    {
+    public Van() {
 
     }
 
-    public Van(String nome, List<Bairro> rotas)
-    {
+    public Van(String nome, List<Bairro> rotas) {
         this.nome = nome;
         this.bairros = rotas;
-        for (Bairro p : rotas)
-        {
+        for (Bairro p : rotas) {
             bairrosIDs.add(p.id);
         }
     }
 
     /**
      * Verifica se uma van atende determinado bairro
+     *
      * @param bairro
      * @return true se a van atende o bairro. false caso contrário.
      */
-    public boolean containsBairro(String bairro)
-    {
+    public boolean containsBairro(String bairro) {
         if (bairros == null || bairro == null) return false;
-        for (Bairro p : bairros)
-        {
+        for (Bairro p : bairros) {
             if (p.nome.contains(bairro)) return true;
         }
         return false;
     }
 
     /**
-     *
      * @return
      */
-    public String toString()
-    {
+    public String toString() {
         return nome;
     }
 
     /**
-     *
      * @return
      */
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
     /**
-     *
      * @param id
      */
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -94,8 +83,7 @@ public class Van implements Serializable
      *
      * @param condutor
      */
-    public void setCondutor(Condutor condutor)
-    {
+    public void setCondutor(Condutor condutor) {
         this.condutorID = condutor.id;
     }
 
@@ -103,8 +91,7 @@ public class Van implements Serializable
      *
      * @return
      */
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
 
@@ -112,8 +99,7 @@ public class Van implements Serializable
      *
      * @param nome
      */
-    public void setNome(String nome)
-    {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -121,8 +107,7 @@ public class Van implements Serializable
      *
      * @return
      */
-    public List<String> getBairrosIDs()
-    {
+    public List<String> getBairrosIDs() {
         return bairrosIDs;
     }
 
@@ -130,8 +115,7 @@ public class Van implements Serializable
      *
      * @param bairrosIDs
      */
-    public void setBairrosIDs(List<String> bairrosIDs)
-    {
+    public void setBairrosIDs(List<String> bairrosIDs) {
         this.bairrosIDs = bairrosIDs;
     }
 
@@ -139,8 +123,7 @@ public class Van implements Serializable
      *
      * @return lista de bairros
      */
-    public List<Bairro> getBairros()
-    {
+    public List<Bairro> getBairros() {
         return bairros;
     }
 
@@ -148,8 +131,7 @@ public class Van implements Serializable
      *
      * @param bairros
      */
-    public void setBairros(List<Bairro> bairros)
-    {
+    public void setBairros(List<Bairro> bairros) {
         this.bairros = bairros;
     }
 
@@ -157,8 +139,7 @@ public class Van implements Serializable
      * Adiciona um bairro a lista de bairros que uma van atende
      * @param r
      */
-    public void addRota(Bairro r)
-    {
+    public void addRota(Bairro r) {
         bairros.add(r);
         bairrosIDs.add(r.id);
     }
@@ -166,41 +147,30 @@ public class Van implements Serializable
     /**
      * Lê as rotas do banco de dados
      */
-    public void carregarRotas()
-    {
+    public void carregarRotas() {
         List<ValueEventListener> valueEventListeners = new ArrayList<>(bairrosIDs.size());
-        for (String rid : bairrosIDs)
-        {
+        for (String rid : bairrosIDs) {
             valueEventListeners.add(FirebaseDatabase.getInstance().getReference("bairros").child(rid)
-                    .addValueEventListener(new ValueEventListener()
-                    {
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
-                        public void onDataChange(DataSnapshot dataSnapshot)
-                        {
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                             Bairro r = dataSnapshot.getValue(Bairro.class);
                             r.id = dataSnapshot.getKey();
                             addRota(r);
                         }
 
                         @Override
-                        public void onCancelled(DatabaseError databaseError)
-                        {
+                        public void onCancelled(DatabaseError databaseError) {
 
                         }
                     }));
         }
-        for (int i = 0; i < bairrosIDs.size(); i++)
-        {
-            try
-            {
+        for (int i = 0; i < bairrosIDs.size(); i++) {
+            try {
                 valueEventListeners.get(i).wait();
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 Log.d(Van.class.getSimpleName(), ErrorDictionary.INTERRUPTED_EXCEPTION_ON_DATABASE);
-            }
-            finally
-            {
+            } finally {
                 FirebaseDatabase.getInstance().getReference("bairros").child(bairrosIDs.get(i))
                         .removeEventListener(valueEventListeners.get(i));
             }
@@ -209,15 +179,11 @@ public class Van implements Serializable
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException
-    {
+    protected Object clone() throws CloneNotSupportedException {
         Object o = null;
-        try
-        {
-            o =  super.clone();
-        }
-        catch(CloneNotSupportedException c)
-        {
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException c) {
             Log.d(Condutor.class.getSimpleName(), ErrorDictionary.CLONE_NOT_SUPPORTED);
         }
         return o;
@@ -227,8 +193,7 @@ public class Van implements Serializable
      * Adiciona uma escola a uma determinada van
      * @param escola
      */
-    public void addEscola(Escola escola)
-    {
+    public void addEscola(Escola escola) {
         escolas.add(escola);
         escolasIDs.add(escola.id);
     }
@@ -237,8 +202,7 @@ public class Van implements Serializable
      * Adiciona um bairro a uma determinada van
      * @param bairro
      */
-    public void addBairro(Bairro bairro)
-    {
+    public void addBairro(Bairro bairro) {
         bairros.add(bairro);
         bairrosIDs.add(bairro.id);
     }

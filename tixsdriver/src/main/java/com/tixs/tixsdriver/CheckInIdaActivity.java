@@ -112,38 +112,6 @@ public class CheckInIdaActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-//        criancasListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-//            @Override
-//            public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
-//                criancasCanCheck.set(i, b && vanSelecionada.criancas.get(i).confirma_ida);
-//            }
-//
-//            @Override
-//            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-//                int i = menuItem.getItemId();
-//                return false;
-//            }
-//
-//            @Override
-//            public void onDestroyActionMode(ActionMode actionMode) {
-//
-//            }
-//        });
-
-//        criancaArrayAdapter = new ArrayAdapter<Crianca>(this, R.layout.selection_text_view, )
     }
 
 

@@ -13,9 +13,14 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
+import com.tixs.database.Van;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +32,6 @@ import java.util.List;
 public class CancelarIdaActivity extends AppCompatActivity {
 
     ListView filhoListView;
-    ArrayList<Boolean> criancasCanCheck;
     ArrayAdapter<Crianca> ArrayAdapter;
 
     @Override
@@ -36,7 +40,6 @@ public class CancelarIdaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cancelar_ida);
 
         filhoListView = (ListView) findViewById(R.id.filhoListView);
-        criancasCanCheck = new ArrayList<>();
 
         filhoListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
@@ -45,6 +48,7 @@ public class CancelarIdaActivity extends AppCompatActivity {
         for (int i = 0; i < HomeActivity.responsavelLogado.criancas.size(); i++) {
             Crianca c = HomeActivity.responsavelLogado.criancas.get(i);
             filhoListView.setItemChecked(i, c.confirma_ida);
+
         }
 
         filhoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,15 +58,40 @@ public class CancelarIdaActivity extends AppCompatActivity {
                 c.confirma_ida = !c.confirma_ida;
             }
         });
-
     }
 
     public void bntCancelar(View view) {
-        for(Crianca c: HomeActivity.responsavelLogado.criancas) {
-            FirebaseDatabase.getInstance().getReference("criancas").child(c.id).setValue(c);
+        if (filhoListView.getCheckedItemCount() > 0) {
+            for (final Crianca c : HomeActivity.responsavelLogado.criancas) {
+                // mudanca na crianca
+                FirebaseDatabase.getInstance().getReference("criancas").child(c.id).setValue(c);
+                // Mudança na van
+                FirebaseDatabase.getInstance().getReference("vans").child(c.vanID).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    Van van = (Van) dataSnapshot.getValue(Van.class);
+                                    // atualize a crianca dentro da van se necessario ou apenas
+                                    // adicione uma nova.
+                                    van.pushCrianca(c);
+                                    FirebaseDatabase.getInstance().getReference("vans")
+                                            .child(c.vanID).setValue(van);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+            }
+            // Mudança no responsavel
+            FirebaseDatabase.getInstance().getReference("responsaveis").
+                    child(HomeActivity.responsavelLogado.id).setValue(HomeActivity.responsavelLogado);
+        } else {
+            Toast.makeText(getApplicationContext(), "Selecine alguma crianca para cancelar", Toast.LENGTH_LONG).show();
         }
-
-
-
     }
 }
+

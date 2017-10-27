@@ -17,13 +17,17 @@ import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
 import com.tixs.database.Van;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by aline on 13/10/17.
  */
 
 public class CancelarIdaActivity extends AppCompatActivity {
 
-    ListView filhoListView;
+    @BindView(R.id.filhoListView) ListView filhoListView;
+
     ArrayAdapter<Crianca> criancaArrayAdapter;
     Boolean[] podeCancelar = new Boolean[HomeActivity.responsavelLogado.criancas.size()];
 
@@ -31,8 +35,9 @@ public class CancelarIdaActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancelar_ida);
+        ButterKnife.bind(this);
 
-        filhoListView = (ListView) findViewById(R.id.filhoListView);
+//        filhoListView = (ListView) findViewById(R.id.filhoListView);
 
         filhoListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 

@@ -1,14 +1,12 @@
 package com.tixs.database;
 
-import com.google.firebase.database.Exclude;
-
 /**
  * @author Aline
  *         Classe ADO que representa uma Rota
  */
 
 public class Rota {
-    @Exclude
+
     public String id;
     public String nome;
 

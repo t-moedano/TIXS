@@ -64,23 +64,11 @@ public class Responsavel {
     }
 
     /**
-     * Lê uma lista de crianças do banco
+     * Carrega os IDs do vetor de IDS nas criancas.
      */
-    public void carregarCrianca() {
-        for (String cid : criancasIDs) {
-            FirebaseDatabase.getInstance().getReference("criancas").child(cid).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    Crianca c = dataSnapshot.getValue(Crianca.class);
-                    c.id = dataSnapshot.getKey();
-                    addCrianca(c);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+    public void carregarIDs() {
+        for (int i = 0; i < criancasIDs.size(); i++) {
+            criancas.get(i).id = criancasIDs.get(i);
         }
     }
 }

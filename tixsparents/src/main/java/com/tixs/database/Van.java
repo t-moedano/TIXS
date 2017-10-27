@@ -159,4 +159,15 @@ public class Van implements Serializable {
             criancasIDs.add(crianca.id);
         }
     }
+
+    // Faca na mesma funcao a adicao ou a modificacao
+    public void pushCrianca(Crianca crianca) {
+        if (!criancasIDs.contains(crianca.id)) {
+            criancas.add(crianca);
+            criancasIDs.add(crianca.id);
+        } else {
+            int index = criancasIDs.indexOf(crianca.id);
+            criancas.set(index, crianca);
+        }
+    }
 }

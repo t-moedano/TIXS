@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class BuscaVanActivity extends AppCompatActivity {
 
-//    private ArrayAdapter<> vanAdapter;
+//    private criancaArrayAdapter<> vanAdapter;
 
     private EditText nomeEdit;
     private EditText bairroEdit;
@@ -74,7 +74,7 @@ public class BuscaVanActivity extends AppCompatActivity {
                             for (DataSnapshot snap : dataSnapshot.getChildren()) {
                                 Van van = snap.getValue(Van.class);
                                 van.id = snap.getKey();
-                                if (van.containsBairro(bairro.nome)) {
+                                if (bairro.nome.length() == 0 || van.containsBairro(bairro.nome)) {
                                     vansAdapter.add(van);
                                 }
                             }
@@ -98,9 +98,10 @@ public class BuscaVanActivity extends AppCompatActivity {
         if (vanSelecionada < 0) {
             Toast.makeText(getApplicationContext(), "Selecione uma van.", Toast.LENGTH_LONG).show();
         } else {
-            Crianca crianca = (Crianca) criancaSpinner.getSelectedItem();
+            final Crianca crianca = (Crianca) criancaSpinner.getSelectedItem();
             final Van van = vans.get(vanSelecionada);
             van.addCrianca(crianca);
+            crianca.vanID = van.id;
             FirebaseDatabase.getInstance().getReference("condutores").child(van.condutorID)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -110,14 +111,20 @@ public class BuscaVanActivity extends AppCompatActivity {
                                 c.addVan(van);
                                 FirebaseDatabase.getInstance().getReference("condutores").child(van.condutorID)
                                         .setValue(c);
+                                FirebaseDatabase.getInstance().getReference("vans").child(van.id)
+                                        .setValue(van);
+                                FirebaseDatabase.getInstance().getReference("criancas").child(crianca.id)
+                                        .setValue(crianca);
+                                FirebaseDatabase.getInstance().getReference("responsaveis").child(HomeActivity.responsavelLogado.id)
+                                        .setValue(HomeActivity.responsavelLogado);
                             }
                         }
-
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
                     });
+            
             FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

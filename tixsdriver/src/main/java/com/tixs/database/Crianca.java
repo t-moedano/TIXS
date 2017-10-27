@@ -1,6 +1,5 @@
 package com.tixs.database;
 
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
@@ -9,7 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Crianca {
-    @Exclude
+
     public String id;
     public String nome;
     public String sobrenome;

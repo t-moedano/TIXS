@@ -1,14 +1,12 @@
 package com.tixs.database;
 
-import com.google.firebase.database.Exclude;
-
 /**
  * Classe ADO que representa um bairro.
  * author: Aline
  */
 
 public class Bairro {
-    @Exclude
+
     public String id;
     public String nome;
 

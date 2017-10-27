@@ -1,15 +1,11 @@
 package com.tixs.tixsparents;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,11 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
-import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by aline on 13/10/17.
@@ -32,7 +24,8 @@ import java.util.List;
 public class CancelarIdaActivity extends AppCompatActivity {
 
     ListView filhoListView;
-    ArrayAdapter<Crianca> ArrayAdapter;
+    ArrayAdapter<Crianca> criancaArrayAdapter;
+    Boolean[] podeCancelar = new Boolean[HomeActivity.responsavelLogado.criancas.size()];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,19 +36,21 @@ public class CancelarIdaActivity extends AppCompatActivity {
 
         filhoListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        ArrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.check_text_view, HomeActivity.responsavelLogado.criancas);
-        filhoListView.setAdapter(ArrayAdapter);
+        criancaArrayAdapter = new ArrayAdapter<Crianca>(getApplicationContext(), R.layout.check_text_view, HomeActivity.responsavelLogado.criancas);
+        filhoListView.setAdapter(criancaArrayAdapter);
         for (int i = 0; i < HomeActivity.responsavelLogado.criancas.size(); i++) {
             Crianca c = HomeActivity.responsavelLogado.criancas.get(i);
-            filhoListView.setItemChecked(i, c.confirma_ida);
+            podeCancelar[i] = c.confirma_ida;
+            filhoListView.setItemChecked(i, false);
 
         }
 
         filhoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Crianca c = HomeActivity.responsavelLogado.criancas.get(position);
-                c.confirma_ida = !c.confirma_ida;
+                Crianca c = criancaArrayAdapter.getItem(position);
+                if (podeCancelar[position])
+                    c.confirma_ida = !c.confirma_ida;
             }
         });
     }
@@ -69,14 +64,34 @@ public class CancelarIdaActivity extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference("vans").child(c.vanID).
                         addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
+                            public void onDataChange(final DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
-                                    Van van = (Van) dataSnapshot.getValue(Van.class);
+                                    final Van van = (Van) dataSnapshot.getValue(Van.class);
                                     // atualize a crianca dentro da van se necessario ou apenas
                                     // adicione uma nova.
                                     van.pushCrianca(c);
                                     FirebaseDatabase.getInstance().getReference("vans")
                                             .child(c.vanID).setValue(van);
+                                    // Muadanca no condutor da van
+                                    FirebaseDatabase.getInstance().getReference("condutores")
+                                            .child(van.condutorID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot1) {
+                                            // nomeie dataSnapshot1 porque sem numero ja tem no
+                                            // primeiro cahamado
+                                            if (dataSnapshot1.exists()) {
+                                                Condutor condutor = (Condutor) dataSnapshot1.getValue(Condutor.class);
+                                                condutor.addVan(van);
+                                                FirebaseDatabase.getInstance().getReference("condutores")
+                                                        .child(van.condutorID).setValue(condutor);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
                                 }
                             }
 
@@ -89,6 +104,8 @@ public class CancelarIdaActivity extends AppCompatActivity {
             // Mudança no responsavel
             FirebaseDatabase.getInstance().getReference("responsaveis").
                     child(HomeActivity.responsavelLogado.id).setValue(HomeActivity.responsavelLogado);
+            finish();
+            Toast.makeText(getApplicationContext(), "Cancelamento com sucesso", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(), "Selecine alguma crianca para cancelar", Toast.LENGTH_LONG).show();
         }

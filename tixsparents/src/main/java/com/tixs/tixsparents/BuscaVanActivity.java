@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class BuscaVanActivity extends AppCompatActivity {
 
-//    private ArrayAdapter<> vanAdapter;
+//    private criancaArrayAdapter<> vanAdapter;
 
     private EditText nomeEdit;
     private EditText bairroEdit;
@@ -74,7 +74,7 @@ public class BuscaVanActivity extends AppCompatActivity {
                             for (DataSnapshot snap : dataSnapshot.getChildren()) {
                                 Van van = snap.getValue(Van.class);
                                 van.id = snap.getKey();
-                                if (van.containsBairro(bairro.nome)) {
+                                if (bairro.nome.length() == 0 || van.containsBairro(bairro.nome)) {
                                     vansAdapter.add(van);
                                 }
                             }

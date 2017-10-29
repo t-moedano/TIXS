@@ -20,10 +20,17 @@ public class Crianca {
     public String responsavelID;
     public Boolean confirma_ida;
     public Boolean confirma_volta;
+    public Boolean aguardando;
+    public Boolean emTransito;
+    public Boolean entregue;
 
     public Crianca() {
         confirma_ida = true;
         confirma_volta = true;
+        aguardando = false;
+        emTransito = false;
+        entregue = false;
+
     }
 
     public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
@@ -34,6 +41,9 @@ public class Crianca {
         this.escola = escola;
         this.escolaID = escola.id;
         this.responsavelID = responsavel.id;
+        this.aguardando = false;
+        this.emTransito = false;
+        this.entregue = false;
     }
 
     public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Van van, Responsavel responsavel) {
@@ -47,6 +57,9 @@ public class Crianca {
         this.responsavelID = responsavel.id;
         this.confirma_ida = true;
         this.confirma_volta = true;
+        this.aguardando = false;
+        this.emTransito = false;
+        this.entregue = false;
     }
 
     public void setEscola(Escola escola) {

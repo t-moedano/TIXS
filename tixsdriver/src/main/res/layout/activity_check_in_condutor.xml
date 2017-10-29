@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tixs.tixsdriver.CheckInCondutor">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10pt"
+        android:text="Escolha sua van:"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/vanSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+
+    <ListView
+        android:id="@+id/listSchool"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="#0000CC"
+        android:dividerHeight="0.1dp"></ListView>
+
+    <Button
+        android:id="@+id/encerrarCorrida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finalizar viagem"
+        android:onClick="onButtonIrMapaCLick"
+        style="@android:style/Widget.Holo.Button"
+        android:backgroundTint="#33CC33" />
+</LinearLayout>

@@ -31,12 +31,11 @@ import com.tixs.maps.EnderecoBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by Pedro on 28/10/2017.
+ * Created by Pedro on 29/10/2017.
  */
 
-public class CheckInCondutor  extends AppCompatActivity {
+public class CheckInCondutorActivity extends AppCompatActivity {
 
     DatabaseReference dref;
     Spinner vanSpinner;
@@ -63,7 +62,7 @@ public class CheckInCondutor  extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 vanSelecionada = (Van) vanSpinner.getSelectedItem();
-                mAdapter = new listCheckInAdapter(CheckInCondutor.this, vanSelecionada.criancas);
+                mAdapter = new listCheckInAdapter(CheckInCondutorActivity.this, vanSelecionada.criancas);
                 mListview.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
 
@@ -82,21 +81,3 @@ public class CheckInCondutor  extends AppCompatActivity {
 
 
 
-
-
-
-   /* protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_in_condutor);
-
-        mListview = (ListView) findViewById(R.id.listSchool);
-
-        // Set some data to array list
-        mArrData = new ArrayList<>();
-
-        // Initialize adapter and set adapter to list view
-        mAdapter = new listCheckInAdapter(CheckInCondutor.this, mArrData);
-        mListview.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-
-    }*/

@@ -130,11 +130,9 @@ public class CheckInIdaActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        Intent i = new Intent(this, CheckInCondutor.class);
 
         try {
             startActivity(intent);
-            startActivity(i);
         } catch (ActivityNotFoundException ex) {
             try {
                 Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);

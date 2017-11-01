@@ -17,6 +17,10 @@ import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
 import com.tixs.database.Van;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,11 +60,19 @@ public class CancelarIdaActivity extends AppCompatActivity {
                 Crianca c = criancaArrayAdapter.getItem(position);
                 if (podeCancelar[position])
                     c.confirma_ida = !c.confirma_ida;
+                else {
+                    view.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), "Essa crianca ja nao vai", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
 
     public void bntCancelar(View view) {
+        final ArrayList<Van> vans = new ArrayList<>();
+        final ArrayList<Condutor> condutores = new ArrayList<>();
+        final HashMap<String, String> vansDasCriancas = new HashMap<>();
+        final HashMap<String, String> condutoresDasVans = new HashMap<>();
         if (filhoListView.getCheckedItemCount() > 0) {
             for (final Crianca c : HomeActivity.responsavelLogado.criancas) {
                 // mudanca na crianca
@@ -74,9 +86,9 @@ public class CancelarIdaActivity extends AppCompatActivity {
                                     final Van van = (Van) dataSnapshot.getValue(Van.class);
                                     // atualize a crianca dentro da van se necessario ou apenas
                                     // adicione uma nova.
-                                    van.pushCrianca(c);
+                                    final Van vanadd = saveChildInVan(vans, van, c);
                                     FirebaseDatabase.getInstance().getReference("vans")
-                                            .child(c.vanID).setValue(van);
+                                            .child(c.vanID).setValue(vanadd);
                                     // Muadanca no condutor da van
                                     FirebaseDatabase.getInstance().getReference("condutores")
                                             .child(van.condutorID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -86,7 +98,7 @@ public class CancelarIdaActivity extends AppCompatActivity {
                                             // primeiro cahamado
                                             if (dataSnapshot1.exists()) {
                                                 Condutor condutor = (Condutor) dataSnapshot1.getValue(Condutor.class);
-                                                condutor.addVan(van);
+                                                condutor = saveVanCondutor(condutores, condutor, vanadd);
                                                 FirebaseDatabase.getInstance().getReference("condutores")
                                                         .child(van.condutorID).setValue(condutor);
                                             }
@@ -114,6 +126,38 @@ public class CancelarIdaActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Selecine alguma crianca para cancelar", Toast.LENGTH_LONG).show();
         }
+    }
+
+    synchronized private Condutor saveVanCondutor(ArrayList<Condutor> condutores, Condutor condutor, Van van) {
+        boolean found = false;
+        for (Condutor c : condutores) {
+            if (c.id.equals(condutor.id)) {
+                condutor = c;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            condutores.add(condutor);
+        }
+        condutor.pushVan(van);
+        return condutor;
+    }
+
+    synchronized private Van saveChildInVan(List<Van> vans, Van van, Crianca crianca) {
+        boolean found = false;
+        for (Van v : vans) {
+            if (v.id.equals(van.id)) {
+                van = v;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            vans.add(van);
+        }
+        van.pushCrianca(crianca);
+        return van;
     }
 }
 

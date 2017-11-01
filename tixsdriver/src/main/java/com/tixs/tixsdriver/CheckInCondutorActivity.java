@@ -68,8 +68,6 @@ public class CheckInCondutorActivity extends AppCompatActivity {
                 mAdapter = new listCheckInAdapter(CheckInCondutorActivity.this, vanSelecionada.criancas);
                 mListview.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
-
-
             }
 
             @Override

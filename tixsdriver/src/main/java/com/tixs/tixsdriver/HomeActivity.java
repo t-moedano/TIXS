@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
 
         FirebaseDatabase.getInstance().getReference("condutores")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Condutor c = (Condutor) dataSnapshot.getValue(Condutor.class);

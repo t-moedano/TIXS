@@ -261,7 +261,7 @@ public class Condutor
      * Adiciona uma van na lista de vans de um condutor
      * @param van
      */
-    public void addVan(Van van) {
+    public void pushVan(Van van) {
         if (vansIDs.contains(van.id)) {
             Integer ind = vansIDs.indexOf(van.id);
             vans.set(ind, van);

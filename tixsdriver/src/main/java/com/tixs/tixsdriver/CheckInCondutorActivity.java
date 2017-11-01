@@ -53,6 +53,9 @@ public class CheckInCondutorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_check_in_condutor);
 
         vanSpinner = (Spinner) findViewById(R.id.vanSpinner);
+        encerrarCorrida= (Button) findViewById(R.id.irMapaButton);
+
+        vanSpinner = (Spinner) findViewById(R.id.vanSpinner);
         vanArrayAdapter = new ArrayAdapter<Van>(this, R.layout.selection_text_view, HomeActivity.condutorLogado.vans);
         vanSpinner.setAdapter(vanArrayAdapter);
 
@@ -74,7 +77,6 @@ public class CheckInCondutorActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 }

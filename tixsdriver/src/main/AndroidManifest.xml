@@ -28,6 +28,7 @@
         <activity android:name=".CreateVanActivity" />
         <activity android:name=".AdministrarVanActivity" />
         <activity android:name=".AdicionarBairroActivity" />
+        <activity android:name=".CheckInCondutorActivity" />
         <activity android:name=".CheckInIdaActivity"></activity>
     </application>
 

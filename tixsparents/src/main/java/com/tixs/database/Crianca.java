@@ -20,6 +20,9 @@ public class Crianca {
     public String responsavelID;
     public Boolean confirma_ida;
     public Boolean confirma_volta;
+    public Boolean aguardando;
+    public Boolean emTransito;
+    public Boolean entregue;
 
     /**
      * Construtor default
@@ -27,6 +30,9 @@ public class Crianca {
     public Crianca() {
         confirma_ida = true;
         confirma_volta = true;
+        aguardando = true;
+        emTransito = false;
+        entregue = false;
     }
 
     /**

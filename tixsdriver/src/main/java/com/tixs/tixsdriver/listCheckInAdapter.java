@@ -21,12 +21,20 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
 import com.tixs.maps.EnderecoBuilder;
 
 import java.util.ArrayList;
+import android.graphics.Color;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,6 +49,13 @@ public class listCheckInAdapter extends BaseAdapter {
     public listCheckInAdapter(Context context, @NonNull List<Crianca> objects) {
         super();
         mContext = context;
+        List<Crianca> toRemove = new ArrayList<Crianca>();
+        for(Crianca a: objects){
+            if(a.confirma_ida != true){
+                toRemove.add(a);
+            }
+        }
+        objects.removeAll(toRemove);
         mArrSchoolData = objects;
     }
 
@@ -58,27 +73,80 @@ public class listCheckInAdapter extends BaseAdapter {
 
         // get the reference of textView and button
         TextView txtSchoolTitle = (TextView) view.findViewById(R.id.txtSchoolTitle);
-        Button btnAction = (Button) view.findViewById(R.id.btnAction);
+        final Button btnAction = (Button) view.findViewById(R.id.btnAction);
+        TextView escola = (TextView) view.findViewById(R.id.escola);
 
         // Set the title and button name
-        txtSchoolTitle.setText(mArrSchoolData.get(position).nome);
-        btnAction.setText("Action " + position);
+        if(mArrSchoolData.get(position).confirma_ida == true) {
+            txtSchoolTitle.setText(mArrSchoolData.get(position).nome);
+            escola.setText(mArrSchoolData.get(position).escola.nome);
+            btnAction.setText("Aguardando");
+            btnAction.setTag(1);
+        }
 
         // Click listener of button
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mArrSchoolData.get(position).aguardando == true && mArrSchoolData.get(position).emTransito == false && mArrSchoolData.get(position).entregue == false){
-                    mArrSchoolData.get(position).aguardando = false;
-                    mArrSchoolData.get(position).emTransito = true;
-                    mArrSchoolData.get(position).entregue = false;
-                }
-                if(mArrSchoolData.get(position).aguardando == false && mArrSchoolData.get(position).emTransito == true && mArrSchoolData.get(position).entregue == false){
-                    mArrSchoolData.get(position).aguardando = false;
-                    mArrSchoolData.get(position).emTransito = false;
-                    mArrSchoolData.get(position).entregue = true;
+                final int status =(Integer) btnAction.getTag();
+                if(status == 1) {
+                    btnAction.setText("Em trânsito");
+                    btnAction.setTag(2); //pause
+                } if(status == 2) {
+                    btnAction.setText("Entregue");
+                    btnAction.setTag(3); //pause
+                } if(status == 3) {
+                    btnAction.setText("Aguardando");
+                    btnAction.setTag(1); //pause
                 }
             }
+                /*if(btnAction.getText() == "Aguardando")
+                    btnAction.setText("Em trânsito");
+                if(btnAction.getText() == "Em trânsito")
+                    btnAction.setText("Entregue");
+                if(btnAction.getText() == "Entregue")
+                   // btnAction.setText("Aguardando");
+               /* final DatabaseReference raiz;
+                DatabaseReference nodeA, nodeB, nodeC, nodeD, nodeE, nodeF;
+                raiz = FirebaseDatabase.getInstance().getReference();
+                nodeA = raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("aguardando").equalTo(true);
+                nodeB = raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("emTransito").equalTo(false);
+                nodeC = raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("entregue").equalTo(false);
+                final Query query1 = raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("aguardando").equalTo(true);
+                query1.addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+                    public void onDataChange (DataSnapshot dataSnapshot){
+                        nodeA.push().setValue(false);
+                        nodeB.push().setValue(true);
+                        nodeC.push().setValue(false);
+                        btnAction.setText("Em trânsito");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                nodeD = (DatabaseReference) raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("aguardando").equalTo(false);
+                nodeE = (DatabaseReference) raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("emTransito").equalTo(true);
+                nodeF = (DatabaseReference) raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("entregue").equalTo(false);
+                final Query query2 = raiz.child(mArrSchoolData.get(position).id.toString()).orderByChild("emTransito").equalTo(true);
+                query2.addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+                    public void onDataChange (DataSnapshot dataSnapshot){
+                        nodeD.push().setValue(false);
+                        nodeE.push().setValue(false);
+                        nodeF.push().setValue(true);
+                        btnAction.setText("Entregue");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+           */
         });
 
         return view;

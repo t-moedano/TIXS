@@ -41,7 +41,7 @@ public class Crianca {
         this.escola = escola;
         this.escolaID = escola.id;
         this.responsavelID = responsavel.id;
-        this.aguardando = false;
+        this.aguardando = true;
         this.emTransito = false;
         this.entregue = false;
     }
@@ -57,7 +57,7 @@ public class Crianca {
         this.responsavelID = responsavel.id;
         this.confirma_ida = true;
         this.confirma_volta = true;
-        this.aguardando = false;
+        this.aguardando = true;
         this.emTransito = false;
         this.entregue = false;
     }

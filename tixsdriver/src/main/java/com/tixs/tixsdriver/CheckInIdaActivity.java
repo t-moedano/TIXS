@@ -48,6 +48,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
 
     Spinner vanSpinner;
     Button irMapaButton;
+    Button irCheckInListButton;
 
     ArrayAdapter<Van> vanArrayAdapter;
     Van vanSelecionada;
@@ -67,6 +68,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
         criancasListView = (ListView) findViewById(R.id.criancasListView);
         vanSpinner = (Spinner) findViewById(R.id.vanSpinner);
         irMapaButton = (Button) findViewById(R.id.irMapaButton);
+        irCheckInListButton = (Button) findViewById(R.id.irCheckInListButton);
 
         criancasListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 //        criancasListView.setItemsCanFocus(false);
@@ -114,6 +116,10 @@ public class CheckInIdaActivity extends AppCompatActivity {
         });
     }
 
+    public void onButtonIrCheckInListButton(View view) {
+        Intent i = new Intent(this, CheckInCondutorActivity.class);
+        startActivity(i);
+    }
 
     public void onButtonIrMapaCLick(View view) {
         List<String> lista = new ArrayList<>();

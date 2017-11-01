@@ -8,8 +8,18 @@
     android:paddingBottom="7.5dp"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    android:paddingTop="7.5dp">
+    android:paddingTop="7.5dp"
+    android:weightSum="1">
 
+
+    <TextView
+        android:id="@+id/escola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:text="Escola"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/txtSchoolTitle"
@@ -18,13 +28,15 @@
         android:paddingLeft="2dp"
         android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="20dp" />
+        android:textSize="35dp" />
 
     <Button
         android:id="@+id/btnAction"
-        android:layout_width="wrap_content"
+        android:layout_width="124dp"
+        android:backgroundTint="#33CC33"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="Check" />
+        android:text="Check"
+        android:layout_weight="0.03" />
 
 </LinearLayout>

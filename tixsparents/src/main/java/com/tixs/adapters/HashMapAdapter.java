@@ -7,7 +7,8 @@ import android.widget.BaseAdapter;
 import java.util.HashMap;
 
 /**
- * Created by aline on 07/10/17.
+ * @author Aline
+ * Classe que cria um adapter para utilizar Hash Map na ligação de ADOs.
  */
 
 public class HashMapAdapter extends BaseAdapter {

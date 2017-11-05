@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:divider="@color/colorPrimary"
         android:dividerHeight="2dp"
-        android:footerDividersEnabled="true" />
+        android:footerDividersEnabled="true"
+        android:choiceMode="singleChoice" />
 
     <LinearLayout
         android:layout_width="match_parent"

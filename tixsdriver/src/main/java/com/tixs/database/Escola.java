@@ -1,17 +1,17 @@
 package com.tixs.database;
 
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
- * Created by moeda on 19/09/2017.
+ * @author Thauany Moedano.
+ * Classe ADO para representar uma escola
  */
 
 @IgnoreExtraProperties
 public class Escola
 {
     public String nome;
-    @Exclude
+
     public String id;
 
     public Escola() {

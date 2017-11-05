@@ -56,7 +56,7 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        escolaArrayAdapter = new ArrayAdapter<Escola>(this, R.layout.activity_simple_text_view, van.escolas);
+        escolaArrayAdapter = new ArrayAdapter<Escola>(this, R.layout.selection_text_view, van.escolas);
         escolaListView.setAdapter(escolaArrayAdapter);
 
     }

@@ -4,14 +4,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ThrowOnExtraProperties;
+import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@ThrowOnExtraProperties
+@IgnoreExtraProperties
 public class Responsavel {
 
     @Exclude
@@ -25,7 +25,6 @@ public class Responsavel {
     public String numero = "";
     public String cep = "";
     public List<String> criancasIDs = new ArrayList<>();
-    @Exclude
     public List<Crianca> criancas = new ArrayList<>();
 
 
@@ -47,15 +46,26 @@ public class Responsavel {
         }
     }
 
+    /**
+     * Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
+     */
     public Responsavel() {
-        // Default constructor required for calls to DataSnapshot.getValue(Responsavel.class)
+
     }
 
+    /**
+     * Associa uma criança a um responsavel
+     *
+     * @param c
+     */
     public void addCrianca(Crianca c) {
         criancas.add(c);
         criancasIDs.add(c.id);
     }
 
+    /**
+     * Lê uma lista de crianças do banco
+     */
     public void carregarCrianca() {
         for (String cid : criancasIDs) {
             FirebaseDatabase.getInstance().getReference("criancas").child(cid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,5 +83,4 @@ public class Responsavel {
             });
         }
     }
-
 }

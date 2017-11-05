@@ -44,7 +44,7 @@ public class AdicionarBairroActivity extends AppCompatActivity {
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.activity_simple_text_view, van.bairros);
+        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.selection_text_view, van.bairros);
         bairrosListView.setAdapter(bairrosArrayAdapter);
 
     }
@@ -60,8 +60,6 @@ public class AdicionarBairroActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("bairros").child(bairro.id).setValue(bairro);
         FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van);
         FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id).setValue(condutor);
-//        Intent i = new Intent(AdicionarEscolaActivity.this, MainActivity.class);
-//        startActivity(i);
         Toast.makeText(AdicionarBairroActivity.this, "bairro Adicionado", Toast.LENGTH_LONG).show();
         finish();
     }

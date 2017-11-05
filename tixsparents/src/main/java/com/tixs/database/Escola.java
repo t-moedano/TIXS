@@ -1,28 +1,37 @@
 package com.tixs.database;
 
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
- * Created by moeda on 19/09/2017.
+ * @author Thauany Moedano
  */
 
 @IgnoreExtraProperties
 public class Escola
 {
     public String nome;
-    @Exclude
+
     public String id;
 
+    /**
+     * Construtor default
+     */
     public Escola() {
 
     }
 
+    /**
+     * @param nome
+     * @param bairro
+     */
     public Escola(String nome, String bairro)
     {
         this.nome = nome;
     }
 
+    /**
+     * @return
+     */
     @Override
     public String toString() {
         return nome;

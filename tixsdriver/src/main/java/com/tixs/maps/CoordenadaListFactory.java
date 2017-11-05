@@ -3,6 +3,9 @@ package com.tixs.maps;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.tixs.utils.ErrorDictionary;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,25 +13,33 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by moeda on 07/10/2017.
+ * @author.
+ * Factory dedicada a criação de instâncias de coordenadas.
  */
 
 public class CoordenadaListFactory
 {
-    public static List<Coordenada> createCoordenadas (List<String> enderecos, AppCompatActivity activity)
-    {
-        Geocoder geoCoder = new Geocoder(activity.getApplicationContext(), Locale.getDefault());// esse Geocoder aqui é quem vai traduzir o endereço de String para coordenadas double
-        List<Address> addresses = null;//este Adress aqui recebe um retorno do metodo geoCoder.getFromLocationName vc manipula este retorno pra pega as coordenadas
+    public static int NUMERO_DE_ENDERECOS_DE_RESPOSTA = 1;
+
+    /**
+     * Dado uma lista de endereços, o método retorna uma lista de coordenadas correspondentes.
+     *
+     * @param enderecos lista de endereços
+     * @param activity  classe activity que dispara o método
+     * @return lista de coordenadas
+     */
+    public static List<Coordenada> createCoordenadas(List<String> enderecos, AppCompatActivity activity) {
+        Geocoder geoCoder = new Geocoder(activity.getApplicationContext(), Locale.getDefault());
+        List<Address> addresses = null;
         List<Coordenada> coordenadas = new ArrayList<>();
         double latitude, longitude;
 
-        for(String endereco : enderecos) {
+        for (String endereco : enderecos) {
             try {
-                addresses = geoCoder.getFromLocationName(endereco, 1);// o numero um aqui é a quantidade maxima de resultados que vc quer receber
-
+                addresses = geoCoder.getFromLocationName(endereco, NUMERO_DE_ENDERECOS_DE_RESPOSTA);
 
             } catch (IOException e) {
-                //TODO
+                Log.d(CoordenadaListFactory.class.getSimpleName(), ErrorDictionary.ADDRESS_NOT_FOUND);
             }
             latitude = addresses.get(0).getLatitude();
             longitude = addresses.get(0).getLongitude();

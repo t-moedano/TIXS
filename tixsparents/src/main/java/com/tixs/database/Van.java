@@ -1,10 +1,13 @@
 package com.tixs.database;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tixs.utils.ErrorDictionary;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +25,6 @@ public class Van implements Serializable {
     public String placa = "";
     public String nome = "";
     public String condutorID = "";
-    //    public Condutor condutor = new Condutor();
     public List<String> bairrosIDs = new ArrayList<>();
     public List<Bairro> bairros = new ArrayList<>();
     public ArrayList<String> escolasIDs = new ArrayList<>();
@@ -35,7 +37,6 @@ public class Van implements Serializable {
     }
 
     public Van(String nome, List<Bairro> rotas) {
-//        this.condutor = condutor;
         this.nome = nome;
         this.bairros = rotas;
         for (Bairro p : rotas) {
@@ -63,13 +64,9 @@ public class Van implements Serializable {
         this.id = id;
     }
 
-//    public Condutor getCondutor() {
-//        return condutor;
-//    }
 
     public void setCondutor(Condutor condutor) {
         this.condutorID = condutor.id;
-//        this.condutor = condutor;
     }
 
     public String getNome() {
@@ -101,6 +98,9 @@ public class Van implements Serializable {
         bairrosIDs.add(r.id);
     }
 
+    /**
+     * Lê as rotas do banco de dados
+     */
     public void carregarRotas() {
         List<ValueEventListener> valueEventListeners = new ArrayList<>(bairrosIDs.size());
         for (String rid : bairrosIDs) {
@@ -123,7 +123,7 @@ public class Van implements Serializable {
             try {
                 valueEventListeners.get(i).wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d(Van.class.getSimpleName(), ErrorDictionary.INTERRUPTED_EXCEPTION_ON_DATABASE);
             } finally {
                 FirebaseDatabase.getInstance().getReference("bairros").child(bairrosIDs.get(i))
                         .removeEventListener(valueEventListeners.get(i));
@@ -134,7 +134,13 @@ public class Van implements Serializable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        Object o = null;
+        try {
+            o = super.clone();
+        } catch (CloneNotSupportedException c) {
+            Log.d(Condutor.class.getSimpleName(), ErrorDictionary.CLONE_NOT_SUPPORTED);
+        }
+        return o;
     }
 
     public void addEscola(Escola escola) {
@@ -151,6 +157,17 @@ public class Van implements Serializable {
         if (!criancasIDs.contains(crianca.id)) {
             criancas.add(crianca);
             criancasIDs.add(crianca.id);
+        }
+    }
+
+    // Faca na mesma funcao a adicao ou a modificacao
+    public void pushCrianca(Crianca crianca) {
+        if (!criancasIDs.contains(crianca.id)) {
+            criancas.add(crianca);
+            criancasIDs.add(crianca.id);
+        } else {
+            int index = criancasIDs.indexOf(crianca.id);
+            criancas.set(index, crianca);
         }
     }
 }

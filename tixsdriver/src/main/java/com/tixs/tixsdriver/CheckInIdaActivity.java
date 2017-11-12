@@ -1,6 +1,7 @@
 package com.tixs.tixsdriver;
 
 import android.*;
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -171,9 +172,57 @@ public class CheckInIdaActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 
         try {
-            /**Criar uma nova atividade pra startar o intent do google e adicionar a localização**/
+
             startActivity(intent);
-            Toast.makeText(this, "teste", Toast.LENGTH_LONG).show();
+
+
+            /************************************/
+
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            mprovider = locationManager.getBestProvider(criteria, false);
+
+            listener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    if (location != null) {
+
+                        updateVanLocation(location, vanSelecionada.id);
+                    }else {
+
+                    }
+                }
+
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String s) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String s) {
+                    Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(i);
+                }
+            };
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                Location location = locationManager.getLastKnownLocation(mprovider);
+                if (location != null) {
+
+                    updateVanLocation(location, vanSelecionada.id);
+                }else {
+
+                }
+                locationManager.requestLocationUpdates(mprovider, 5000, 0, listener);
+            }
+
+
+        Toast.makeText(this, "teste", Toast.LENGTH_LONG).show();
         } catch (ActivityNotFoundException ex) {
             try {
                 Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -183,5 +232,25 @@ public class CheckInIdaActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    private void updateVanLocation(Location loc, String van) {
+        final Location location = loc;
+        final String vanId = van;
+        FirebaseDatabase.getInstance().getReference("vans").child(vanId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        Map<String, Object> postValues = new HashMap<String,Object>();
+                                                        postValues.put("lat", location.getLatitude());
+                                                        postValues.put("long", location.getLongitude());
+                                                        FirebaseDatabase.getInstance().getReference("vans").child(vanId).updateChildren(postValues);
+                                                    }
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {}
+                                                }
+                );
+    }
+
 
 }

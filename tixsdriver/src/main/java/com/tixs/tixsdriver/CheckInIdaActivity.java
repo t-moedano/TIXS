@@ -1,12 +1,20 @@
 package com.tixs.tixsdriver;
 
+import android.*;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,16 +22,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
 import com.tixs.maps.EnderecoBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class CriancaAdapter extends ArrayAdapter<Crianca> {
 
@@ -57,6 +72,13 @@ public class CheckInIdaActivity extends AppCompatActivity {
     ArrayList<Boolean> criancasCanCheck;
     ArrayList<Responsavel> responsaveis;
 
+
+
+    private LocationManager locationManager;
+    private LocationListener listener;
+    private String mprovider;
+    List<String> enderecos = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +91,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
         vanSpinner = (Spinner) findViewById(R.id.vanSpinner);
         irMapaButton = (Button) findViewById(R.id.irMapaButton);
         irCheckInListButton = (Button) findViewById(R.id.irCheckInListButton);
+
 
         criancasListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 //        criancasListView.setItemsCanFocus(false);
@@ -116,15 +139,25 @@ public class CheckInIdaActivity extends AppCompatActivity {
         });
     }
 
+
+
+
+
     public void onButtonIrCheckInListButton(View view) {
         Intent i = new Intent(this, CheckInCondutorActivity.class);
         startActivity(i);
     }
 
     public void onButtonIrMapaCLick(View view) {
+
+
         List<String> lista = new ArrayList<>();
 
-        /*TO DO - Pegar as informações do banco*/
+        for (int j = 0; j < vanSelecionada.criancas.size(); j++) {
+            if(vanSelecionada.criancas.get(j).confirma_ida)
+                lista.add(vanSelecionada.criancas.get(j).endereco);
+        }
+
 
 
         Uri gmmIntentUri = new EnderecoBuilder()
@@ -138,7 +171,9 @@ public class CheckInIdaActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 
         try {
+            /**Criar uma nova atividade pra startar o intent do google e adicionar a localização**/
             startActivity(intent);
+            Toast.makeText(this, "teste", Toast.LENGTH_LONG).show();
         } catch (ActivityNotFoundException ex) {
             try {
                 Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);

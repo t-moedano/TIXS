@@ -23,6 +23,7 @@ public class Crianca {
     public Boolean aguardando;
     public Boolean emTransito;
     public Boolean entregue;
+    public String endereco;
 
     /**
      * Construtor default
@@ -44,7 +45,7 @@ public class Crianca {
      * @param responsavel
      */
     public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida,
-                   Escola escola, Responsavel responsavel) {
+                   Escola escola, Responsavel responsavel, String endereco) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;
@@ -52,6 +53,7 @@ public class Crianca {
         this.escola = escola;
         this.escolaID = escola.id;
         this.responsavelID = responsavel.id;
+        this.endereco = endereco;
     }
 
     /**

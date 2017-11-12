@@ -78,4 +78,11 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent(HomeActivity.this, CancelarIdaActivity.class);
         startActivity(i);
     }
+
+    public void btnMostrarVan(View view)
+    {
+        Intent i = new Intent(HomeActivity.this, MostrarLocalizacao.class);
+        startActivity(i);
+    }
+
 }

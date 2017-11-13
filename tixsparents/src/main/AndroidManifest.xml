@@ -23,7 +23,11 @@
         <activity android:name=".CreateProfileActivity" />
         <activity android:name=".CadastraCriancaActivity" />
         <activity android:name=".CancelarIdaActivity" />
-        <activity android:name=".BuscaVanActivity"></activity>
+        <activity android:name=".BuscaVanActivity" />
+        <activity
+            android:name=".CancelarVoltaActivity"
+            android:label="@string/title_activity_cancelar_volta"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -30,14 +30,15 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:11.0.1'
     compile 'com.google.firebase:firebase-database:11.0.1'
     compile 'com.android.support:design:26.+'
-    testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:8.8.1'
+    testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
 
 // Add to the bottom of the file
 
 apply plugin: 'com.google.gms.google-services'
+
 
 
 

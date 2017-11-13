@@ -39,14 +39,14 @@
     <!--android:id="@+id/nomePonto"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
-    <!--android:hint="Bairro"-->
+    <!--android:hint="Endereco"-->
     <!--android:inputType="textPersonName"/>-->
 
     <!--<Button-->
     <!--android:id="@+id/bntPonto"-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
-    <!--android:text="adicionar bairro"-->
+    <!--android:text="adicionar endereco"-->
     <!--android:onClick="bntBairroClick"/>-->
 
     <!--<Button-->

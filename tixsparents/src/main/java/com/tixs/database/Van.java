@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by aline on 30/09/17.
+ * @author Aline.
  */
 
 public class Van implements Serializable {
@@ -26,7 +26,7 @@ public class Van implements Serializable {
     public String nome = "";
     public String condutorID = "";
     public List<String> bairrosIDs = new ArrayList<>();
-    public List<Bairro> bairros = new ArrayList<>();
+    public List<Endereco> enderecos = new ArrayList<>();
     public ArrayList<String> escolasIDs = new ArrayList<>();
     public ArrayList<Escola> escolas = new ArrayList<>();
     public List<String> criancasIDs = new ArrayList<>();
@@ -36,65 +36,111 @@ public class Van implements Serializable {
 
     }
 
-    public Van(String nome, List<Bairro> rotas) {
+    public Van(String nome, List<Endereco> rotas) {
         this.nome = nome;
-        this.bairros = rotas;
-        for (Bairro p : rotas) {
+        this.enderecos = rotas;
+        for (Endereco p : rotas) {
             bairrosIDs.add(p.id);
         }
     }
 
+    /**
+     * Verifica se uma van atende determinado bairro
+     *
+     * @param bairro
+     * @return true se a van atende o bairro. false caso contrário.
+     */
     public boolean containsBairro(String bairro) {
-        if (bairros == null || bairro == null) return false;
-        for (Bairro p : bairros) {
-            if (p.nome.contains(bairro)) return true;
+        if (enderecos == null || bairro == null) return false;
+        for (Endereco p : enderecos) {
+            if (p.rua.contains(bairro)) return true;
         }
         return false;
     }
 
+    /**
+     * @return
+     */
     public String toString() {
         return nome;
     }
 
+    /**
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
-
+    /**
+     *
+     * @param condutor
+     */
     public void setCondutor(Condutor condutor) {
         this.condutorID = condutor.id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getBairrosIDs() {
         return bairrosIDs;
     }
 
+    /**
+     *
+     * @param bairrosIDs
+     */
     public void setBairrosIDs(List<String> bairrosIDs) {
         this.bairrosIDs = bairrosIDs;
     }
 
-    public List<Bairro> getBairros() {
-        return bairros;
+    /**
+     *
+     * @return lista de enderecos
+     */
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setBairros(List<Bairro> bairros) {
-        this.bairros = bairros;
+    /**
+     *
+     * @param enderecos
+     */
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public void addRota(Bairro r) {
-        bairros.add(r);
+    /**
+     * Adiciona um bairro a lista de enderecos que uma van atende
+     * @param r
+     */
+    public void addRota(Endereco r) {
+        enderecos.add(r);
         bairrosIDs.add(r.id);
     }
 
@@ -104,11 +150,11 @@ public class Van implements Serializable {
     public void carregarRotas() {
         List<ValueEventListener> valueEventListeners = new ArrayList<>(bairrosIDs.size());
         for (String rid : bairrosIDs) {
-            valueEventListeners.add(FirebaseDatabase.getInstance().getReference("bairros").child(rid)
+            valueEventListeners.add(FirebaseDatabase.getInstance().getReference("enderecos").child(rid)
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Bairro r = dataSnapshot.getValue(Bairro.class);
+                            Endereco r = dataSnapshot.getValue(Endereco.class);
                             r.id = dataSnapshot.getKey();
                             addRota(r);
                         }
@@ -125,7 +171,7 @@ public class Van implements Serializable {
             } catch (InterruptedException e) {
                 Log.d(Van.class.getSimpleName(), ErrorDictionary.INTERRUPTED_EXCEPTION_ON_DATABASE);
             } finally {
-                FirebaseDatabase.getInstance().getReference("bairros").child(bairrosIDs.get(i))
+                FirebaseDatabase.getInstance().getReference("enderecos").child(bairrosIDs.get(i))
                         .removeEventListener(valueEventListeners.get(i));
             }
         }
@@ -143,31 +189,28 @@ public class Van implements Serializable {
         return o;
     }
 
+    /**
+     * Adiciona uma escola a uma determinada van
+     * @param escola
+     */
     public void addEscola(Escola escola) {
         escolas.add(escola);
         escolasIDs.add(escola.id);
     }
 
-    public void addBairro(Bairro bairro) {
-        bairros.add(bairro);
-        bairrosIDs.add(bairro.id);
+    /**
+     * Adiciona um endereco a uma determinada van
+     * @param endereco
+     */
+    public void addBairro(Endereco endereco) {
+        enderecos.add(endereco);
+        bairrosIDs.add(endereco.id);
     }
 
     public void addCrianca(Crianca crianca) {
         if (!criancasIDs.contains(crianca.id)) {
             criancas.add(crianca);
             criancasIDs.add(crianca.id);
-        }
-    }
-
-    // Faca na mesma funcao a adicao ou a modificacao
-    public void pushCrianca(Crianca crianca) {
-        if (!criancasIDs.contains(crianca.id)) {
-            criancas.add(crianca);
-            criancasIDs.add(crianca.id);
-        } else {
-            int index = criancasIDs.indexOf(crianca.id);
-            criancas.set(index, crianca);
         }
     }
 }

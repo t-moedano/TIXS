@@ -21,10 +21,7 @@ public class Condutor
     public String sobrenome = "";
     public String cpf = "";
     public String telefone = "";
-    public String rua = "";
-    public String bairro = "";
-    public String numero = "";
-    public String cep = "";
+    public Endereco endereco = new Endereco();
     public List<String> vansIDs = new ArrayList<>();
     public List<Van> vans = new ArrayList<>();
 
@@ -41,22 +38,15 @@ public class Condutor
      * @param sobrenome
      * @param cpf
      * @param telefone
-     * @param rua
-     * @param bairro
-     * @param numero
-     * @param cep
      */
     public Condutor(String nome, String sobrenome, String cpf,
-                    String telefone, String rua, String bairro, String numero, String cep)
+                    String telefone, Endereco endereco)
     {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.cep = cep;
+        this.endereco = endereco;
         vans = new ArrayList<Van>();
     }
 
@@ -165,70 +155,7 @@ public class Condutor
      *
      * @return
      */
-    public String getRua() {
-        return rua;
-    }
 
-    /**
-     *
-     * @param rua
-     */
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getBairro() {
-        return bairro;
-    }
-
-    /**
-     *
-     * @param bairro
-     */
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getNumero() {
-        return numero;
-    }
-
-    /**
-     *
-     * @param numero
-     */
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getCep() {
-        return cep;
-    }
-
-    /**
-     *
-     * @param cep
-     */
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    /**
-     *
-     * @return
-     */
     public List<String> getVansIDs() {
         return vansIDs;
     }
@@ -261,7 +188,7 @@ public class Condutor
      * Adiciona uma van na lista de vans de um condutor
      * @param van
      */
-    public void pushVan(Van van) {
+    public void addVan(Van van) {
         if (vansIDs.contains(van.id)) {
             Integer ind = vansIDs.indexOf(van.id);
             vans.set(ind, van);
@@ -286,4 +213,6 @@ public class Condutor
         }
         return o;
     }
+
+
 }

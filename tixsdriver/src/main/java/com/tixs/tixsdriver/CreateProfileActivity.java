@@ -52,7 +52,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     {
         Condutor c = new Condutor();
 //        Bundle bundle = new Bundle();
-//        bundle.putString("nome", nome.getText().toString());
+//        bundle.putString("rua", rua.getText().toString());
 //        bundle.putString("sobrenome", sobrenome.getText().toString());
 //        bundle.putString("telefone", telefone.getText().toString());
 //        bundle.putString("rua", rua.getText().toString());
@@ -65,11 +65,11 @@ public class CreateProfileActivity extends AppCompatActivity {
         c.nome = nome.getText().toString();
         c.sobrenome = sobrenome.getText().toString();
         c.telefone = telefone.getText().toString();
-        c.rua = rua.getText().toString();
-        c.numero = numero.getText().toString();
-        c.bairro = bairro.getText().toString();
+        c.endereco.rua = rua.getText().toString();
+        c.endereco.numero = new Integer(numero.getText().toString());
+        c.endereco.bairro = bairro.getText().toString();
+        c.endereco.cep = new Integer(cep.getText().toString());
         c.cpf = cpf.getText().toString();
-        c.cep = cep.getText().toString();
         c.id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         HomeActivity.condutorLogado = c;
         FirebaseDatabase.getInstance().getReference("condutores").child(c.id).setValue(c)

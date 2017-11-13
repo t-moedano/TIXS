@@ -10,11 +10,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.tixs.database.Endereco;
+import com.tixs.database.Escola;
 import com.tixs.database.Van;
 
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by aline on 07/10/17.
@@ -25,10 +30,14 @@ public class AdministrarVanActivity extends Activity {
     EditText nomeVanEditText;
     EditText modeloVanEditText;
     EditText placaVanEditText;
-    ListView vansListView;
+    @BindView(R.id.spinnerVan) Spinner vansSpinner;
+    ListView bairrosListView;
+    ListView escolaListView;
     List<Van> vans;
     ArrayAdapter<Van> vansAdapter;
     Integer vanSelecionada = -1;
+    ArrayAdapter<Endereco> bairrosArrayAdapter;
+    ArrayAdapter<Escola> escolasArrayAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,20 +47,28 @@ public class AdministrarVanActivity extends Activity {
         nomeVanEditText = (EditText) findViewById(R.id.nomeVanEditText);
         modeloVanEditText = (EditText) findViewById(R.id.modeloVanEditText);
         placaVanEditText = (EditText) findViewById(R.id.placaVanEditText);
-        vansListView = (ListView) findViewById(R.id.vansListView);
+        bairrosListView = (ListView) findViewById(R.id.vansListView);
+        escolaListView = (ListView)findViewById(R.id.vansListView);
 
         vans = HomeActivity.condutorLogado.vans;
-        vansListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
         vansAdapter = new ArrayAdapter<Van>(this, R.layout.selection_text_view, vans);
-        vansListView.setAdapter(vansAdapter);
-        vansListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        vansSpinner.setAdapter(vansAdapter);
+        vansSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 vanSelecionada = new Integer(i);
                 view.setSelected(true);
+                Van van = vans.get(vanSelecionada);
+                bairrosArrayAdapter = new ArrayAdapter<Endereco>(getApplicationContext(), R.layout.selection_text_view, van.enderecos);
+                bairrosListView.setAdapter(bairrosArrayAdapter);
+                escolasArrayAdapter = new ArrayAdapter<Escola>(getApplicationContext(), R.layout.selection_text_view, van.escolas);
+                escolaListView.setAdapter(escolasArrayAdapter);
             }
         });
+
+
+
 
     }
 
@@ -80,16 +97,4 @@ public class AdministrarVanActivity extends Activity {
         }
     }
 
-//    public void onAdicionarVanBtnClick(View view) {
-//        Condutor condutor = HomeActivity.condutorLogado;
-//        Van vanSelecionada = new Van();
-//        vanSelecionada.setCondutor(condutor);
-//        vanSelecionada.nome = nomeVanEditText.getText().toString();
-//        vanSelecionada.placa = placaVanEditText.getText().toString();
-//        vanSelecionada.modelo = modeloVanEditText.getText().toString();
-//        vanSelecionada.id = FirebaseDatabase.getInstance().getReference("vanSelecionada").push().getKey();
-//        FirebaseDatabase.getInstance().getReference("vanSelecionada").child(vanSelecionada.id).setValue(vanSelecionada);
-//        condutor.addVan(vanSelecionada);
-//        FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id).setValue(condutor);
-//    }
 }

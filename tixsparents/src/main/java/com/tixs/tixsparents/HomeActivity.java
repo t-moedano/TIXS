@@ -44,7 +44,6 @@ public class HomeActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Responsavel r = (Responsavel) dataSnapshot.getValue(Responsavel.class);
                         r.id = dataSnapshot.getKey();
-                        r.carregarIDs();
                         HomeActivity.responsavelLogado = r;
                         if (!carregado) {
                             carregado = true;

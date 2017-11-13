@@ -20,25 +20,19 @@ public class Responsavel {
     public String sobrenome = "";
     public String cpf = "";
     public String telefone = "";
-    public String rua = "";
-    public String bairro = "";
-    public String numero = "";
-    public String cep = "";
+    public Endereco endereco = new Endereco();
     public List<String> criancasIDs = new ArrayList<>();
     public List<Crianca> criancas = new ArrayList<>();
 
 
     public Responsavel(String id, String nome, String sobrenome, String cpf,
-                       String telefone, String rua, String bairro, String numero, String cep, List<Crianca> criancas) {
+                       String telefone, Endereco endereco, List<Crianca> criancas) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.cep = cep;
+        this.endereco = endereco;
         this.criancas = criancas;
         criancasIDs = Collections.emptyList();
         for (Crianca c : criancas) {

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.tixs.database.Bairro;
+import com.tixs.database.Endereco;
 import com.tixs.database.Condutor;
 import com.tixs.database.Van;
 
@@ -28,7 +28,7 @@ public class AdicionarBairroActivity extends AppCompatActivity {
     ListView bairrosListView;
 
     private List escolaLista = new ArrayList<>();
-    ArrayAdapter<Bairro> bairrosArrayAdapter;
+    ArrayAdapter<Endereco> bairrosArrayAdapter;
 
     Van van;
 
@@ -44,23 +44,15 @@ public class AdicionarBairroActivity extends AppCompatActivity {
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        bairrosArrayAdapter = new ArrayAdapter<Bairro>(this, R.layout.selection_text_view, van.bairros);
-        bairrosListView.setAdapter(bairrosArrayAdapter);
+
 
     }
 
 
+
     public void bntAdicionarEscolaClick(View view) {
-        Condutor condutor = HomeActivity.condutorLogado;
-        String escolaNome = nomeBairroEditText.getText().toString();
-        Bairro bairro = new Bairro();
-        bairro.nome = escolaNome;
-        bairro.id = FirebaseDatabase.getInstance().getReference("escolas").push().getKey();
-        van.addBairro(bairro);
-        FirebaseDatabase.getInstance().getReference("bairros").child(bairro.id).setValue(bairro);
-        FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van);
-        FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id).setValue(condutor);
-        Toast.makeText(AdicionarBairroActivity.this, "bairro Adicionado", Toast.LENGTH_LONG).show();
+
+        Toast.makeText(AdicionarBairroActivity.this, "endereco Adicionado", Toast.LENGTH_LONG).show();
         finish();
     }
 }

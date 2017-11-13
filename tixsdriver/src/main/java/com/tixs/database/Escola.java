@@ -14,6 +14,8 @@ public class Escola
 
     public String id;
 
+    public Endereco endereco;
+
     public Escola() {
 
     }
@@ -23,8 +25,19 @@ public class Escola
         this.nome = nome;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
+
+
+
     public String toString() {
-        return nome;
+        return nome + "," + endereco.toString();
     }
 }

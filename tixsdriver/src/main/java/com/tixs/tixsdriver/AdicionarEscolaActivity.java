@@ -22,7 +22,7 @@ import java.util.List;
 public class AdicionarEscolaActivity extends AppCompatActivity {
 
     //    private String id;
-//    private String nome;
+//    private String rua;
 //    private String sobrenome;
 //    private String cpf;
 //    private String telefone;
@@ -56,8 +56,7 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
 
-        escolaArrayAdapter = new ArrayAdapter<Escola>(this, R.layout.selection_text_view, van.escolas);
-        escolaListView.setAdapter(escolaArrayAdapter);
+
 
     }
 

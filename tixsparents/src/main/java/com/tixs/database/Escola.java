@@ -3,7 +3,8 @@ package com.tixs.database;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
- * @author Thauany Moedano
+ * @author Thauany Moedano.
+ * Classe ADO para representar uma escola
  */
 
 @IgnoreExtraProperties
@@ -13,26 +14,29 @@ public class Escola
 
     public String id;
 
-    /**
-     * Construtor default
-     */
+    public Endereco endereco;
+
     public Escola() {
 
     }
 
-    /**
-     * @param nome
-     * @param bairro
-     */
     public Escola(String nome, String bairro)
     {
         this.nome = nome;
     }
 
-    /**
-     * @return
-     */
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
+
+
+
     public String toString() {
         return nome;
     }

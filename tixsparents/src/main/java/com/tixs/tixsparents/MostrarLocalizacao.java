@@ -19,6 +19,9 @@ import com.tixs.database.Van;
 public class MostrarLocalizacao extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    DatabaseReference ref;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    String id = HomeActivity.responsavelLogado.criancas.get(0).vanID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +48,25 @@ public class MostrarLocalizacao extends FragmentActivity implements OnMapReadyCa
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("vans").child("id");
+
+
+
+
+        ref = database.getReference("vans").child(id);
 
 // Attach a listener to read the data at our posts reference
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Van van = dataSnapshot.getValue(Van.class);
-                System.out.println(van);
+                double latitude = van.latitude;
+                double longitude = van.longitude;
+                LatLng sydney = new LatLng(latitude, longitude);
+                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
             }
 
             @Override

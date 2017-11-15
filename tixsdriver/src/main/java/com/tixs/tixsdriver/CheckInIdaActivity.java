@@ -1,6 +1,5 @@
 package com.tixs.tixsdriver;
 
-import android.*;
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -23,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -242,14 +240,18 @@ public class CheckInIdaActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         Map<String, Object> postValues = new HashMap<String,Object>();
-                                                        postValues.put("lat", location.getLatitude());
-                                                        postValues.put("long", location.getLongitude());
+                                                        postValues.put("latitude", location.getLatitude());
+                                                        postValues.put("longitude", location.getLongitude());
                                                         FirebaseDatabase.getInstance().getReference("vans").child(vanId).updateChildren(postValues);
                                                     }
                                                     @Override
                                                     public void onCancelled(DatabaseError databaseError) {}
                                                 }
                 );
+
+        vanSelecionada.latitude = location.getLatitude();
+        vanSelecionada.longitude = location.getLongitude();
+
     }
 
 

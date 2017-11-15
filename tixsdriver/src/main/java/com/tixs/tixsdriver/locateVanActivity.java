@@ -90,7 +90,7 @@ public class locateVanActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         Map<String, Object> postValues = new HashMap<String,Object>();
-                                                        postValues.put("lat", location.getLatitude());
+                                                        postValues.put("latitude", location.getLatitude());
                                                         postValues.put("long", location.getLongitude());
                                                         FirebaseDatabase.getInstance().getReference("vans").child(vanId).updateChildren(postValues);
                                                     }

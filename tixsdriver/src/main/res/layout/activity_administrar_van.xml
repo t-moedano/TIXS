@@ -40,7 +40,7 @@
         android:text="Escolas:" />
 
     <ListView
-        android:id="@+id/escolaListView"
+        android:id="@+id/addEscolalistView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

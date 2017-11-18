@@ -7,12 +7,40 @@
     tools:context="com.tixs.tixsdriver.AdicionarEscolaActivity">
 
     <EditText
-        android:id="@+id/nomeBairroEditText"
+        android:id="@+id/addEscolaNomeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nome da Escola"
         android:inputType="textPersonName" />
+    <EditText
+            android:id="@+id/addEscolaRuaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Rua"
+            android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/addEscolaNumeroEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Numero"
+        android:inputType="textPersonName" />
+    <EditText
+            android:id="@+id/addEscolaBairroEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Bairro"
+            android:inputType="textPersonName" />
+     <EditText
+            android:id="@+id/addEscolaCEPEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="CEP"
+            android:inputType="textPersonName" />
 
 
     <Button
@@ -25,15 +53,6 @@
         android:onClick="bntAdicionarEscolaClick"
         android:text="Adicionar escola" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Escolas da van:" />
-
-    <ListView
-        android:id="@+id/bairrosListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <!--<EditText-->
     <!--android:id="@+id/nomePonto"-->

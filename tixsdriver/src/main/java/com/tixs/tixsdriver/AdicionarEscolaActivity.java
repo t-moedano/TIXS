@@ -19,24 +19,19 @@ import com.tixs.database.Van;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class AdicionarEscolaActivity extends AppCompatActivity {
 
-    //    private String id;
-//    private String rua;
-//    private String sobrenome;
-//    private String cpf;
-//    private String telefone;
-//    private String rua;
-//    private String bairro;
-//    private String numero;
-//    private String cep;
-//    private String modelo;
-//    private String placa;
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
 
-    private EditText nomeEscolaEditText;
-    ListView escolaListView;
+    @BindView(R.id.addEscolaNomeEditText) EditText nomeEscolaEditText;
+    @BindView(R.id.addEscolaRuaEditText) EditText ruaEditText;
+    @BindView(R.id.addEscolaNumeroEditText) EditText numeroEditText;
+    @BindView(R.id.addEscolaBairroEditText) EditText bairroEditText;
+    @BindView(R.id.addEscolaCEPEditText) EditText cepEditText;
+    @BindView(R.id.addEscolalistView) ListView escolaListView;
 
     private List escolaLista = new ArrayList<>();
     ArrayAdapter<Escola> escolaArrayAdapter;
@@ -48,15 +43,12 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_escola);
-        nomeEscolaEditText = (EditText) findViewById(R.id.nomeBairroEditText);
-        escolaListView = (ListView) findViewById(R.id.bairrosListView);
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
         van = HomeActivity.condutorLogado.vans.get(bundle.getInt("vanSelecionada"));
-
-
 
     }
 
@@ -64,6 +56,9 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     public void bntAdicionarEscolaClick(View view) {
         Condutor condutor = HomeActivity.condutorLogado;
         String escolaNome = nomeEscolaEditText.getText().toString();
+        String rua = ruaEditText.getText().toString();
+        String bairro = bairroEditText.getText().toString();
+        Integer numero = new Integer(numeroEditText.getText().toString());
         Escola escola = new Escola();
         escola.nome = escolaNome;
         escola.id = FirebaseDatabase.getInstance().getReference("escolas").push().getKey();

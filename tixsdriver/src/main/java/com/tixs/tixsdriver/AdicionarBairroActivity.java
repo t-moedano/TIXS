@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.tixs.database.Endereco;
-import com.tixs.database.Condutor;
 import com.tixs.database.Van;
 
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class AdicionarBairroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_bairro);
-        nomeBairroEditText = (EditText) findViewById(R.id.nomeBairroEditText);
+        nomeBairroEditText = (EditText) findViewById(R.id.addEscolaNomeEditText);
         bairrosListView = (ListView) findViewById(R.id.bairrosListView);
 
         Intent intent = getIntent();

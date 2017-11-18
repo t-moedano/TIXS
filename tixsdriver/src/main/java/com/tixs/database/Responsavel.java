@@ -53,8 +53,13 @@ public class Responsavel {
      * @param c
      */
     public void addCrianca(Crianca c) {
-        criancas.add(c);
-        criancasIDs.add(c.id);
+        Integer ind = criancasIDs.indexOf(c.id);
+        if (ind > -1) {
+            criancas.set(ind, c);
+        } else {
+            criancas.add(c);
+            criancasIDs.add(c.id);
+        }
     }
 
     /**

@@ -30,9 +30,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tixs.database.Crianca;
+import com.tixs.database.Endereco;
+import com.tixs.database.Escola;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
-import com.tixs.maps.EnderecoBuilder;
+import com.tixs.maps.MapBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -138,10 +140,6 @@ public class CheckInIdaActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
     public void onButtonIrCheckInListButton(View view) {
         Intent i = new Intent(this, CheckInCondutorActivity.class);
         startActivity(i);
@@ -149,21 +147,21 @@ public class CheckInIdaActivity extends AppCompatActivity {
 
     public void onButtonIrMapaCLick(View view) {
 
+        Escola escolaTeste = vanSelecionada.criancas.get(0).escola;
 
-        List<String> lista = new ArrayList<>();
+        HashMap<Escola, List<Crianca>> map = criacaoListas(vanSelecionada.criancas);
 
-        for (int j = 0; j < vanSelecionada.criancas.size(); j++) {
-            if(vanSelecionada.criancas.get(j).confirma_ida)
-                lista.add(vanSelecionada.criancas.get(j).endereco.toString());
+        List<Endereco> lista = new ArrayList<>();
+
+        for (Crianca c : map.get(escolaTeste)) {
+            lista.add(c.endereco);
         }
 
-
-
-        Uri gmmIntentUri = new EnderecoBuilder()
+        Uri gmmIntentUri = new MapBuilder()
                 .header()
-                .destino("Rua Lea Maria Brandao Russo")
                 .travelMode()
-                .waypointsString(lista)
+                .destino(escolaTeste.endereco.toString())
+                .waypointsEnderecos(lista)
                 .build();
 
 
@@ -252,6 +250,18 @@ public class CheckInIdaActivity extends AppCompatActivity {
         vanSelecionada.latitude = location.getLatitude();
         vanSelecionada.longitude = location.getLongitude();
 
+    }
+    
+    public HashMap<Escola, List<Crianca>> criacaoListas(List<Crianca> criancas){
+        HashMap<Escola, List<Crianca>> map = new HashMap<Escola, List<Crianca>>();
+        for (Crianca c : criancas) {
+            if(!map.containsKey(c.escola)) {
+                map.put(c.escola, new ArrayList<Crianca>());
+            }
+            if(c.confirma_ida)
+                map.get(c.escola).add(c);
+        }
+        return map;
     }
 
 

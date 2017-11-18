@@ -29,7 +29,7 @@
         <activity android:name=".AdicionarBairroActivity" />
 
         <activity android:name=".CheckInIdaActivity" />
-        <activity android:name=".locateVanActivity"></activity>
+        <activity android:name=".LocateVanActivity"></activity>
 
         <activity android:name=".CheckInCondutorActivity" />
 

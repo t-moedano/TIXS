@@ -1,5 +1,6 @@
 package com.tixs.tixsparents;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.tixs.database.Responsavel;
 import java.util.Collections;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class CreateProfileActivity extends AppCompatActivity
 {
@@ -31,15 +33,8 @@ public class CreateProfileActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_create_profile);
-//        nome = (EditText) findViewById(R.id.nomeTxtEdit);
-//        sobrenome = (EditText) findViewById(R.id.sobrenomeTxtEdit);
-//        telefone = (EditText) findViewById(R.id.telefoneTxtEdit);
-//        rua = (EditText) findViewById(R.id.ruaTxtEdit);
-//        numero = (EditText) findViewById(R.id.numeroTxtEdit);
-//        bairro = (EditText) findViewById(R.id.bairroTxtEdit);
-//        cpf = (EditText) findViewById(R.id.cpfTextEdit);
-//        cep = (EditText) findViewById(R.id.cepTxtEdit);
+        setContentView(R.layout.activity_create_profile);
+        ButterKnife.bind(this);
     }
 
     public void bntEnviarClick(View v)
@@ -59,8 +54,8 @@ public class CreateProfileActivity extends AppCompatActivity
                 Collections.<Crianca>emptyList());
 
         FirebaseDatabase.getInstance().getReference("responsaveis").child(id).setValue(responsavel);
-//        Intent i = new I ntent(CreateProfileActivity.this, MainActivity.class);
-//        startActivity(i);
+        Intent i = new Intent(CreateProfileActivity.this, MainActivity.class);
+        startActivity(i);
         finish();
 
     }

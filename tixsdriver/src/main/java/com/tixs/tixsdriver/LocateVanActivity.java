@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class locateVanActivity extends AppCompatActivity {
+public class LocateVanActivity extends AppCompatActivity {
 
     private TextView locationText;
     private LocationManager locationManager;

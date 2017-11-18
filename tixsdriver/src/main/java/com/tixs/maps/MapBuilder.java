@@ -2,6 +2,8 @@ package com.tixs.maps;
 
 import android.net.Uri;
 
+import com.tixs.database.Endereco;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ import java.util.List;
  * Classe que devolve uma instância de um endereço do google maps.
  */
 
-public class EnderecoBuilder {
+public class MapBuilder {
 
    private StringBuilder endereco;
    private Uri enderecoUri;
@@ -22,7 +24,7 @@ public class EnderecoBuilder {
      *
      * @return
      */
-   public EnderecoBuilder header()
+   public MapBuilder header()
    {
        endereco = new StringBuilder();
        endereco.append(HEADER);
@@ -30,7 +32,7 @@ public class EnderecoBuilder {
    }
 
 
-    public EnderecoBuilder origem(String origem) {
+    public MapBuilder origem(String origem) {
         String origemString = "&origin=" + Uri.encode(origem);
         endereco.append(origemString);
         return this;
@@ -43,13 +45,13 @@ public class EnderecoBuilder {
      * @return
      */
 
-    public EnderecoBuilder origem(Coordenada origem) {
+    public MapBuilder origem(Coordenada origem) {
         String origemString = "&origin=" + origem.getLatitude() + "," + origem.getLongitude();
         endereco.append(origemString);
        return this;
     }
 
-    public EnderecoBuilder destino(String destino) {
+    public MapBuilder destino(String destino) {
         String destinoString = "&destination=" + Uri.encode(destino);
         endereco.append(destinoString);
         return this;
@@ -62,13 +64,13 @@ public class EnderecoBuilder {
      * @param destino
      * @return
      */
-    public EnderecoBuilder destino(Coordenada destino) {
+    public MapBuilder destino(Coordenada destino) {
         String destinoString = "&destination=" + destino.getLatitude() + "," + destino.getLongitude();
        endereco.append(destinoString);
        return this;
     }
 
-    public EnderecoBuilder waypointsString(List<String> waypoints) {
+    public MapBuilder waypointsString(List<String> waypoints) {
 
         endereco.append("&waypoints=");
         for (String waypoint : waypoints) {
@@ -79,12 +81,23 @@ public class EnderecoBuilder {
         return this;
     }
 
+    public MapBuilder waypointsEnderecos(List<Endereco> waypoints) {
+
+        endereco.append("&waypoints=");
+
+        for (Endereco waypoint : waypoints) {
+            String waypointString = Uri.encode(waypoint.toString()) + CODED_SEPARATOR;
+            endereco.append(waypointString);
+        }
+        return this;
+    }
+
     /**
      * Adiciona uma série de pontos de parada
      * @param waypoints
      * @return
      */
-   public EnderecoBuilder waypoints(List<Coordenada> waypoints)
+   public MapBuilder waypoints(List<Coordenada> waypoints)
    {
        endereco.append("&waypoints=");
        for(Coordenada waypoint : waypoints)
@@ -101,7 +114,7 @@ public class EnderecoBuilder {
      *
      * @return
      */
-    public EnderecoBuilder travelMode() {
+    public MapBuilder travelMode() {
         endereco.append(TRAVEL_MODE);
         return this;
     }

@@ -23,29 +23,18 @@ public class Crianca {
     public Boolean aguardando;
     public Boolean emTransito;
     public Boolean entregue;
-    public String endereco;
+    public Endereco endereco;
 
-    /**
-     * Construtor default
-     */
     public Crianca() {
         confirma_ida = true;
         confirma_volta = true;
         aguardando = true;
         emTransito = false;
         entregue = false;
+
     }
 
-    /**
-     * @param nome
-     * @param sobrenome
-     * @param horarioEntrada
-     * @param horarioSaida
-     * @param escola
-     * @param responsavel
-     */
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida,
-                   Escola escola, Responsavel responsavel, String endereco) {
+    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;
@@ -53,13 +42,13 @@ public class Crianca {
         this.escola = escola;
         this.escolaID = escola.id;
         this.responsavelID = responsavel.id;
-        this.endereco = endereco;
         this.aguardando = true;
         this.emTransito = false;
         this.entregue = false;
     }
 
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Van van, Responsavel responsavel) {
+    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Van van, Responsavel responsavel,
+                   Endereco endereco) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;
@@ -73,6 +62,7 @@ public class Crianca {
         this.aguardando = true;
         this.emTransito = false;
         this.entregue = false;
+        this.endereco = endereco;
     }
 
     public void setEscola(Escola escola) {
@@ -80,18 +70,10 @@ public class Crianca {
         this.escola = escola;
     }
 
-    /**
-     *
-     * @param responsavel
-     */
     public void setResponsavel(Responsavel responsavel) {
         this.responsavelID = responsavel.id;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return new StringBuilder().append(nome).append(" ").append(sobrenome).toString();

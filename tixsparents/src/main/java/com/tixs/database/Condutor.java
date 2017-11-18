@@ -189,8 +189,8 @@ public class Condutor
      * @param van
      */
     public void addVan(Van van) {
-        if (vansIDs.contains(van.id)) {
-            Integer ind = vansIDs.indexOf(van.id);
+        Integer ind = vansIDs.indexOf(van.id);
+        if (ind > -1) {
             vans.set(ind, van);
         } else {
             vans.add(van);

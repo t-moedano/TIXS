@@ -1,52 +1,38 @@
 package com.tixs.tixsdriver;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.view.LayoutInflater;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
-import com.tixs.maps.EnderecoBuilder;
 
 import java.util.ArrayList;
-import android.graphics.Color;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by Pedro on 28/10/2017.
  */
 
-public class listCheckInAdapter extends BaseAdapter {
+public class ListCheckInAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<Crianca> mArrSchoolData;
+    public Van van;
+    public Condutor condutor;
 
-    public listCheckInAdapter(Context context, @NonNull List<Crianca> objects) {
+    public ListCheckInAdapter(Context context, @NonNull List<Crianca> objects) {
         super();
         mContext = context;
         List<Crianca> toRemove = new ArrayList<Crianca>();
@@ -70,35 +56,65 @@ public class listCheckInAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.custom_list_view_layout, parent, false);
 
-
         // get the reference of textView and button
         TextView txtSchoolTitle = (TextView) view.findViewById(R.id.txtSchoolTitle);
         final Button btnAction = (Button) view.findViewById(R.id.btnAction);
         TextView escola = (TextView) view.findViewById(R.id.escola);
 
         // Set the title and button name
-        if(mArrSchoolData.get(position).confirma_ida == true) {
+        final Crianca crianca = mArrSchoolData.get(position);
+        if(crianca.confirma_ida == true) {
             txtSchoolTitle.setText(mArrSchoolData.get(position).nome);
             escola.setText(mArrSchoolData.get(position).escola.nome);
-            btnAction.setText("Aguardando");
-            btnAction.setTag(1);
+            if(crianca.aguardando) {
+                btnAction.setText("Aguardando");
+            } else if (crianca.emTransito) {
+                btnAction.setText("Em transito");
+            } else if (crianca.entregue) {
+                btnAction.setText("Entregue");
+            } else {
+                btnAction.setText("Erro");
+            }
         }
 
         // Click listener of button
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final int status =(Integer) btnAction.getTag();
-                if(status == 1) {
-                    btnAction.setText("Em trânsito");
-                    btnAction.setTag(2); //pause
-                } if(status == 2) {
+                if(crianca.aguardando) {
+                    crianca.aguardando = false;
+                    crianca.emTransito = true;
+                    btnAction.setText("Em transito");
+                } else if (crianca.emTransito) {
+                    crianca.emTransito = false;
+                    crianca.entregue = true;
                     btnAction.setText("Entregue");
-                    btnAction.setTag(3); //pause
-                } if(status == 3) {
+                } else if (crianca.entregue) {
+                    crianca.entregue = false;
+                    crianca.aguardando = true;
                     btnAction.setText("Aguardando");
-                    btnAction.setTag(1); //pause
                 }
+                FirebaseDatabase.getInstance().getReference("condutores").child(condutor.id)
+                        .setValue(condutor);
+                FirebaseDatabase.getInstance().getReference("vans").child(van.id)
+                        .setValue(van);
+                FirebaseDatabase.getInstance().getReference("criancas").child(crianca.id)
+                        .setValue(crianca);
+                FirebaseDatabase.getInstance().getReference("responsaveis").child(crianca.responsavelID)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Responsavel responsavel = (Responsavel) dataSnapshot.getValue(Responsavel.class);
+                                responsavel.addCrianca(crianca);
+                                FirebaseDatabase.getInstance().getReference("responsaveis").child(crianca.responsavelID)
+                                        .setValue(responsavel);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
             }
                 /*if(btnAction.getText() == "Aguardando")
                     btnAction.setText("Em trânsito");
@@ -160,4 +176,38 @@ public class listCheckInAdapter extends BaseAdapter {
     public long getItemId(int position) {
         // TODO Auto-generated method stub
         return position;
-    }}
+    }
+
+    synchronized private Van saveChildInVan(List<Van> vans, Van van, Crianca crianca) {
+        boolean found = false;
+        for (Van v : vans) {
+            if (v.id.equals(van.id)) {
+                van = v;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            vans.add(van);
+        }
+        van.addCrianca(crianca);
+        return van;
+    }
+
+    synchronized private Condutor saveVanCondutor(ArrayList<Condutor> condutores, Condutor condutor, Van van) {
+        boolean found = false;
+        for (Condutor c : condutores) {
+            if (c.id.equals(condutor.id)) {
+                condutor = c;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            condutores.add(condutor);
+        }
+        condutor.addVan(van);
+        return condutor;
+    }
+
+}

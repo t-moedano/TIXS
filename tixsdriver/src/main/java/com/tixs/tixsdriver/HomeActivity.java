@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     public void onLocateVanButtonClick(View view) {
-        Intent i = new Intent(this, locateVanActivity.class);
+        Intent i = new Intent(this, LocateVanActivity.class);
         startActivity(i);
     }
 }

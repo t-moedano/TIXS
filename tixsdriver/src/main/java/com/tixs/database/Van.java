@@ -233,7 +233,10 @@ public class Van implements Serializable {
     }
 
     public void addCrianca(Crianca crianca) {
-        if (!criancasIDs.contains(crianca.id)) {
+        Integer ind = criancasIDs.indexOf(crianca.id);
+        if(ind > -1) {
+            criancas.set(ind, crianca);
+        } else {
             criancas.add(crianca);
             criancasIDs.add(crianca.id);
         }

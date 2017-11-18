@@ -17,6 +17,12 @@ public class Endereco {
         rua = "";
     }
 
+    public Endereco(String rua, String bairro, Integer numero, Integer cep) {
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
+        this.cep = cep;
+    }
 
     /**
      * Construtor do bairro com um rua
@@ -27,13 +33,6 @@ public class Endereco {
         this.rua = rua;
     }
 
-
-    public Endereco(String rua, String bairro, Integer numero, Integer cep) {
-        this.rua = rua;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.cep = cep;
-    }
 
     /**
      * @return rua do bairro
@@ -80,7 +79,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return rua;
+        return rua + "," + bairro;
     }
 
     public String getId() {

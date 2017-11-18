@@ -84,15 +84,19 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-
     public void onAdministrarVans(View view) {
         Intent i = new Intent(this, AdministrarVanActivity.class);
         startActivity(i);
     }
 
-
     public void onCheckinButtonClick(View view) {
         Intent i = new Intent(this, CheckInIdaActivity.class);
+        startActivity(i);
+    }
+
+
+    public void onLocateVanButtonClick(View view) {
+        Intent i = new Intent(this, locateVanActivity.class);
         startActivity(i);
     }
 }

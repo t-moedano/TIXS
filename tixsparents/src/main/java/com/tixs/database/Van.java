@@ -31,6 +31,8 @@ public class Van implements Serializable {
     public ArrayList<Escola> escolas = new ArrayList<>();
     public List<String> criancasIDs = new ArrayList<>();
     public List<Crianca> criancas = new ArrayList<>();
+    public double latitude;
+    public double longitude;
 
     public Van() {
 

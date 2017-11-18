@@ -91,7 +91,7 @@ public class CadastraCriancaActivity extends AppCompatActivity {
         }
         crianca.setResponsavel(HomeActivity.responsavelLogado);
         crianca.id = FirebaseDatabase.getInstance().getReference("criancas").push().getKey();
-        crianca.endereco = HomeActivity.responsavelLogado.rua + " " + HomeActivity.responsavelLogado.bairro;
+        crianca.endereco = HomeActivity.responsavelLogado.endereco.rua + " " + HomeActivity.responsavelLogado.endereco.bairro;
 
         HomeActivity.responsavelLogado.addCrianca(crianca);
         FirebaseDatabase.getInstance().getReference("responsaveis").child(HomeActivity.responsavelLogado.id)

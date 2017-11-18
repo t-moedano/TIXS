@@ -140,7 +140,7 @@ public class CancelarIdaActivity extends AppCompatActivity {
         if (!found) {
             condutores.add(condutor);
         }
-        condutor.pushVan(van);
+        condutor.addVan(van);
         return condutor;
     }
 
@@ -156,7 +156,7 @@ public class CancelarIdaActivity extends AppCompatActivity {
         if (!found) {
             vans.add(van);
         }
-        van.pushCrianca(crianca);
+        van.addCrianca(crianca);
         return van;
     }
 }

@@ -17,14 +17,14 @@ import butterknife.BindView;
 
 public class CreateProfileActivity extends AppCompatActivity
 {
-    @BindView(R.id.nomeTxtEdit) private EditText nome;
-    @BindView(R.id.sobrenomeTxtEdit) private EditText sobrenome;
-    @BindView(R.id.telefoneTxtEdit) private EditText telefone;
-    @BindView(R.id.ruaTxtEdit) private EditText rua;
-    @BindView(R.id.numeroTxtEdit) private EditText numero;
-    @BindView(R.id.bairroTxtEdit) private EditText bairro;
-    @BindView(R.id.cpfTextEdit) private EditText cpf;
-    @BindView(R.id.cepTxtEdit) private EditText cep;
+    @BindView(R.id.nomeTxtEdit) public EditText nome;
+    @BindView(R.id.sobrenomeTxtEdit) public EditText sobrenome;
+    @BindView(R.id.telefoneTxtEdit) public EditText telefone;
+    @BindView(R.id.ruaTxtEdit) public EditText rua;
+    @BindView(R.id.numeroTxtEdit) public EditText numero;
+    @BindView(R.id.bairroTxtEdit) public EditText bairro;
+    @BindView(R.id.cpfTextEdit) public EditText cpf;
+    @BindView(R.id.cepTxtEdit) public EditText cep;
 
 
     @Override

@@ -20,18 +20,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AdicionarEscolaActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private FirebaseAuth firebaseAuth;
 
-    @BindView(R.id.addEscolaNomeEditText) EditText nomeEscolaEditText;
+    @BindView(R.id.add_escola_nome_edit_text) EditText nomeEscolaEditText;
     @BindView(R.id.addEscolaRuaEditText) EditText ruaEditText;
     @BindView(R.id.addEscolaNumeroEditText) EditText numeroEditText;
     @BindView(R.id.addEscolaBairroEditText) EditText bairroEditText;
     @BindView(R.id.addEscolaCEPEditText) EditText cepEditText;
-    @BindView(R.id.addEscolalistView) ListView escolaListView;
 
     private List escolaLista = new ArrayList<>();
     ArrayAdapter<Escola> escolaArrayAdapter;
@@ -43,7 +43,7 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_escola);
-
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -55,12 +55,12 @@ public class AdicionarEscolaActivity extends AppCompatActivity {
 
     public void bntAdicionarEscolaClick(View view) {
         Condutor condutor = HomeActivity.condutorLogado;
-        String escolaNome = nomeEscolaEditText.getText().toString();
-        String rua = ruaEditText.getText().toString();
-        String bairro = bairroEditText.getText().toString();
-        Integer numero = new Integer(numeroEditText.getText().toString());
         Escola escola = new Escola();
-        escola.nome = escolaNome;
+        escola.nome = nomeEscolaEditText.getText().toString();
+        escola.endereco.rua = ruaEditText.getText().toString();
+        escola.endereco.bairro = bairroEditText.getText().toString();
+        escola.endereco.numero = new Integer(numeroEditText.getText().toString());
+
         escola.id = FirebaseDatabase.getInstance().getReference("escolas").push().getKey();
         van.addEscola(escola);
         FirebaseDatabase.getInstance().getReference("escolas").child(escola.id).setValue(escola);

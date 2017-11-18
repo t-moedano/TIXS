@@ -14,7 +14,7 @@
         android:text="Selecione a Van:" />
 
     <Spinner
-        android:id="@+id/spinnerVan"
+        android:id="@+id/administar_ida_van_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -22,10 +22,10 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Escolas:" />
+        android:text="Bairros:" />
 
     <ListView
-        android:id="@+id/vansListView"
+        android:id="@+id/administrar_bairros_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/colorPrimary"
@@ -40,9 +40,9 @@
         android:text="Escolas:" />
 
     <ListView
-        android:id="@+id/addEscolalistView"
+        android:id="@+id/administrar_escolas_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -154,7 +154,7 @@ public class CheckInIdaActivity extends AppCompatActivity {
 
         for (int j = 0; j < vanSelecionada.criancas.size(); j++) {
             if(vanSelecionada.criancas.get(j).confirma_ida)
-                lista.add(vanSelecionada.criancas.get(j).endereco);
+                lista.add(vanSelecionada.criancas.get(j).endereco.toString());
         }
 
 

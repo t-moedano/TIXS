@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import com.tixs.database.Van;
 
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by aline on 07/10/17.
@@ -30,7 +29,7 @@ public class AdministrarVanActivity extends Activity {
     EditText nomeVanEditText;
     EditText modeloVanEditText;
     EditText placaVanEditText;
-    @BindView(R.id.spinnerVan) Spinner vansSpinner;
+    Spinner vansSpinner;
     ListView bairrosListView;
     ListView escolaListView;
     List<Van> vans;
@@ -43,21 +42,23 @@ public class AdministrarVanActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrar_van);
+        ButterKnife.bind(this);
 
         nomeVanEditText = (EditText) findViewById(R.id.nomeVanEditText);
         modeloVanEditText = (EditText) findViewById(R.id.modeloVanEditText);
         placaVanEditText = (EditText) findViewById(R.id.placaVanEditText);
-        bairrosListView = (ListView) findViewById(R.id.vansListView);
-        escolaListView = (ListView)findViewById(R.id.vansListView);
+        bairrosListView = (ListView) findViewById(R.id.administrar_bairros_list_view);
+        escolaListView = (ListView)findViewById(R.id.administrar_escolas_list_view);
+        vansSpinner = (Spinner)findViewById(R.id.administar_ida_van_spinner);
 
         vans = HomeActivity.condutorLogado.vans;
 
-        vansAdapter = new ArrayAdapter<Van>(this, R.layout.selection_text_view, vans);
+        vansAdapter = new ArrayAdapter<Van>(getApplicationContext(), R.layout.selection_text_view, vans);
         vansSpinner.setAdapter(vansAdapter);
-        vansSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        vansSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                vanSelecionada = new Integer(i);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vanSelecionada = new Integer(position);
                 view.setSelected(true);
                 Van van = vans.get(vanSelecionada);
                 bairrosArrayAdapter = new ArrayAdapter<Endereco>(getApplicationContext(), R.layout.selection_text_view, van.enderecos);
@@ -65,11 +66,12 @@ public class AdministrarVanActivity extends Activity {
                 escolasArrayAdapter = new ArrayAdapter<Escola>(getApplicationContext(), R.layout.selection_text_view, van.escolas);
                 escolaListView.setAdapter(escolasArrayAdapter);
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
-
-
-
-
     }
 
     public void bntEscolaClick(View view) {

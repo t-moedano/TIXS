@@ -46,7 +46,6 @@ public class Crianca {
      */
     public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida,
                    Escola escola, Responsavel responsavel, String endereco) {
-    public Crianca(String nome, String sobrenome, String horarioEntrada, String horarioSaida, Escola escola, Responsavel responsavel) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.horarioEntrada = horarioEntrada;

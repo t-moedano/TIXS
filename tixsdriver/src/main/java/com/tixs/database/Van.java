@@ -25,7 +25,7 @@ public class Van implements Serializable {
     public String placa = "";
     public String nome = "";
     public String condutorID = "";
-    public List<String> bairrosIDs = new ArrayList<>();
+    public List<String> enderecosIDs = new ArrayList<>();
     public List<Endereco> enderecos = new ArrayList<>();
     public ArrayList<String> escolasIDs = new ArrayList<>();
     public ArrayList<Escola> escolas = new ArrayList<>();
@@ -60,7 +60,7 @@ public class Van implements Serializable {
         this.nome = nome;
         this.enderecos = rotas;
         for (Endereco p : rotas) {
-            bairrosIDs.add(p.id);
+            enderecosIDs.add(p.id);
         }
     }
 
@@ -127,16 +127,16 @@ public class Van implements Serializable {
      *
      * @return
      */
-    public List<String> getBairrosIDs() {
-        return bairrosIDs;
+    public List<String> getEnderecosIDs() {
+        return enderecosIDs;
     }
 
     /**
      *
-     * @param bairrosIDs
+     * @param enderecosIDs
      */
-    public void setBairrosIDs(List<String> bairrosIDs) {
-        this.bairrosIDs = bairrosIDs;
+    public void setEnderecosIDs(List<String> enderecosIDs) {
+        this.enderecosIDs = enderecosIDs;
     }
 
     /**
@@ -159,24 +159,29 @@ public class Van implements Serializable {
      * Adiciona um bairro a lista de enderecos que uma van atende
      * @param r
      */
-    public void addRota(Endereco r) {
-        enderecos.add(r);
-        bairrosIDs.add(r.id);
+    public void addEndereco(Endereco r) {
+        Integer ind = enderecosIDs.indexOf(r.id);
+        if(ind > -1) {
+            enderecos.set(ind, r);
+        } else {
+            enderecos.add(r);
+            enderecosIDs.add(r.id);
+        }
     }
 
     /**
      * Lê as rotas do banco de dados
      */
     public void carregarRotas() {
-        List<ValueEventListener> valueEventListeners = new ArrayList<>(bairrosIDs.size());
-        for (String rid : bairrosIDs) {
+        List<ValueEventListener> valueEventListeners = new ArrayList<>(enderecosIDs.size());
+        for (String rid : enderecosIDs) {
             valueEventListeners.add(FirebaseDatabase.getInstance().getReference("enderecos").child(rid)
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Endereco r = dataSnapshot.getValue(Endereco.class);
                             r.id = dataSnapshot.getKey();
-                            addRota(r);
+                            addEndereco(r);
                         }
 
                         @Override
@@ -185,13 +190,13 @@ public class Van implements Serializable {
                         }
                     }));
         }
-        for (int i = 0; i < bairrosIDs.size(); i++) {
+        for (int i = 0; i < enderecosIDs.size(); i++) {
             try {
                 valueEventListeners.get(i).wait();
             } catch (InterruptedException e) {
                 Log.d(Van.class.getSimpleName(), ErrorDictionary.INTERRUPTED_EXCEPTION_ON_DATABASE);
             } finally {
-                FirebaseDatabase.getInstance().getReference("enderecos").child(bairrosIDs.get(i))
+                FirebaseDatabase.getInstance().getReference("enderecos").child(enderecosIDs.get(i))
                         .removeEventListener(valueEventListeners.get(i));
             }
         }
@@ -224,7 +229,7 @@ public class Van implements Serializable {
      */
     public void addBairro(Endereco endereco) {
         enderecos.add(endereco);
-        bairrosIDs.add(endereco.id);
+        enderecosIDs.add(endereco.id);
     }
 
     public void addCrianca(Crianca crianca) {

@@ -108,7 +108,7 @@ public class BuscaVanActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 Condutor c = dataSnapshot.getValue(Condutor.class);
-                                c.pushVan(van);
+                                c.addVan(van);
                                 FirebaseDatabase.getInstance().getReference("condutores").child(van.condutorID)
                                         .setValue(c);
                                 FirebaseDatabase.getInstance().getReference("vans").child(van.id)

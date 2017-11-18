@@ -17,7 +17,7 @@ public class Escola
     public Endereco endereco;
 
     public Escola() {
-
+        endereco = new Endereco();
     }
 
     public Escola(String nome, String bairro)

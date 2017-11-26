@@ -199,6 +199,20 @@ public class Condutor
     }
 
     /**
+     * Adiciona uma van na lista de vans de um condutor
+     * @param van
+     */
+    public void pushVan(Van van) {
+        if (vansIDs.contains(van.id)) {
+            Integer ind = vansIDs.indexOf(van.id);
+            vans.set(ind, van);
+        } else {
+            vans.add(van);
+            vansIDs.add(van.id);
+        }
+    }
+
+    /**
      * Clona um objeto van
      * @return
      * @throws CloneNotSupportedException

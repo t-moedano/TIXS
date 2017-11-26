@@ -27,12 +27,12 @@
         android:backgroundTint="#33CC33" />
 
     <Button
-        android:id="@+id/cancelamentoButton"
+        android:id="@+id/cancelarIdaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:onClick="bntCancelar"
-        android:text="Cancelamento "
+        android:onClick="bntCancelarIda"
+        android:text="Cancelar Ida "
         style="@android:style/Widget.Holo.Button"
         android:backgroundTint="#33CC33" />
 
@@ -45,5 +45,15 @@
         android:text="Mostrar Van "
         style="@android:style/Widget.Holo.Button"
         android:backgroundTint="#33CC33" />
+
+    <Button
+        android:id="@+id/cancelarVoltaButton"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:backgroundTint="#33CC33"
+        android:onClick="bntCancelarVolta"
+        android:text="Cancelar Volta" />
 
 </LinearLayout>

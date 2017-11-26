@@ -3,4 +3,5 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_cadastra_crianca">CadastraCrianca</string>
     <string name="title_activity_mostrar_localizacao">Map</string>
+    <string name="title_activity_cancelar_volta">CancelarVoltaActivity</string>
 </resources>

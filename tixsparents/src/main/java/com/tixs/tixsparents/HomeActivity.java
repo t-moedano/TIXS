@@ -19,7 +19,8 @@ public class HomeActivity extends AppCompatActivity {
 
     Button buscarVanButton;
     Button cadastrarCriancaButton;
-    Button cancelamentoButton;
+    Button cancelarIdaButton;
+    Button cancelarVoltaButton;
 
     boolean carregado;
 
@@ -30,12 +31,14 @@ public class HomeActivity extends AppCompatActivity {
 
         buscarVanButton = (Button) findViewById(R.id.buscarVanButton);
         cadastrarCriancaButton = (Button) findViewById(R.id.cadastrarCriancaButton);
-        cancelamentoButton = (Button) findViewById(R.id.cancelamentoButton);
+        cancelarIdaButton = (Button) findViewById(R.id.cancelarIdaButton);
+        cancelarVoltaButton = (Button) findViewById(R.id.cancelarVoltaButton);
 
         carregado = false;
         buscarVanButton.setEnabled(false);
         cadastrarCriancaButton.setEnabled(false);
-        cancelamentoButton.setEnabled(false);
+        cancelarIdaButton.setEnabled(false);
+        cancelarVoltaButton.setEnabled(false);
 
         FirebaseDatabase.getInstance().getReference("responsaveis")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -49,7 +52,8 @@ public class HomeActivity extends AppCompatActivity {
                             carregado = true;
                             buscarVanButton.setEnabled(true);
                             cadastrarCriancaButton.setEnabled(true);
-                            cancelamentoButton.setEnabled(true);
+                            cancelarIdaButton.setEnabled(true);
+                            cancelarVoltaButton.setEnabled(true);
                         }
 //                                            r.carregarCrianca();
                     }
@@ -73,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void bntCancelar(View view) {
+    public void bntCancelarIda(View view) {
         Intent i = new Intent(HomeActivity.this, CancelarIdaActivity.class);
         startActivity(i);
     }
@@ -81,6 +85,11 @@ public class HomeActivity extends AppCompatActivity {
     public void btnMostrarVan(View view)
     {
         Intent i = new Intent(HomeActivity.this, MostrarLocalizacao.class);
+        startActivity(i);
+    }
+
+    public void bntCancelarVolta(View view) {
+        Intent i = new Intent(HomeActivity.this, CancelarVoltaActivity.class);
         startActivity(i);
     }
 

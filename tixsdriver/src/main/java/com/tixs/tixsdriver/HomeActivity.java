@@ -99,4 +99,10 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent(this, LocateVanActivity.class);
         startActivity(i);
     }
+
+    public void onCheckinVolta(View view)
+    {
+        Intent i = new Intent(this, CheckInVoltaActivity.class);
+        startActivity(i);
+    }
 }

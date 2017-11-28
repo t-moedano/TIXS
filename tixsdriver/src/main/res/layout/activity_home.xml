@@ -17,6 +17,13 @@
         android:text="Iniciar Ida" />
 
     <Button
+        android:id="@+id/btnIniciarVoltar"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:onClick="onCheckinVolta"
+        android:text="Iniciar Volta" />
+
+    <Button
         android:id="@+id/adiministrarVanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

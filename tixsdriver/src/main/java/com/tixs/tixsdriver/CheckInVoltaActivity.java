@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.tixs.tixsdriver.HomeActivity.condutorLogado;
 
 
 public class CheckInVoltaActivity extends AppCompatActivity {
@@ -145,7 +146,7 @@ public class CheckInVoltaActivity extends AppCompatActivity {
         Uri gmmIntentUri = new MapBuilder()
                 .header()
                 .travelMode()
-                .destino(escolaTeste.endereco.toString())
+                .destino(condutorLogado.endereco.toString())
                 .waypointsEnderecos(lista)
                 .build();
 

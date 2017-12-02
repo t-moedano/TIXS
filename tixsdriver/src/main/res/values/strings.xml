@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name"> Tixs Driver </string>
     <string name="title_activity_locate_van">locateVanActivity</string>
+    <string name="title_activity_lista_aceite">ListaAceiteActivity</string>
 </resources>

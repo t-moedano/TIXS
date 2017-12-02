@@ -99,4 +99,15 @@ public class AdministrarVanActivity extends Activity {
         }
     }
 
+    public void onButtonFilaDeAceiteOpen(View view) {
+        if (vanSelecionada < 0) {
+            Toast.makeText(getApplicationContext(), "Selecione uma Van primeiro.", Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), ListaAceiteActivity.class);
+            Bundle escolaBundle = new Bundle();
+            escolaBundle.putInt("vanSelecionada", vanSelecionada);
+            intent.putExtras(escolaBundle);
+            startActivity(intent);
+        }
+    }
 }

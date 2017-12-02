@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
+import com.tixs.adapters.ListCheckInAdapter;
 import com.tixs.database.Van;
 
 import butterknife.ButterKnife;

@@ -31,6 +31,7 @@ public class Van implements Serializable {
     public ArrayList<Escola> escolas = new ArrayList<>();
     public List<String> criancasIDs = new ArrayList<>();
     public List<Crianca> criancas = new ArrayList<>();
+    public List<Crianca> filaDeAceite = new ArrayList<>();
 
     public double getLatitude() {
         return latitude;
@@ -233,20 +234,28 @@ public class Van implements Serializable {
     }
 
     public void addCrianca(Crianca crianca) {
-        if (!criancasIDs.contains(crianca.id)) {
+        Integer ind = criancasIDs.indexOf(crianca.id);
+        if(ind > -1) {
+            criancas.set(ind, crianca);
+        } else {
             criancas.add(crianca);
             criancasIDs.add(crianca.id);
         }
     }
 
-    // Faca na mesma funcao a adicao ou a modificacao
-    public void pushCrianca(Crianca crianca) {
-        if (!criancasIDs.contains(crianca.id)) {
-            criancas.add(crianca);
-            criancasIDs.add(crianca.id);
+    public void addCriancaLista(Crianca crianca) {
+        Integer ind = -1;
+        boolean found = false;
+        for (int i = 0; i < filaDeAceite.size() && !found; i++) {
+            if(filaDeAceite.get(i).id == crianca.id) {
+                ind = i;
+                found = true;
+            }
+        }
+        if(found) {
+            filaDeAceite.set(ind, crianca);
         } else {
-            int index = criancasIDs.indexOf(crianca.id);
-            criancas.set(index, crianca);
+            filaDeAceite.add(crianca);
         }
     }
 }

@@ -3,9 +3,9 @@
     package="com.tixs.tixsdriver">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_driver"
@@ -27,13 +27,18 @@
         <activity android:name=".CreateVanActivity" />
         <activity android:name=".AdministrarVanActivity" />
         <activity android:name=".AdicionarBairroActivity" />
-
         <activity android:name=".CheckInIdaActivity" />
-        <activity android:name=".LocateVanActivity"></activity>
-
+        <activity android:name=".LocateVanActivity" />
         <activity android:name=".CheckInCondutorActivity" />
-
-
+        <activity
+            android:name=".ListaAceiteActivity"
+            android:label="@string/title_activity_lista_aceite"
+            android:parentActivityName=".AdministrarVanActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tixs.tixsdriver.AdministrarVanActivity" />
+        </activity>
     </application>
 
 </manifest>

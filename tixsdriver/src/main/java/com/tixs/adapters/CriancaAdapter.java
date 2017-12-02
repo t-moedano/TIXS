@@ -1,4 +1,4 @@
-package com.tixs.tixsdriver;
+package com.tixs.adapters;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by moeda on 28/11/2017.
  */
 
-class CriancaAdapter extends ArrayAdapter<Crianca> {
+public class CriancaAdapter extends ArrayAdapter<Crianca> {
 
     public CriancaAdapter(@NonNull Context context, @LayoutRes int resource) {
         super(context, resource);

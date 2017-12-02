@@ -155,7 +155,7 @@ public class CancelarVoltaActivity extends AppCompatActivity {
         if (!found) {
             vans.add(van);
         }
-        van.pushCrianca(crianca);
+        van.addCrianca(crianca);
         return van;
     }
 }

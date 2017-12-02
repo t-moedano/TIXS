@@ -1,4 +1,4 @@
-package com.tixs.tixsdriver;
+package com.tixs.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -17,6 +17,7 @@ import com.tixs.database.Condutor;
 import com.tixs.database.Crianca;
 import com.tixs.database.Responsavel;
 import com.tixs.database.Van;
+import com.tixs.tixsdriver.R;
 
 import java.util.ArrayList;
 import java.util.List;

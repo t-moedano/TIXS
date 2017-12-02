@@ -124,7 +124,7 @@ public class BuscaVanActivity extends AppCompatActivity {
 
                         }
                     });
-            
+
             FirebaseDatabase.getInstance().getReference("vans").child(van.id).setValue(van)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

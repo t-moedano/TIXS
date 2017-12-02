@@ -31,6 +31,7 @@ public class Van implements Serializable {
     public ArrayList<Escola> escolas = new ArrayList<>();
     public List<String> criancasIDs = new ArrayList<>();
     public List<Crianca> criancas = new ArrayList<>();
+    public List<Crianca> filaDeAceite = new ArrayList<>();
 
     public double getLatitude() {
         return latitude;
@@ -239,6 +240,22 @@ public class Van implements Serializable {
         } else {
             criancas.add(crianca);
             criancasIDs.add(crianca.id);
+        }
+    }
+
+    public void addCriancaLista(Crianca crianca) {
+        Integer ind = -1;
+        boolean found = false;
+        for (int i = 0; i < filaDeAceite.size() && !found; i++) {
+            if(filaDeAceite.get(i).id == crianca.id) {
+                ind = i;
+                found = true;
+            }
+        }
+        if(found) {
+            filaDeAceite.set(ind, crianca);
+        } else {
+            filaDeAceite.add(crianca);
         }
     }
 }

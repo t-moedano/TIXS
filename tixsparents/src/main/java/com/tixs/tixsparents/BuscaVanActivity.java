@@ -100,7 +100,7 @@ public class BuscaVanActivity extends AppCompatActivity {
         } else {
             final Crianca crianca = (Crianca) criancaSpinner.getSelectedItem();
             final Van van = vans.get(vanSelecionada);
-            van.addCrianca(crianca);
+            van.addCriancaLista(crianca);
             crianca.vanID = van.id;
             FirebaseDatabase.getInstance().getReference("condutores").child(van.condutorID)
                     .addListenerForSingleValueEvent(new ValueEventListener() {

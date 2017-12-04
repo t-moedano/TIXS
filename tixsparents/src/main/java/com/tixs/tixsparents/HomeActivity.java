@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     Button buscarVanButton;
     Button cadastrarCriancaButton;
     Button cancelamentoButton;
+    Button novoEnderecoButton;
 
     boolean carregado;
 
@@ -31,11 +32,13 @@ public class HomeActivity extends AppCompatActivity {
         buscarVanButton = (Button) findViewById(R.id.buscarVanButton);
         cadastrarCriancaButton = (Button) findViewById(R.id.cadastrarCriancaButton);
         cancelamentoButton = (Button) findViewById(R.id.cancelamentoButton);
+        novoEnderecoButton = (Button) findViewById(R.id.novoEnderecoButton);
 
         carregado = false;
         buscarVanButton.setEnabled(false);
         cadastrarCriancaButton.setEnabled(false);
         cancelamentoButton.setEnabled(false);
+        novoEnderecoButton.setEnabled(false);
 
         FirebaseDatabase.getInstance().getReference("responsaveis")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -51,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
                             buscarVanButton.setEnabled(true);
                             cadastrarCriancaButton.setEnabled(true);
                             cancelamentoButton.setEnabled(true);
+                            novoEnderecoButton.setEnabled(true);
                         }
 //                                            r.carregarCrianca();
                     }
@@ -76,6 +80,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void bntCancelar(View view) {
         Intent i = new Intent(HomeActivity.this, CancelarIdaActivity.class);
+        startActivity(i);
+    }
+
+    public void bntMudarEndereco(View view) {
+        Intent i = new Intent(HomeActivity.this, SolicitarNovoLocal.class);
         startActivity(i);
     }
 }

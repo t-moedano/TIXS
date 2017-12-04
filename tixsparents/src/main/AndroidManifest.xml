@@ -23,7 +23,8 @@
         <activity android:name=".CreateProfileActivity" />
         <activity android:name=".CadastraCriancaActivity" />
         <activity android:name=".CancelarIdaActivity" />
-        <activity android:name=".BuscaVanActivity"></activity>
+        <activity android:name=".BuscaVanActivity" />
+        <activity android:name=".SolicitarNovoLocal"></activity>
     </application>
 
 </manifest>

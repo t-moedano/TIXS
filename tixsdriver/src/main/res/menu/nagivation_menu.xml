@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/iniciarIdaButton1"
+        android:icon="@mipmap/ic_flight_takeoff_black_24dp"
+        android:title="Iniciar Ida"/>
+
+    <item android:id="@+id/btnIniciarVoltar1"
+        android:icon="@mipmap/ic_flight_land_black_24dp"
+        android:title="Iniciar Volta"/>
+
+    <item android:id="@+id/adiministrarVanButton1"
+        android:icon="@mipmap/ic_settings_black_24dp"
+        android:title="Administrar Vans"/>
+
+    <item android:id="@+id/addBanButton1"
+        android:icon="@mipmap/ic_note_add_black_24dp"
+        android:title="Adicionar Van"/>
+
+    <item android:id="@+id/nav_locateVan1"
+        android:icon="@mipmap/ic_search_black_24dp"
+        android:title="Localizar Van"/>
+
+
+</menu>

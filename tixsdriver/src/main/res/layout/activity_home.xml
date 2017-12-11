@@ -13,49 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/iniciarIdaButton"
-            style="@android:style/Widget.Holo.Button"
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#33CC33"
-            android:onClick="onCheckinButtonClick"
-            android:text="Iniciar Ida" />
-
-        <Button
-            android:id="@+id/btnIniciarVoltar"
-            android:layout_width="162dp"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckinVolta"
-            android:text="Iniciar Volta" />
-
-        <Button
-            android:id="@+id/adiministrarVanButton"
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#33CC33"
-            android:onClick="onAdministrarVans"
-            android:text="Administrar Vans" />
-
-        <Button
-            android:id="@+id/addBanButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Localizar Van"
-            android:onClick="onAdicionarVan"
-            style="@android:style/Widget.Holo.Button"
-            android:backgroundTint="#33CC33" />
-
-        <Button
-            android:id="@+id/locateVan"
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#33CC33"
-            android:onClick="onLocateVanButtonClick"
-            android:text="Localizar Van" />
-
+            android:layout_weight="1"
+            android:fontFamily="helvet"
+            android:text="Seja bem vindo ao TIXS Driver!"
+            android:textAlignment="center"
+            android:textSize="36sp" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

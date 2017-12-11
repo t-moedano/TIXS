@@ -78,14 +78,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        iniciarIdaButton = (Button) findViewById(R.id.iniciarIdaButton);
-        adiministrarVanButton = (Button) findViewById(R.id.adiministrarVanButton);
-        addBanButton = (Button) findViewById(R.id.addBanButton);
+        //iniciarIdaButton = (Button) findViewById(R.id.iniciarIdaButton);
+        //adiministrarVanButton = (Button) findViewById(R.id.adiministrarVanButton);
+        //addBanButton = (Button) findViewById(R.id.addBanButton);
 
 
-        iniciarIdaButton.setEnabled(false);
-        adiministrarVanButton.setEnabled(false);
-        addBanButton.setEnabled(false);
+        //iniciarIdaButton.setEnabled(false);
+        //adiministrarVanButton.setEnabled(false);
+        //addBanButton.setEnabled(false);
 
 
         FirebaseDatabase.getInstance().getReference("condutores")
@@ -97,9 +97,9 @@ public class HomeActivity extends AppCompatActivity {
                         c.id = dataSnapshot.getKey();
                         HomeActivity.condutorLogado = c;
 
-                        iniciarIdaButton.setEnabled(true);
-                        adiministrarVanButton.setEnabled(true);
-                        addBanButton.setEnabled(true);
+                        //iniciarIdaButton.setEnabled(true);
+                        //adiministrarVanButton.setEnabled(true);
+                        //addBanButton.setEnabled(true);
 
                     }
 
